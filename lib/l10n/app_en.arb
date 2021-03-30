@@ -2,5 +2,25 @@
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
+  },
+  "appTitle": "LA LOGE PRIVÉE",
+  "@appTitle": {
+    "description": "The app's title"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Text E-mail, will be used to indicate an email text-field"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Text Password, will be used to indicate a password text-field"
+  },
+  "forgotPassword": "Forgot Password",
+  "@forgotPassword": {
+    "description": "Describe a button to help user reset password"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Describe a button to login"
   }
 }

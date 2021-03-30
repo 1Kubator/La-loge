@@ -1,3 +1,8 @@
 {
-  "helloWorld": "Bonjour le monde!"
+  "helloWorld": "Bonjour le monde!",
+  "appTitle": "LA LOGE PRIVÉE",
+  "email": "Email",
+  "password": "Mot de passe",
+  "forgotPassword": "Mot de passe oublié",
+  "login": "Se connecter"
 }
