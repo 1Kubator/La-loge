@@ -20,9 +20,10 @@ class AppTheme {
       accentColor: accentColor,
       primaryTextTheme: themeData,
       accentTextTheme: themeData,
-      scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: Color(0xFF262626),
       appBarTheme: AppBarTheme(
         color: Colors.transparent,
+        elevation: 0,
         actionsIconTheme: IconThemeData(color: accentColor),
       ),
       buttonTheme: ButtonThemeData(
