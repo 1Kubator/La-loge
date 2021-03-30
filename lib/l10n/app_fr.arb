@@ -4,5 +4,7 @@
   "email": "Email",
   "password": "Mot de passe",
   "forgotPassword": "Mot de passe oublié",
-  "login": "Se connecter"
+  "login": "Se connecter",
+  "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+  "invalidPassword": "Veuillez saisir un mot de passe fort de plus de 5 caractères"
 }

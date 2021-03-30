@@ -22,5 +22,13 @@
   "login": "Login",
   "@login": {
     "description": "Describe a button to login"
+  },
+  "invalidEmail": "Please enter a valid email",
+  "@invalidEmail": {
+    "description": "Denote that the entered value is invalid"
+  },
+  "invalidPassword": "Please enter a strong password with more than 5 characters",
+  "@invalidPassword": {
+    "description": "Denote that the entered value is invalid"
   }
 }
