@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/service/firebase_auth.dart';
 import 'package:la_loge/ui/login/widgets/forgot_password.dart';
-import 'package:la_loge/utils/network_exception.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:la_loge/widgets/submit_button.dart';
