@@ -5,10 +5,14 @@ class FirebaseAuthentication {
   static final _firebaseAuth = FirebaseAuth.instance;
 
   static Future<UserCredential> login(String email, String password) async {
-    return _firebaseAuth.signInWithEmailAndPassword(
+    return _firebaseAuth
+        .signInWithEmailAndPassword(
       email: email,
       password: password,
-    ).catchError((err){throwNetworkException(err);});
+    )
+        .catchError((err) {
+      throwNetworkException(err);
+    });
   }
 
   static Future<UserCredential> register(String email, String password) {

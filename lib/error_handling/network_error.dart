@@ -14,7 +14,7 @@ enum NetworkError {
 }
 
 class NetworkErrorMessage {
-  static String getValue(BuildContext context,error) {
+  static String getValue(BuildContext context, error) {
     switch (error.message) {
       case NetworkError.CONNECTIVITY_ERROR:
         return AppLocalizations.of(context).connectivityException;
@@ -29,7 +29,8 @@ class NetworkErrorMessage {
         return AppLocalizations.of(context).loginInvalidCredentials;
         break;
       case NetworkError.EMAIL_ALREADY_IN_USE:
-        return AppLocalizations.of(context).registrationEmailAlreadyInUseException;
+        return AppLocalizations.of(context)
+            .registrationEmailAlreadyInUseException;
         break;
       case NetworkError.WRONG_PASSWORD:
         return AppLocalizations.of(context).loginInvalidCredentials;

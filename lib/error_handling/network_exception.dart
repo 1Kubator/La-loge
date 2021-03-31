@@ -1,4 +1,3 @@
-
 import 'network_error.dart';
 
 class NetworkException implements Exception {
