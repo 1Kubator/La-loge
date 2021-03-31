@@ -9,7 +9,7 @@ class DialogBox {
         title: Text('Success'),
         content: Text(msg),
         actions: [
-          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
+          TextButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
         ],
       ),
     );
@@ -23,7 +23,7 @@ class DialogBox {
         title: Text('Error'),
         content: Text(errorMsg),
         actions: [
-          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
+          TextButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
         ],
       ),
     );

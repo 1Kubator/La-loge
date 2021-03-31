@@ -7,9 +7,8 @@ class ForgotPassword extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return SizedBox(
       height: 16,
-      child: FlatButton(
+      child: TextButton(
         onPressed: () {},
-        padding: EdgeInsets.zero,
         child: Text(
           AppLocalizations.of(context).forgotPassword,
           style: textTheme.caption.copyWith(fontSize: 11),
