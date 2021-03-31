@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:la_loge/utils/network_exception.dart';
+import 'package:la_loge/error_handling/network_exception.dart';
 
 class FirebaseAuthentication {
   static final _firebaseAuth = FirebaseAuth.instance;
