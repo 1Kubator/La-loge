@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/ui/login/widgets/forgot_password.dart';
+import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:la_loge/widgets/submit_button.dart';
@@ -70,6 +71,8 @@ class LoginScreen extends StatelessWidget {
               AppLocalizations.of(context).login,
               onTap: () {
                 if (!formKey.currentState.validate()) return;
+                //TODO: Firebase login will be done here
+                Navigator.pushNamed(context, OnBoardingScreen.id);
               },
             ),
             Spacer(),

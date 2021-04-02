@@ -30,5 +30,21 @@
   "invalidPassword": "Please enter a strong password with more than 5 characters",
   "@invalidPassword": {
     "description": "Denote that the entered value is invalid"
+  },
+  "welcome": "Welcome !",
+  "@welcome": {
+    "description": "Welcome text"
+  },
+  "informationAboutYou": "First of all tell us about you",
+  "@informationAboutYou": {
+    "description": "Proceed User to preference screen"
+  },
+  "completePreferenceForm": "Above all things you must complete our form to benefit from the best possible experience by entering your sizes and your tastes",
+  "@completePreferenceForm": {
+    "description": "Proceed User to preference screen"
+  },
+  "continueWithForm": "Continue with form",
+  "@continueWithForm": {
+    "description": "Navigate user to preference screen"
   }
 }
