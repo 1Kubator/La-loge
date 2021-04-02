@@ -40,6 +40,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_native_splash: ^0.3.2
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -52,6 +55,18 @@ flutter:
   uses-material-design: true
   generate: true
 
+
+
+
+flutter_native_splash:
+  image: assets/icons/splash_icon.png
+  color: "#262626"
+  android: true
+  ios: true
+
+
+  assets:
+     - images/icons/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

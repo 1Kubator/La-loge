@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
-
 import 'loading_widget.dart';
 
 class SubmitButton extends StatelessWidget {
