@@ -1,0 +1,14 @@
+{
+  "helloWorld": "Bonjour le monde!",
+  "appTitle": "LA LOGE PRIVÉE",
+  "email": "Email",
+  "password": "Mot de passe",
+  "forgotPassword": "Mot de passe oublié",
+  "login": "Se connecter",
+  "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+  "invalidPassword": "Veuillez saisir un mot de passe fort de plus de 5 caractères",
+  "welcome": "Bienvenue !",
+  "informationAboutYou": "Tout d’abord parlez-nous de vous",
+  "completePreferenceForm": "Avant toute choses vous devez remplir notre formulaire pour bénéficiez de la meilleur expérience possible en renseignant vos tailles et vos goûts",
+  "continueWithForm": "Accéder au formulaire"
+}
