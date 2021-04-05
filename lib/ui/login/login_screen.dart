@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service/firebase_auth.dart';
+import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/ui/login/widgets/forgot_password.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -11,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   final emailCtrl = TextEditingController();
   final passwordCtrl = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final DatabaseService db = locator<DatabaseService>();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                   emailCtrl.text,
                   passwordCtrl.text,
                 );
-                Navigator.pushNamed(context, OnBoardingScreen.id);
+                checkForPreferencesAndNavigate(context);
               },
             ),
             Spacer(),
@@ -84,5 +87,18 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  checkForPreferencesAndNavigate(BuildContext context) async {
+    final hasPreferences = await db.hasPreferences();
+    if (hasPreferences) {
+      //TODO: Navigate to home screen
+    } else {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        OnBoardingScreen.id,
+        (route) => false,
+      );
+    }
   }
 }
