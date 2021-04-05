@@ -32,7 +32,9 @@ class AppTheme {
         height: 51,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
-      cursorColor: accentColor,
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: accentColor,
+      ),
       cardTheme: CardTheme(
           color: accentColor,
           shape:
