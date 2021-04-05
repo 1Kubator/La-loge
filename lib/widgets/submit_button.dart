@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:la_loge/widgets/dialog_box.dart';
+import 'loading_widget.dart';
 
 class SubmitButton extends StatelessWidget {
   final String title;
@@ -12,8 +14,16 @@ class SubmitButton extends StatelessWidget {
     return Center(
       child: FractionallySizedBox(
         widthFactor: 0.9,
-        child: RaisedButton(
-          onPressed: onTap,
+        child: ElevatedButton(
+          onPressed: () async {
+            LoadingWidget.showLoadingDialog(context);
+            try {
+              await onTap();
+            } catch (e) {
+              await DialogBox.showErrorDialog(context, e);
+            }
+            Navigator.pop(context);
+          },
           child: Text(
             title,
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:la_loge/service/firebase_auth.dart';
 import 'package:la_loge/ui/login/widgets/forgot_password.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -69,9 +70,12 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 24),
             SubmitButton(
               AppLocalizations.of(context).login,
-              onTap: () {
+              onTap: () async {
                 if (!formKey.currentState.validate()) return;
-                //TODO: Firebase login will be done here
+                await FirebaseAuthentication.login(
+                  emailCtrl.text,
+                  passwordCtrl.text,
+                );
                 Navigator.pushNamed(context, OnBoardingScreen.id);
               },
             ),

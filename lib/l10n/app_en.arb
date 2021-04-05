@@ -31,6 +31,33 @@
   "@invalidPassword": {
     "description": "Denote that the entered value is invalid"
   },
+  "connectivityException": "Internet connection appears to be interrupted",
+  "@connectivityException": {
+    "description": "Denote that the internet connection got interrupted"
+  },
+  "authenticationException": "You are not authorized, please log back in to continue",
+  "@authenticationException": {
+    "description": "Denote unauthorised access"
+  },
+  "loginInvalidCredentials": "Incorrect email or password",
+  "@loginInvalidCredentials": {
+    "description": "Denote incorrect email or password"
+  },
+  "registrationEmailAlreadyInUseException": "Email address are already in use",
+  "@registrationEmailAlreadyInUseException": {
+    "description": "Denote email address are already in use"
+  },
+  "loginUserDisabled": "Your account has been deactivated",
+  "@loginUserDisabled": {
+    "description": "Denote account no longer works"
+  },
+  "loginTooManyRequest": "Too many requests, please try again later",
+  "@loginTooManyRequest": {
+    "description": "Denote too many requests"
+  },
+  "genericErrorMessage": "Nos serveurs sont temporairement indisponibles. Veuillez réessayer plus tard",
+  "@genericErrorMessage": {
+    "description": "Denote server down"
   "welcome": "Welcome !",
   "@welcome": {
     "description": "Welcome text"
