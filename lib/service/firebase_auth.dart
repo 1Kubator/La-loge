@@ -3,7 +3,6 @@ import 'package:la_loge/error_handling/network_exception.dart';
 
 class FirebaseAuthentication {
   static final _firebaseAuth = FirebaseAuth.instance;
-  static final uid = FirebaseAuth.instance.currentUser.uid;
 
   static Future<UserCredential> login(String email, String password) async {
     return _firebaseAuth
