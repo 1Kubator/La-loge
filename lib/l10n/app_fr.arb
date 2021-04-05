@@ -13,7 +13,7 @@
   "registrationEmailAlreadyInUseException": "Ce nom d’artiste ou cette adresse mail sont déja utilisés",
   "loginUserDisabled": "Votre compte a été désactivé",
   "loginTooManyRequest": "Trop de demandes, veuillez réessayer plus tard",
-  "genericErrorMessage": "Nos serveurs sont temporairement indisponibles. Veuillez réessayer plus tard"
+  "genericErrorMessage": "Nos serveurs sont temporairement indisponibles. Veuillez réessayer plus tard",
   "welcome": "Bienvenue !",
   "informationAboutYou": "Tout d’abord parlez-nous de vous",
   "completePreferenceForm": "Avant toute choses vous devez remplir notre formulaire pour bénéficiez de la meilleur expérience possible en renseignant vos tailles et vos goûts",
