@@ -6,5 +6,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case OnBoardingScreen.id:
       return MaterialPageRoute(builder: (context) => OnBoardingScreen());
+    default:
+      return MaterialPageRoute(builder: (context) => OnBoardingScreen());
   }
 }
