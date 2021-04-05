@@ -10,9 +10,9 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.22.4'
+          flutter-version: '2.0.3'
       - run: flutter pub get
-      - run: flutter build aot
+      - run: flutter build apk
       - run: flutter analyze
       - run: flutter format -n --set-exit-if-changed .
       - run: flutter test
