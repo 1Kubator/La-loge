@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:la_loge/prefs/shared_prefs.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service/firebase_auth.dart';
 import 'package:la_loge/service_locator.dart';
@@ -79,6 +81,8 @@ class LoginScreen extends StatelessWidget {
                   emailCtrl.text,
                   passwordCtrl.text,
                 );
+                await Prefs.setCurrentUserId(
+                    FirebaseAuth.instance.currentUser.uid);
                 checkForPreferencesAndNavigate(context);
               },
             ),
