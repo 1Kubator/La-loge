@@ -20,10 +20,10 @@ class SubmitButton extends StatelessWidget {
             try {
               await onTap();
             } catch (e) {
-              await DialogBox.showErrorDialog(context, e);
-            } finally {
               progressDialog.hide();
+              await DialogBox.showErrorDialog(context, e);
             }
+            progressDialog.hide();
           },
           child: Text(
             title,
