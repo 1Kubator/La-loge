@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/progress_dialog.dart';
-import 'loading_widget.dart';
 
 class SubmitButton extends StatelessWidget {
   final String title;
