@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>833559732819-e69b4jmjoclkfaep93o84919ocslhjfh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.833559732819-e69b4jmjoclkfaep93o84919ocslhjfh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAssMnchgoTsqZ79Jzh7AniNaPU46-jTp0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>833559732819</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dyvia.laloge</string>
+	<key>PROJECT_ID</key>
+	<string>la-loge-6683b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>la-loge-6683b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:833559732819:ios:96837e891c456f2ab71ca6</string>
+</dict>
+</plist>
