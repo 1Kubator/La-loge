@@ -1,21 +1,78 @@
 {
   "helloWorld": "Bonjour le monde!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
   "appTitle": "LA LOGE PRIVÉE",
+  "@appTitle": {
+    "description": "The app's title"
+  },
   "email": "Email",
+  "@email": {
+    "description": "Text E-mail, will be used to indicate an email text-field"
+  },
   "password": "Mot de passe",
+  "@password": {
+    "description": "Text Password, will be used to indicate a password text-field"
+  },
   "forgotPassword": "Mot de passe oublié",
+  "@forgotPassword": {
+    "description": "Describe a button to help user reset password"
+  },
   "login": "Se connecter",
+  "@login": {
+    "description": "Describe a button to login"
+  },
   "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+  "@invalidEmail": {
+    "description": "Denote that the entered value is invalid"
+  },
   "invalidPassword": "Veuillez saisir un mot de passe fort de plus de 5 caractères",
+  "@invalidPassword": {
+    "description": "Denote that the entered value is invalid"
+  },
   "connectivityException": "La connexion Internet semble interrompue",
+  "@connectivityException": {
+    "description": "Denote that the internet connection got interrupted"
+  },
   "authenticationException": "Vous n'êtes pas autorisé, veuillez vous reconnecter pour continuer",
+  "@authenticationException": {
+    "description": "Denote unauthorised access"
+  },
   "loginInvalidCredentials": "Email ou mot de passe incorrect",
+  "@loginInvalidCredentials": {
+    "description": "Denote incorrect email or password"
+  },
   "registrationEmailAlreadyInUseException": "Ce nom d’artiste ou cette adresse mail sont déja utilisés",
+  "@registrationEmailAlreadyInUseException": {
+    "description": "Denote email address are already in use"
+  },
   "loginUserDisabled": "Votre compte a été désactivé",
+  "@loginUserDisabled": {
+    "description": "Denote account no longer works"
+  },
   "loginTooManyRequest": "Trop de demandes, veuillez réessayer plus tard",
+  "@loginTooManyRequest": {
+    "description": "Denote too many requests"
+  },
   "genericErrorMessage": "Nos serveurs sont temporairement indisponibles. Veuillez réessayer plus tard",
+  "@genericErrorMessage": {
+    "description": "Denote server down"
+  },
   "welcome": "Bienvenue !",
+  "@welcome": {
+    "description": "Welcome text"
+  },
   "informationAboutYou": "Tout d’abord parlez-nous de vous",
+  "@informationAboutYou": {
+    "description": "Proceed User to preference screen"
+  },
   "completePreferenceForm": "Avant toute choses vous devez remplir notre formulaire pour bénéficiez de la meilleur expérience possible en renseignant vos tailles et vos goûts",
-  "continueWithForm": "Accéder au formulaire"
+  "@completePreferenceForm": {
+    "description": "Proceed User to preference screen"
+  },
+  "continueWithForm": "Accéder au formulaire",
+  "@continueWithForm": {
+    "description": "Navigate user to preference screen"
+  }
 }
