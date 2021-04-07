@@ -74,5 +74,9 @@
   "continueWithForm": "Accéder au formulaire",
   "@continueWithForm": {
     "description": "Navigate user to preference screen"
+  },
+  "next": "Suivant",
+  "@next": {
+    "description": "Next, denote a 'next' button"
   }
 }
