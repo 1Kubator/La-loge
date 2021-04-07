@@ -1,4 +1,9 @@
-enum PreferenceQuestionType { CHECKBOX, MULTIPLE_CHOICE, SLIDER, IMAGE_CHOICE }
+enum PreferenceQuestionType {
+  CHECKBOX,
+  MULTIPLE_CHOICE,
+  SLIDER,
+  IMAGE_BASED_SELECTION
+}
 
 class PreferenceQuestionTypeHelper {
   static String getValue(PreferenceQuestionType role) {
@@ -12,8 +17,8 @@ class PreferenceQuestionTypeHelper {
       case PreferenceQuestionType.SLIDER:
         return "slider";
         break;
-      case PreferenceQuestionType.IMAGE_CHOICE:
-        return "image_choice";
+      case PreferenceQuestionType.IMAGE_BASED_SELECTION:
+        return "image_based_selection";
         break;
       default:
         return null;
@@ -31,8 +36,8 @@ class PreferenceQuestionTypeHelper {
       case "slider":
         return PreferenceQuestionType.SLIDER;
         break;
-      case "image_choice":
-        return PreferenceQuestionType.IMAGE_CHOICE;
+      case "image_based_selection":
+        return PreferenceQuestionType.IMAGE_BASED_SELECTION;
         break;
       default:
         return null;
