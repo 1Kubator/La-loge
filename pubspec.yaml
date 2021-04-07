@@ -37,6 +37,7 @@ dependencies:
   cloud_firestore: ^1.0.3
   get_it: ^6.0.0
   shared_preferences: ^2.0.5
+  flutter_xlider: ^3.4.0
 
 
 dev_dependencies:
@@ -61,18 +62,20 @@ flutter:
 
 
 
+
+  assets:
+    - assets/icons/
+
+
 flutter_native_splash:
   image: assets/icons/splash_icon.png
   color: "#262626"
   android: true
   ios: true
 
-
-  assets:
-     - images/icons/
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+#  assets:
+#     - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
