@@ -12,7 +12,6 @@ import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_widget.dart';
 import 'package:la_loge/widgets/submit_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'style_preference_screen.dart';
 
 class SizePreferenceScreen extends StatefulWidget {
