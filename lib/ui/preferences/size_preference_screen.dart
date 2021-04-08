@@ -84,11 +84,13 @@ class _SizePreferenceScreenState extends State<SizePreferenceScreen> {
                 SubmitButton(
                   AppLocalizations.of(context).next,
                   onTap: () {
+                    if (!validate()) return;
                     Navigator.pushNamed(
                       context,
                       StylePreferenceScreen.id,
                       arguments: AllPreferences(
-                          sizePreferenceResponse: userPreferences),
+                        sizePreferenceResponse: userPreferences,
+                      ),
                     );
                   },
                 )
@@ -96,5 +98,9 @@ class _SizePreferenceScreenState extends State<SizePreferenceScreen> {
             );
           }),
     );
+  }
+
+  bool validate() {
+    return !userPreferences.any((element) => element.statementRef == null);
   }
 }
