@@ -86,5 +86,21 @@
   "materialPreference": "VOS MATIÈRES PRÉFÉRÉES",
   "@materialPreference": {
     "description": "Denote 'User Material Preference' label"
+  },
+  "thankYou": "Merci!",
+  "@merci": {
+    "description": "Denote 'Thank you' label"
+  },
+  "preferencesRecorded": "Nous avons pris en compte vos préférences",
+  "@preferencesRecorded": {
+    "description": "Denote 'We have taken your preferences into account' label"
+  },
+  "enjoyApplication": "Vous pouvez dés maintenant accéder à notre application et profiter de shopping privé dans vos boutiques favorites",
+  "@enjoyApplication": {
+    "description": "Denote 'You can now access our application and enjoy private shopping in your favorite stores' label"
+  },
+  "accessApplication": "Accéder à mon espace",
+  "@accessApplication": {
+    "description": "Denote 'Access my space' label"
   }
 }
