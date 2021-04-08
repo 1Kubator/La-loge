@@ -23,7 +23,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         return MaterialPageRoute(
           builder: (context) => MaterialPreferenceScreen(allPreferences: args),
         );
-      return MaterialPageRoute(builder: (context) => MaterialPreferenceScreen());
+      return MaterialPageRoute(
+          builder: (context) => MaterialPreferenceScreen());
     default:
       return MaterialPageRoute(builder: (context) => OnBoardingScreen());
   }

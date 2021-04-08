@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Option {
@@ -16,7 +14,7 @@ class Option {
   final DocumentReference docReference;
 
   factory Option.fromMap(
-      Map<String, dynamic> json, id, DocumentReference docReference) =>
+          Map<String, dynamic> json, id, DocumentReference docReference) =>
       Option(
         id: id,
         index: json["index"] == null ? null : json["index"],
@@ -31,9 +29,9 @@ class Option {
   }
 
   Map<String, dynamic> toMap() => {
-    "id": id == null ? null : id,
-    "index": index == null ? null : index,
-    "option": option == null ? null : option,
-    "doc_reference": docReference == null ? null : docReference,
-  };
+        "id": id == null ? null : id,
+        "index": index == null ? null : index,
+        "option": option == null ? null : option,
+        "doc_reference": docReference == null ? null : docReference,
+      };
 }
