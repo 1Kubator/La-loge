@@ -82,5 +82,9 @@
   "style": "VOTRE STYLE",
   "@style": {
     "description": "Denote 'User style' label"
+  },
+  "materialPreference": "VOS MATIÈRES PRÉFÉRÉES",
+  "@materialPreference": {
+    "description": "Denote 'User Material Preference' label"
   }
 }
