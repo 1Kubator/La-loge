@@ -20,11 +20,21 @@ class AppTheme {
       accentColor: accentColor,
       primaryTextTheme: themeData,
       accentTextTheme: themeData,
-      scaffoldBackgroundColor: Color(0xFF262626),
+      scaffoldBackgroundColor: primaryColor,
       appBarTheme: AppBarTheme(
         color: Colors.transparent,
         elevation: 0,
         actionsIconTheme: IconThemeData(color: accentColor),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          minimumSize: MaterialStateProperty.all(Size(0, 51)),
+          backgroundColor: MaterialStateProperty.all(accentColor),
+          foregroundColor: MaterialStateProperty.all(primaryColor),
+        ),
       ),
       buttonTheme: ButtonThemeData(
         buttonColor: accentColor,
@@ -32,13 +42,13 @@ class AppTheme {
         height: 51,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
-      textSelectionTheme: TextSelectionThemeData(
-        cursorColor: accentColor,
-      ),
+      textSelectionTheme: TextSelectionThemeData(cursorColor: accentColor),
       cardTheme: CardTheme(
-          color: accentColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        color: accentColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: inputBorder,
         enabledBorder: inputBorder,
@@ -50,4 +60,5 @@ class AppTheme {
   }
 
   static const accentColor = Color(0xFFFBF6F1);
+  static const primaryColor = Color(0xFF262626);
 }
