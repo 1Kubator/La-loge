@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:la_loge/prefs/shared_prefs.dart';
+import 'package:la_loge/service/analytics_service.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service/firebase_auth.dart';
 import 'package:la_loge/service_locator.dart';
@@ -16,6 +17,7 @@ class LoginScreen extends StatelessWidget {
   final passwordCtrl = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final DatabaseService db = locator<DatabaseService>();
+  final AnalyticsService analyticsService = locator<AnalyticsService>();
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                 );
                 await Prefs.setCurrentUserId(
                     FirebaseAuth.instance.currentUser.uid);
-                checkForPreferencesAndNavigate(context);
+                await checkForPreferencesAndNavigate(context);
               },
             ),
             Spacer(),
@@ -93,8 +95,9 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  checkForPreferencesAndNavigate(BuildContext context) async {
+  Future checkForPreferencesAndNavigate(BuildContext context) async {
     final hasPreferences = await db.hasPreferences();
+    await analyticsService.newLogin();
     if (hasPreferences) {
       //TODO: Navigate to home screen
     } else {
@@ -104,5 +107,6 @@ class LoginScreen extends StatelessWidget {
         (route) => false,
       );
     }
+    return;
   }
 }
