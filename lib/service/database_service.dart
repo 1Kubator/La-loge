@@ -17,8 +17,9 @@ class DatabaseService {
     final doc = await _db
         .collection(CollectionPath.user)
         .doc(FirebaseAuth.instance.currentUser.uid)
+        .collection(CollectionPath.sizePreferences)
         .get();
-    return doc.data().containsKey(CollectionPath.sizePreferences);
+    return doc.docs.isNotEmpty;
   }
 
   Future<List<SizePreference>> getSizePreferenceQuestions() async {
