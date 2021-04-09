@@ -78,5 +78,9 @@
   "next": "Suivant",
   "@next": {
     "description": "Next, denote a 'next' button"
+  },
+  "style": "VOTRE STYLE",
+  "@style": {
+    "description": "Denote 'User style' label"
   }
 }

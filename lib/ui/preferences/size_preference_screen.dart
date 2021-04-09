@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:la_loge/models/all_preferences.dart';
 import 'package:la_loge/models/preference_question_type.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
@@ -11,6 +12,7 @@ import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_widget.dart';
 import 'package:la_loge/widgets/submit_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'style_preference_screen.dart';
 
 class SizePreferenceScreen extends StatefulWidget {
   static const id = 'size_preference_screen';
@@ -81,7 +83,14 @@ class _SizePreferenceScreenState extends State<SizePreferenceScreen> {
                     }),
                 SubmitButton(
                   AppLocalizations.of(context).next,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      StylePreferenceScreen.id,
+                      arguments: AllPreferences(
+                          sizePreferenceResponse: userPreferences),
+                    );
+                  },
                 )
               ],
             );

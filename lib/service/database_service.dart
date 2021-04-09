@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:la_loge/models/size_preference.dart';
+import 'package:la_loge/models/style_preference.dart';
 import 'package:la_loge/service/collection_path.dart';
 
 class DatabaseService {
@@ -31,6 +32,16 @@ class DatabaseService {
 
       preferences[preferences.indexOf(p)] = p.copyWith(options: options);
     }
+
+    preferences.sort((a, b) => a.index.compareTo(b.index));
+    return preferences;
+  }
+
+  Future<List<StylePreference>> getStylePreferenceQuestions() async {
+    final preferencesDocs =
+        await _db.collection(CollectionPath.stylePreferences).get();
+
+    var preferences = StylePreference.fromDocuments(preferencesDocs.docs);
 
     preferences.sort((a, b) => a.index.compareTo(b.index));
     return preferences;
