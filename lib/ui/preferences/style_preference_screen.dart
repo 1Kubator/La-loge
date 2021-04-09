@@ -6,6 +6,7 @@ import 'package:la_loge/models/style_preference_response.dart';
 import 'package:la_loge/resources/images.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/preferences/material_preference_screen.dart';
 import 'package:la_loge/ui/preferences/widgets/style_preference_options.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/error_box.dart';
@@ -91,12 +92,32 @@ class _StylePreferenceScreenState extends State<StylePreferenceScreen> {
                 SubmitButton(
                   AppLocalizations.of(context).next,
                   onTap: () {
-                    Navigator.pushNamed(context, StylePreferenceScreen.id);
+                    if (!validate()) return;
+                    userPreferences = normalizeUserResponse(userPreferences);
+                    final allPreferences = widget.allPreferences.copyWith(
+                      stylePreferenceResponse: userPreferences,
+                    );
+
+                    Navigator.pushNamed(
+                      context,
+                      MaterialPreferenceScreen.id,
+                      arguments: allPreferences,
+                    );
                   },
                 )
               ],
             );
           }),
     );
+  }
+
+  List<StylePreferenceResponse> normalizeUserResponse(
+      List<StylePreferenceResponse> list) {
+    list.removeWhere((element) => element.statementRef == null);
+    return list;
+  }
+
+  bool validate() {
+    return userPreferences.any((element) => element.statementRef != null);
   }
 }

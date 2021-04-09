@@ -3,8 +3,8 @@ import 'package:la_loge/models/preference_question_type.dart';
 
 import 'option.dart';
 
-class SizePreference {
-  SizePreference({
+class MaterialPreference {
+  MaterialPreference({
     this.id,
     this.index,
     this.options,
@@ -20,12 +20,12 @@ class SizePreference {
   final DocumentReference docReference;
   final PreferenceQuestionType type;
 
-  factory SizePreference.fromMap(
+  factory MaterialPreference.fromMap(
     String id,
     Map<String, dynamic> json,
     DocumentReference docReference,
   ) =>
-      SizePreference(
+      MaterialPreference(
         id: id,
         index: json["index"] == null ? null : json["index"],
         options: json["options"] == null ? null : json["options"],
@@ -36,13 +36,13 @@ class SizePreference {
             : PreferenceQuestionTypeHelper.fromString(json["type"]),
       );
 
-  static List<SizePreference> fromDocuments(
+  static List<MaterialPreference> fromDocuments(
     List<QueryDocumentSnapshot> documents,
   ) {
     return documents.map((e) {
       final c = e.data();
       c.remove('options');
-      return SizePreference.fromMap(e.id, c, e.reference);
+      return MaterialPreference.fromMap(e.id, c, e.reference);
     }).toList();
   }
 
@@ -56,14 +56,14 @@ class SizePreference {
         "type": type == null ? null : type,
       };
 
-  SizePreference copyWith({
+  MaterialPreference copyWith({
     int index,
     List<Option> options,
     String statement,
     DocumentReference docReference,
     PreferenceQuestionType type,
   }) =>
-      SizePreference(
+      MaterialPreference(
         id: id,
         index: index ?? this.index,
         options: options ?? this.options,
