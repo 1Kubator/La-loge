@@ -7,6 +7,7 @@ import 'package:la_loge/models/material_preference_response.dart';
 import 'package:la_loge/resources/images.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
 import 'package:la_loge/ui/preferences/widgets/material_preference_question.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/error_box.dart';
@@ -113,6 +114,11 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
                     );
 
                     await db.uploadPreferences(response);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      PreferencesCompleteScreen.id,
+                      (route) => false,
+                    );
                   },
                 )
               ],
