@@ -10,26 +10,54 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   final args = settings.arguments;
   switch (settings.name) {
     case OnBoardingScreen.id:
-      return MaterialPageRoute(builder: (context) => OnBoardingScreen());
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: OnBoardingScreen.id,
+          ),
+          builder: (context) => OnBoardingScreen());
     case SizePreferenceScreen.id:
-      return MaterialPageRoute(builder: (context) => SizePreferenceScreen());
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: SizePreferenceScreen.id,
+          ),
+          builder: (context) => SizePreferenceScreen());
     case StylePreferenceScreen.id:
       if (args is AllPreferences)
         return MaterialPageRoute(
+          settings: RouteSettings(
+            name: StylePreferenceScreen.id,
+          ),
           builder: (context) => StylePreferenceScreen(allPreferences: args),
         );
-      return MaterialPageRoute(builder: (context) => StylePreferenceScreen());
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: StylePreferenceScreen.id,
+          ),
+          builder: (context) => StylePreferenceScreen());
     case MaterialPreferenceScreen.id:
       if (args is AllPreferences)
         return MaterialPageRoute(
+          settings: RouteSettings(
+            name: MaterialPreferenceScreen.id,
+          ),
           builder: (context) => MaterialPreferenceScreen(allPreferences: args),
         );
       return MaterialPageRoute(
+          settings: RouteSettings(
+            name: MaterialPreferenceScreen.id,
+          ),
           builder: (context) => MaterialPreferenceScreen());
     case PreferencesCompleteScreen.id:
       return MaterialPageRoute(
+          settings: RouteSettings(
+            name: PreferencesCompleteScreen.id,
+          ),
           builder: (context) => PreferencesCompleteScreen());
     default:
-      return MaterialPageRoute(builder: (context) => OnBoardingScreen());
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: OnBoardingScreen.id,
+          ),
+          builder: (context) => OnBoardingScreen());
   }
 }
