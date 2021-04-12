@@ -5,6 +5,7 @@ import 'package:la_loge/models/all_preferences.dart';
 import 'package:la_loge/models/material_preference.dart';
 import 'package:la_loge/models/material_preference_response.dart';
 import 'package:la_loge/resources/images.dart';
+import 'package:la_loge/service/analytics_service.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
@@ -17,7 +18,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MaterialPreferenceScreen extends StatefulWidget {
   static const id = 'material_preference_screen';
-
   final AllPreferences allPreferences;
 
   const MaterialPreferenceScreen({Key key, this.allPreferences})
@@ -29,6 +29,7 @@ class MaterialPreferenceScreen extends StatefulWidget {
 }
 
 class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
+  final AnalyticsService analyticsService = locator<AnalyticsService>();
   final DatabaseService db = locator<DatabaseService>();
   List<MaterialPreferenceResponse> userPreferences;
 
@@ -114,6 +115,7 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
                     );
 
                     await db.uploadPreferences(response);
+                    analyticsService.preferencesSubmitted();
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       PreferencesCompleteScreen.id,

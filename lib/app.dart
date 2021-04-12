@@ -9,6 +9,8 @@ import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
 import 'package:la_loge/utils/route_generator.dart';
 import 'package:la_loge/widgets/loading_widget.dart';
 
+import 'service/analytics_service.dart';
+
 class MyApp extends StatelessWidget {
   final DatabaseService db = locator<DatabaseService>();
 
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: generateRoute,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      navigatorObservers: [locator<AnalyticsService>().getAnalyticsObserver()],
       home: FutureBuilder<String>(
           future: Prefs.getCurrentUserId(),
           builder: (context, snap) {
