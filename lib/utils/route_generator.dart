@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/all_preferences.dart';
+import 'package:la_loge/ui/bottom_navigation.dart';
+import 'package:la_loge/ui/home/home_screen_navigator.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
 import 'package:la_loge/ui/preferences/material_preference_screen.dart';
 import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
@@ -53,6 +55,18 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             name: PreferencesCompleteScreen.id,
           ),
           builder: (context) => PreferencesCompleteScreen());
+    case BottomNavigation.id:
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: BottomNavigation.id,
+          ),
+          builder: (context) => BottomNavigation());
+    case HomeScreenNavigator.id:
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: HomeScreenNavigator.id,
+          ),
+          builder: (context) => HomeScreenNavigator());
     default:
       return MaterialPageRoute(
           settings: RouteSettings(
