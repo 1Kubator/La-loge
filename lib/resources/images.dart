@@ -5,4 +5,8 @@ class Images {
       'assets/icons/material_preference_step.png';
   static const completePreferenceBackground =
       'assets/icons/preference_complete_background.png';
+  static const navBarHome = 'assets/icons/nav_bar_home.png';
+  static const navBarStore = 'assets/icons/nav_bar_store.png';
+  static const navBarAppointment = 'assets/icons/nav_bar_appointment.png';
+  static const navBarProfile = 'assets/icons/nav_bar_profile.png';
 }
