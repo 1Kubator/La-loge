@@ -9,4 +9,6 @@ class Images {
   static const navBarStore = 'assets/icons/nav_bar_store.png';
   static const navBarAppointment = 'assets/icons/nav_bar_appointment.png';
   static const navBarProfile = 'assets/icons/nav_bar_profile.png';
+  static const homeScreenFirstTab = 'assets/images/home_screen_first_tab.png';
+  static const homeScreenSecondTab = 'assets/images/home_screen_second_tab.png';
 }
