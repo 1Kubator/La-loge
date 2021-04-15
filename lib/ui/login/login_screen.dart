@@ -5,6 +5,7 @@ import 'package:la_loge/service/analytics_service.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service/firebase_auth.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/login/widgets/forgot_password.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -99,7 +100,11 @@ class LoginScreen extends StatelessWidget {
     final hasPreferences = await db.hasPreferences();
     await analyticsService.newLogin();
     if (hasPreferences) {
-      //TODO: Navigate to home screen
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        BottomNavigation.id,
+        (route) => false,
+      );
     } else {
       Navigator.pushNamedAndRemoveUntil(
         context,

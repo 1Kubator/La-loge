@@ -14,6 +14,7 @@ class DatabaseService {
   final _db = FirebaseFirestore.instance;
 
   Future<bool> hasPreferences() async {
+    if (FirebaseAuth.instance.currentUser == null) return null;
     final doc = await _db
         .collection(CollectionPath.user)
         .doc(FirebaseAuth.instance.currentUser.uid)
