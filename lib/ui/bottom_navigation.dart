@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/resources/images.dart';
+import 'package:la_loge/ui/home/home_screen_navigator.dart';
 
 class BottomNavigation extends StatefulWidget {
   static const id = 'bottom_navigation';
@@ -10,13 +11,16 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int screenIndex = 0;
+  var screens = [
+    HomeScreenNavigator(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
         index: screenIndex,
-        children: [],
+        children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -59,7 +63,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Image.asset(
       icon,
       height: 26,
-      color: Colors.white.withOpacity(0.8),
+      color: Colors.white.withOpacity(0.9),
     );
   }
 }
