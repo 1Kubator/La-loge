@@ -3,6 +3,7 @@ import 'package:la_loge/prefs/shared_prefs.dart';
 import 'package:la_loge/resources/app_theme.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/login/login_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
@@ -11,8 +12,20 @@ import 'package:la_loge/widgets/loading_widget.dart';
 
 import 'service/analytics_service.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final DatabaseService db = locator<DatabaseService>();
+  Future<bool> future;
+
+  @override
+  void initState() {
+    super.initState();
+    future = db.hasPreferences();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +44,12 @@ class MyApp extends StatelessWidget {
               return LoginScreen();
             else
               return FutureBuilder<bool>(
-                future: db.hasPreferences(),
+                future: future,
                 builder: (context, snap) {
                   if (snap.connectionState == ConnectionState.waiting)
                     return LoadingWidget();
                   if (snap.data == true) {
-                    //TODO: Navigate to home screen
-                    return Container();
+                    return BottomNavigation();
                   }
                   return OnBoardingScreen();
                 },
