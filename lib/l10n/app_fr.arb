@@ -102,5 +102,25 @@
   "accessApplication": "Accéder à mon espace",
   "@accessApplication": {
     "description": "Denote 'Access my space' label"
+  },
+  "shoppingAppointment": "Rendez-vous pour un shopping privé !",
+  "@shoppingAppointment": {
+    "description": "Denote 'Appointment for a private shopping!' label"
+  },
+  "accessStores": "En tant que shoppeur premium accédez à vos avantages dans vos boutiques favorites !",
+  "@accessStores": {
+    "description": "Denote 'As a premium shopper, access your advantages in your favorite stores!' label"
+  },
+  "makeAppointment": "Prendre rendez-vous",
+  "@makeAppointment": {
+    "description": "Denote 'Make an appointment' label"
+  },
+  "findAppointments": "Retrouvez tout vos rendez-vous !",
+  "@findAppointments": {
+    "description": "Denote 'Find everything your appointments!' label"
+  },
+  "myPrivateShopping": "Mes shopping privés",
+  "@myPrivateShopping": {
+    "description": "Denote 'My private shopping' label"
   }
 }
