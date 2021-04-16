@@ -130,5 +130,29 @@
   "makeAnAppointmentWithStore": "Pour prendre un rendez-vous sélectionnez un magasin.",
   "@makeAnAppointmentWithStore": {
     "description": "Denote 'TA make an appointment select a store.' label"
+  },
+  "aboveAll": "Mais avant tout..",
+  "@aboveAll": {
+    "description": "Denote 'But above all...' label"
+  },
+  "swipeInfo": "... indiquez au personnel de vente en swippant à droit si vous aimez et gauche si vous n’aimez pas un ou plusieurs looks selectionnez.",
+  "@swipeInfo": {
+    "description": "Denote '... tell the sales staff by swiping to the right if you like and to the left if you don't like one or more looks select' label"
+  },
+  "alertDiscontinueAppointment": "Êtes-vous sûr de vouloir interrompre la prise de rendez-vous?",
+  "@alertDiscontinueAppointment": {
+    "description": "Denote 'Are you sure you want to discontinue making appointment?' label"
+  },
+  "discontinueAppointment": "Arrêter le rendez-vous",
+  "@discontinueAppointment": {
+    "description": "Denote 'Discontinue Appointment' label"
+  },
+  "yes": "Oui",
+  "@yes": {
+    "description": "Denote 'Yes' label"
+  },
+  "no": "Non",
+  "@yes": {
+    "description": "Denote 'No' label"
   }
 }
