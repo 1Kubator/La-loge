@@ -21,7 +21,7 @@ class ImageFromNet extends StatelessWidget {
       loadStateChanged: (ExtendedImageState imageState) {
         switch (imageState.extendedImageLoadState) {
           case LoadState.loading:
-            return ImageLoadingAnimation();
+            return LoadingAnimation();
             break;
           case LoadState.failed:
             return Icon(Icons.error);
