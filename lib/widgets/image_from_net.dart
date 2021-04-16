@@ -1,7 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
-import 'image_loading_animation.dart';
+import 'loading_animation.dart';
 
 class ImageFromNet extends StatelessWidget {
   final String imageUrl;
