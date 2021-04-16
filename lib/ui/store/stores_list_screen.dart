@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:la_loge/models/store.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/error_box.dart';
@@ -78,7 +79,13 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 itemBuilder: (context, index) {
                   final store = stores[index];
                   return ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        StoreGalleryScreen.id,
+                        arguments: store,
+                      );
+                    },
                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
                     title: Text(
                       store.name,
