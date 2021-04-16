@@ -111,10 +111,6 @@
   "@accessStores": {
     "description": "Denote 'As a premium shopper, access your advantages in your favorite stores!' label"
   },
-  "makeAppointment": "Prendre rendez-vous",
-  "@makeAppointment": {
-    "description": "Denote 'Make an appointment' label"
-  },
   "findAppointments": "Retrouvez tout vos rendez-vous !",
   "@findAppointments": {
     "description": "Denote 'Find everything your appointments!' label"
@@ -122,5 +118,17 @@
   "myPrivateShopping": "Mes shopping privés",
   "@myPrivateShopping": {
     "description": "Denote 'My private shopping' label"
+  },
+  "bookPrivateShopping": "Réserver un shopping privé",
+  "@bookPrivateShopping": {
+    "description": "Denote 'Book a private shopping' label"
+  },
+  "readyForPrivateShopping": "Prête pour un shopping privée !",
+  "@readyForPrivateShopping": {
+    "description": "Denote 'Ready for private shopping!' label"
+  },
+  "makeAnAppointmentWithStore": "Pour prendre un rendez-vous sélectionnez un magasin.",
+  "@makeAnAppointmentWithStore": {
+    "description": "Denote 'TA make an appointment select a store.' label"
   }
 }
