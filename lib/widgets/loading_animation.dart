@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class ImageLoadingAnimation extends StatefulWidget {
+class LoadingAnimation extends StatefulWidget {
   @override
-  _ImageLoadingAnimationState createState() => _ImageLoadingAnimationState();
+  _LoadingAnimationState createState() => _LoadingAnimationState();
 }
 
-class _ImageLoadingAnimationState extends State<ImageLoadingAnimation>
+class _LoadingAnimationState extends State<LoadingAnimation>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {

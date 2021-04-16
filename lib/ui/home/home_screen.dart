@@ -2,10 +2,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/images.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:la_loge/widgets/submit_button.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   final images = [
@@ -45,6 +47,7 @@ class HomeScreen extends StatelessWidget {
 class FirstPositionedTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final tabNotifier = Provider.of<TabsNotifier>(context);
     return Positioned.fill(
       child: SafeArea(
         child: Column(
@@ -69,8 +72,10 @@ class FirstPositionedTab extends StatelessWidget {
             ),
             Spacer(flex: 4),
             SubmitButton(
-              AppLocalizations.of(context).makeAppointment,
-              onTap: () {},
+              AppLocalizations.of(context).bookPrivateShopping,
+              onTap: () {
+                tabNotifier.setTabIndex = 1;
+              },
             ),
             Spacer(),
           ],

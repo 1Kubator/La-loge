@@ -7,6 +7,7 @@ import 'package:la_loge/ui/preferences/material_preference_screen.dart';
 import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
 import 'package:la_loge/ui/preferences/size_preference_screen.dart';
 import 'package:la_loge/ui/preferences/style_preference_screen.dart';
+import 'package:la_loge/ui/store/stores_list_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   final args = settings.arguments;
@@ -67,6 +68,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             name: HomeScreenNavigator.id,
           ),
           builder: (context) => HomeScreenNavigator());
+    case StoresListScreen.id:
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: StoresListScreen.id,
+          ),
+          builder: (context) => StoresListScreen());
     default:
       return MaterialPageRoute(
           settings: RouteSettings(

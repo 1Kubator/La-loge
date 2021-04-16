@@ -1,7 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
-import 'image_loading_animation.dart';
+import 'loading_animation.dart';
 
 class ImageFromNet extends StatelessWidget {
   final String imageUrl;
@@ -21,7 +21,7 @@ class ImageFromNet extends StatelessWidget {
       loadStateChanged: (ExtendedImageState imageState) {
         switch (imageState.extendedImageLoadState) {
           case LoadState.loading:
-            return ImageLoadingAnimation();
+            return LoadingAnimation();
             break;
           case LoadState.failed:
             return Icon(Icons.error);
