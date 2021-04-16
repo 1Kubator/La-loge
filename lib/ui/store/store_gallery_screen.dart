@@ -121,7 +121,6 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
   }
 
   Future<bool> showDiscontinueAlert() async {
-
     await showDialog(
       context: context,
       builder: (_context) => AlertDialog(

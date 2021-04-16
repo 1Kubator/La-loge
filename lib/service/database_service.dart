@@ -158,7 +158,7 @@ class DatabaseService {
         .doc(userId)
         .collection(CollectionPath.gallerySelections)
         .doc()
-        .set({'gallery_ref': galleryReference, 'store_id':storeId});
+        .set({'gallery_ref': galleryReference, 'store_id': storeId});
     return;
   }
 }

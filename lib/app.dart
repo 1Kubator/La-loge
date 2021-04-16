@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:la_loge/prefs/shared_prefs.dart';
 import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/app_theme.dart';
 import 'package:la_loge/service/database_service.dart';
