@@ -6,6 +6,7 @@ import 'package:la_loge/models/material_preference_response.dart';
 import 'package:la_loge/models/option.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
+import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/style_preference.dart';
 import 'package:la_loge/models/style_preference_response.dart';
 import 'package:la_loge/service/collection_path.dart';
@@ -118,5 +119,21 @@ class DatabaseService {
           .doc()
           .set(preference.toMap());
     }
+  }
+
+  Future<List<Store>> getStores() async {
+    final user = await _db
+        .collection(CollectionPath.user)
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .get();
+    var storeIds = user.data()['stores'] as List;
+    List<Store> stores = [];
+    for (var storeId in storeIds) {
+      final store =
+          await _db.collection(CollectionPath.stores).doc(storeId).get();
+      print(store.data());
+      stores.add(Store.fromMap(store.id, store.data()));
+    }
+    return stores;
   }
 }
