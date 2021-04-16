@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:la_loge/models/all_preferences.dart';
+import 'package:la_loge/models/gallery.dart';
 import 'package:la_loge/models/material_preference.dart';
 import 'package:la_loge/models/material_preference_response.dart';
 import 'package:la_loge/models/option.dart';
@@ -13,6 +14,8 @@ import 'package:la_loge/service/collection_path.dart';
 
 class DatabaseService {
   final _db = FirebaseFirestore.instance;
+
+  get userId => FirebaseAuth.instance.currentUser.uid;
 
   Future<bool> hasPreferences() async {
     if (FirebaseAuth.instance.currentUser == null) return null;
@@ -135,5 +138,27 @@ class DatabaseService {
       stores.add(Store.fromMap(store.id, store.data()));
     }
     return stores;
+  }
+
+  Future<List<Gallery>> getStoreGalleries(String storeId) async {
+    var response = await _db
+        .collection(CollectionPath.stores)
+        .doc(storeId)
+        .collection(CollectionPath.gallery)
+        .get();
+    return Gallery.fromDocuments(response.docs);
+  }
+
+  Future<void> updateGallerySelection(
+    DocumentReference galleryReference,
+    String storeId,
+  ) async {
+    await _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.gallerySelections)
+        .doc()
+        .set({'gallery_ref': galleryReference, 'store_id':storeId});
+    return;
   }
 }
