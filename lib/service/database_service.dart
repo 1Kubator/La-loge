@@ -8,6 +8,7 @@ import 'package:la_loge/models/option.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
 import 'package:la_loge/models/store.dart';
+import 'package:la_loge/models/store_appointment_timing.dart';
 import 'package:la_loge/models/style_preference.dart';
 import 'package:la_loge/models/style_preference_response.dart';
 import 'package:la_loge/service/collection_path.dart';
@@ -160,5 +161,28 @@ class DatabaseService {
         .doc()
         .set({'gallery_ref': galleryReference, 'store_id': storeId});
     return;
+  }
+
+  Future<List<StoreAppointmentTiming>> getAvailableAppointmentTimings(
+      String storeId) async {
+    final res = await _db
+        .collection(CollectionPath.stores)
+        .doc(storeId)
+        .collection(CollectionPath.availableTimestamps)
+        .where('datetime', isGreaterThan: DateTime.now())
+        .orderBy('datetime')
+        .get();
+    return StoreAppointmentTiming.fromDocuments(res.docs, storeId);
+  }
+
+  Future<bool> hasAppointmentForDateTime(
+      String storeId, DateTime dateTime) async {
+    return _db
+        .collection(CollectionPath.stores)
+        .doc(storeId)
+        .collection(CollectionPath.appointments)
+        .where('datetime', isEqualTo: Timestamp.fromDate(dateTime))
+        .get()
+        .then((value) => value.docs.isEmpty);
   }
 }
