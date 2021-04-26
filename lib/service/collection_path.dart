@@ -7,4 +7,6 @@ class CollectionPath {
   static String stylePreferences = "style_preferences";
   static String gallerySelections = "gallery_selections";
   static String materialPreferences = "material_preferences";
+  static String availableTimestamps = "available_timestamps";
+  static String appointments = "appointments";
 }
