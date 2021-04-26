@@ -4,6 +4,8 @@ import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
 
+import 'appointment/store_appointment_timings_screen.dart';
+
 class StoreScreenNavigator extends StatelessWidget {
   static const id = 'store_screen_navigator';
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
@@ -29,12 +31,23 @@ class StoreScreenNavigator extends StatelessWidget {
             }
             throw 'Invalid route or arguments';
             break;
-
           case StoreGalleryCompleteScreen.id:
-            return MaterialPageRoute(
-              settings: RouteSettings(name: StoreGalleryCompleteScreen.id),
-              builder: (context) => StoreGalleryCompleteScreen(),
-            );
+            if (args is Store) {
+              return MaterialPageRoute(
+                settings: RouteSettings(name: StoreGalleryCompleteScreen.id),
+                builder: (context) => StoreGalleryCompleteScreen(store: args),
+              );
+            }
+            throw 'Invalid route or arguments';
+          case StoreAppointmentTimingsScreen.id:
+            if (args is Store) {
+              return MaterialPageRoute(
+                settings: RouteSettings(name: StoreAppointmentTimingsScreen.id),
+                builder: (context) => StoreAppointmentTimingsScreen(store: args),
+              );
+            }
+            throw 'Invalid route or arguments';
+
           default:
             return MaterialPageRoute(
               settings: RouteSettings(name: StoresListScreen.id),
