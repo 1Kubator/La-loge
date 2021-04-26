@@ -6,6 +6,7 @@ import 'package:la_loge/models/gallery.dart';
 import 'package:la_loge/models/store.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/widgets/gallery_swiper.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -104,7 +105,8 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
                           );
                         }
                         if (index + 1 == snap.data.length) {
-                          print('Navigate to next screen');
+                          Navigator.pushNamed(
+                              context, StoreGalleryCompleteScreen.id);
                         } else {
                           galleryIndex++;
                           setState(() {});

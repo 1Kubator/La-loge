@@ -152,7 +152,15 @@
     "description": "Denote 'Yes' label"
   },
   "no": "Non",
-  "@yes": {
+  "@no": {
     "description": "Denote 'No' label"
+  },
+  "articlesWillBeIndicatedToSellers": "Les articles que vous avez préférés seront indiqués aux vendeurs !",
+  "@articlesWillBeIndicatedToSellers": {
+    "description": "Denote 'The articles that you preferred will be indicated to sellers!' label"
+  },
+  "makeAppointment": "Prendre rendez-vous",
+  "@makeAppointment": {
+    "description": "Denote 'Make an appointment' label"
   }
 }

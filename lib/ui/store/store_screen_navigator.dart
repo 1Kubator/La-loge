@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/store.dart';
+import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
 
@@ -28,6 +29,12 @@ class StoreScreenNavigator extends StatelessWidget {
             }
             throw 'Invalid route or arguments';
             break;
+
+          case StoreGalleryCompleteScreen.id:
+            return MaterialPageRoute(
+              settings: RouteSettings(name: StoreGalleryCompleteScreen.id),
+              builder: (context) => StoreGalleryCompleteScreen(),
+            );
           default:
             return MaterialPageRoute(
               settings: RouteSettings(name: StoresListScreen.id),
