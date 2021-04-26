@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/all_preferences.dart';
+import 'package:la_loge/models/store.dart';
 import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/home/home_screen_navigator.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
@@ -7,6 +8,7 @@ import 'package:la_loge/ui/preferences/material_preference_screen.dart';
 import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
 import 'package:la_loge/ui/preferences/size_preference_screen.dart';
 import 'package:la_loge/ui/preferences/style_preference_screen.dart';
+import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -74,6 +76,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             name: StoresListScreen.id,
           ),
           builder: (context) => StoresListScreen());
+    case StoreGalleryScreen.id:
+      if (args is Store) {
+        return MaterialPageRoute(
+            settings: RouteSettings(
+              name: StoreGalleryScreen.id,
+            ),
+            builder: (context) => StoreGalleryScreen(store: args));
+      }
+      throw 'Invalid route or arguments';
+      break;
     default:
       return MaterialPageRoute(
           settings: RouteSettings(

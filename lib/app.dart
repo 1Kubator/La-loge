@@ -1,5 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:la_loge/prefs/shared_prefs.dart';
 import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/app_theme.dart';
 import 'package:la_loge/service/database_service.dart';
@@ -36,22 +36,16 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => TabsNotifier()),
       ],
       child: MaterialApp(
-        theme: AppTheme.get,
-        onGenerateRoute: generateRoute,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        navigatorObservers: [
-          locator<AnalyticsService>().getAnalyticsObserver()
-        ],
-        home: FutureBuilder<String>(
-            future: Prefs.getCurrentUserId(),
-            builder: (context, snap) {
-              if (snap.connectionState == ConnectionState.waiting)
-                return Container();
-              if (snap.data == null)
-                return LoginScreen();
-              else
-                return FutureBuilder<bool>(
+          theme: AppTheme.get,
+          onGenerateRoute: generateRoute,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          navigatorObservers: [
+            locator<AnalyticsService>().getAnalyticsObserver()
+          ],
+          home: FirebaseAuth.instance.currentUser == null
+              ? LoginScreen()
+              : FutureBuilder<bool>(
                   future: future,
                   builder: (context, snap) {
                     if (snap.connectionState == ConnectionState.waiting)
@@ -61,9 +55,7 @@ class _MyAppState extends State<MyApp> {
                     }
                     return OnBoardingScreen();
                   },
-                );
-            }),
-      ),
+                )),
     );
   }
 }
