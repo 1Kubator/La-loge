@@ -43,7 +43,8 @@ class StoreScreenNavigator extends StatelessWidget {
             if (args is Store) {
               return MaterialPageRoute(
                 settings: RouteSettings(name: StoreAppointmentTimingsScreen.id),
-                builder: (context) => StoreAppointmentTimingsScreen(store: args),
+                builder: (context) =>
+                    StoreAppointmentTimingsScreen(store: args),
               );
             }
             throw 'Invalid route or arguments';

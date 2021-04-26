@@ -31,7 +31,8 @@ class DialogBox {
     );
   }
 
-  static Future<bool> showDiscontinueAppointmentAlert(BuildContext context) async {
+  static Future<bool> showDiscontinueAppointmentAlert(
+      BuildContext context) async {
     await showDialog(
       context: context,
       builder: (_context) => AlertDialog(
