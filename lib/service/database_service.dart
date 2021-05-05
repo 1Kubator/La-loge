@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:la_loge/models/all_preferences.dart';
+import 'package:la_loge/models/appointment_question.dart';
 import 'package:la_loge/models/gallery.dart';
 import 'package:la_loge/models/material_preference.dart';
 import 'package:la_loge/models/material_preference_response.dart';
@@ -235,5 +236,26 @@ class DatabaseService {
         .where('store_id', isEqualTo: storeId)
         .get();
     return gallerySelectionSnap.docs.length;
+  }
+
+  Future<List<AppointmentQuestion>> getAppointmentQuestions() async {
+    List<AppointmentQuestion> appointmentQuestions = [];
+    await _db
+        .collection(CollectionPath.appointmentQuestions)
+        .get()
+        .then((questionsDocs) async {
+      for (var questionDoc in questionsDocs.docs) {
+        await _db
+            .collection(CollectionPath.appointmentQuestions)
+            .doc(questionDoc.id)
+            .collection(CollectionPath.options)
+            .get()
+            .then((optionDocs) {
+          appointmentQuestions.add(
+              AppointmentQuestion.fromDocuments(questionDoc, optionDocs.docs));
+        });
+      }
+    });
+    return appointmentQuestions;
   }
 }
