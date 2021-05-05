@@ -47,6 +47,16 @@ class _StoreAppointmentTimingsScreenState
             builder: (context, snap) {
               if (snap.hasError) return ErrorBox(error: snap.error);
               if (!snap.hasData) return LoadingAnimation();
+              if (snap.data.isEmpty) {
+                //TODO: Handle when the store has not set any available timestamps
+              }
+              var storeHours = snap.data
+                  .map((e) => e.timestamps)
+                  .expand((element) => element)
+                  .toList();
+              if (storeHours.every((element) => element.isAvailable == false)) {
+                //TODO: Handle when the store is all booked
+              }
               return Column(
                 children: [
                   Center(child: AppTitle()),
