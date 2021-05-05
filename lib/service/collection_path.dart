@@ -9,4 +9,5 @@ class CollectionPath {
   static String materialPreferences = "material_preferences";
   static String availableTimestamps = "available_timestamps";
   static String appointments = "appointments";
+  static String appointmentQuestions = "appointment_questions";
 }

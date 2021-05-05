@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/store.dart';
+import 'package:la_loge/models/store_appointment_with_store.dart';
 import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
-
+import 'appointment/store_appointment_questions_screen.dart';
 import 'appointment/store_appointment_timings_screen.dart';
 
 class StoreScreenNavigator extends StatelessWidget {
@@ -45,6 +46,18 @@ class StoreScreenNavigator extends StatelessWidget {
                 settings: RouteSettings(name: StoreAppointmentTimingsScreen.id),
                 builder: (context) =>
                     StoreAppointmentTimingsScreen(store: args),
+              );
+            }
+            throw 'Invalid route or arguments';
+          case StoreAppointmentQuestionsScreen.id:
+            if (args is StoreAppointmentWithStore) {
+              return MaterialPageRoute(
+                settings:
+                    RouteSettings(name: StoreAppointmentQuestionsScreen.id),
+                builder: (context) => StoreAppointmentQuestionsScreen(
+                  storeAppointmentDetails: args.storeAppointment,
+                  store: args.store,
+                ),
               );
             }
             throw 'Invalid route or arguments';
