@@ -49,6 +49,21 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(
+            Size(0, 50),
+          ),
+          foregroundColor: MaterialStateProperty.all<Color>(accentColor),
+          overlayColor: MaterialStateProperty.all<Color>(Colors.black38),
+          side: MaterialStateProperty.all(
+            BorderSide(width: 0.7, color: accentColor),
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: inputBorder,
         enabledBorder: inputBorder,
