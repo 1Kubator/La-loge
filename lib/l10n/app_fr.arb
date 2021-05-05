@@ -162,5 +162,9 @@
   "makeAppointment": "Prendre rendez-vous",
   "@makeAppointment": {
     "description": "Denote 'Make an appointment' label"
+  },
+  "canMakeAppointment": "Vous pouvez maintenant prendre rendez-vous",
+  "@canMakeAppointment": {
+    "description": "Denote 'You can now make an appointment' label"
   }
 }

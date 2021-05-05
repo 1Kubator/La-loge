@@ -8,6 +8,7 @@ import 'package:la_loge/ui/preferences/material_preference_screen.dart';
 import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
 import 'package:la_loge/ui/preferences/size_preference_screen.dart';
 import 'package:la_loge/ui/preferences/style_preference_screen.dart';
+import 'package:la_loge/ui/store/appointment/store_appointment_timings_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
@@ -93,6 +94,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             name: StoreGalleryCompleteScreen.id,
           ),
           builder: (context) => StoreGalleryCompleteScreen());
+      break;
+    case StoreAppointmentTimingsScreen.id:
+      return MaterialPageRoute(
+          settings: RouteSettings(
+            name: StoreAppointmentTimingsScreen.id,
+          ),
+          builder: (context) => StoreAppointmentTimingsScreen());
       break;
     default:
       return MaterialPageRoute(

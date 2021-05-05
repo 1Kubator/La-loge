@@ -10,6 +10,7 @@ import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/widgets/gallery_swiper.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
+import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_animation.dart';
 import 'package:tcard/tcard.dart';
@@ -38,7 +39,9 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: showDiscontinueAlert,
+      onWillPop: () {
+        return DialogBox.showDiscontinueAppointmentAlert(context);
+      },
       child: Scaffold(
         appBar: AppBar(),
         body: FutureBuilder<List<Gallery>>(
@@ -106,7 +109,10 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
                         }
                         if (index + 1 == snap.data.length) {
                           Navigator.pushNamed(
-                              context, StoreGalleryCompleteScreen.id);
+                            context,
+                            StoreGalleryCompleteScreen.id,
+                            arguments: widget.store,
+                          );
                         } else {
                           galleryIndex++;
                           setState(() {});
@@ -120,30 +126,5 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
             }),
       ),
     );
-  }
-
-  Future<bool> showDiscontinueAlert() async {
-    await showDialog(
-      context: context,
-      builder: (_context) => AlertDialog(
-        title: Text(MyAppLocalizations.of(context).discontinueAppointment),
-        content:
-            Text(MyAppLocalizations.of(context).alertDiscontinueAppointment),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(_context);
-              Navigator.pop(context);
-            },
-            child: Text(MyAppLocalizations.of(context).yes),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(_context),
-            child: Text(MyAppLocalizations.of(context).no),
-          ),
-        ],
-      ),
-    );
-    return Future.value(false);
   }
 }
