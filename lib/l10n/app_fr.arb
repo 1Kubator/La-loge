@@ -166,5 +166,25 @@
   "canMakeAppointment": "Vous pouvez maintenant prendre rendez-vous",
   "@canMakeAppointment": {
     "description": "Denote 'You can now make an appointment' label"
+  },
+  "specialRequest":"Avez-vous une demande particulière ?",
+  "@specialRequest": {
+    "description": "Denote 'Have you got a special request?' label"
+  },
+  "informReasonForBooking":"Informez le personnel de vente la raison de votre venue",
+  "@informReasonForBooking": {
+    "description": "Denote 'Inform sales staff the reason for your coming' label"
+  },
+  "confirm":"Confirmer",
+  "@confirm": {
+    "description": "Denote 'Confirm' label"
+  },
+  "cancel":"Annuler",
+  "@cancel": {
+    "description": "Denote 'Cancel' label"
+  },
+  "fieldCannotBeEmpty":"Ce champ ne peut pas être vide",
+  "@fieldCannotBeEmpty": {
+    "description": "Denote 'This field cannot be empty' label"
   }
 }
