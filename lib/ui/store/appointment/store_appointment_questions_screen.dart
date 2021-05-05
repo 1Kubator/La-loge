@@ -7,6 +7,7 @@ import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/store/widgets/dropdown_field.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/error_box.dart';
@@ -30,10 +31,10 @@ class _StoreAppointmentQuestionsScreenState
     extends State<StoreAppointmentQuestionsScreen> {
   final formKey = GlobalKey<FormState>();
   final DatabaseService db = locator<DatabaseService>();
-  StoreAppointment userAppointmentDetails;
+  StoreAppointment appointmentDetails;
   Future future;
 
-  _StoreAppointmentQuestionsScreenState(this.userAppointmentDetails);
+  _StoreAppointmentQuestionsScreenState(this.appointmentDetails);
 
   @override
   void initState() {
@@ -43,7 +44,6 @@ class _StoreAppointmentQuestionsScreenState
 
   @override
   Widget build(BuildContext context) {
-    print(userAppointmentDetails.toMap());
     return Scaffold(
       appBar: AppBar(),
       body: Form(
@@ -96,41 +96,21 @@ class _StoreAppointmentQuestionsScreenState
                         var appointmentQuestion = snap.data[index];
                         if (appointmentQuestion.type ==
                             AppointmentQuestionType.dropdown) {
-                          return DropdownButtonFormField<
-                              AppointmentQuestionOption>(
-                            validator: (AppointmentQuestionOption val) {
-                              if (val != null) if (userAppointmentDetails
-                                  .bookingQuestions
-                                  .containsValue(val.documentReference))
-                                return null;
-                              return MyAppLocalizations.of(context)
-                                  .fieldCannotBeEmpty;
-                            },
-                            value: userAppointmentDetails.bookingQuestions[
-                                appointmentQuestion.statement],
-                            decoration: InputDecoration(
-                              hintText: appointmentQuestion.statement,
-                            ),
+                          return DropdownField(
+                            appointmentQuestion: appointmentQuestion,
+                            appointmentDetails: appointmentDetails,
                             onChanged: (AppointmentQuestionOption val) {
-                              userAppointmentDetails.bookingQuestions[
+                              appointmentDetails.bookingQuestions[
                                       appointmentQuestion.id] =
                                   val.documentReference;
                             },
-                            items: appointmentQuestion.options.map(
-                              (appointmentQuestionOption) {
-                                return DropdownMenuItem(
-                                  child: Text(appointmentQuestionOption.option),
-                                  value: appointmentQuestionOption,
-                                );
-                              },
-                            ).toList(),
                           );
                         }
                         if (appointmentQuestion.type ==
                             AppointmentQuestionType.textfield)
                           return TextFormField(
                             onChanged: (val) {
-                              userAppointmentDetails
+                              appointmentDetails
                                   .bookingQuestions['custom_reason'] = val;
                             },
                             decoration: InputDecoration(
