@@ -12,6 +12,7 @@ import 'package:la_loge/models/store_appointment_timing.dart';
 import 'package:la_loge/models/style_preference.dart';
 import 'package:la_loge/models/style_preference_response.dart';
 import 'package:la_loge/service/collection_path.dart';
+import 'package:tcard/tcard.dart';
 
 class DatabaseService {
   final _db = FirebaseFirestore.instance;
@@ -135,7 +136,6 @@ class DatabaseService {
     for (var storeId in storeIds) {
       final store =
           await _db.collection(CollectionPath.stores).doc(storeId).get();
-      print(store.data());
       stores.add(Store.fromMap(store.id, store.data()));
     }
     return stores;
@@ -152,15 +152,45 @@ class DatabaseService {
 
   Future<void> updateGallerySelection(
     DocumentReference galleryReference,
+    SwipDirection swipeDirection,
     String storeId,
   ) async {
-    await _db
+    var status = swipeDirection == SwipDirection.Right ? 'liked' : 'disliked';
+    final collectionRef = _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.gallerySelections);
+
+    await getUserGallerySelectionItemId(galleryReference.id)
+        .then((gallerySelectionItemId) async {
+      if (gallerySelectionItemId != null) {
+        await collectionRef
+            .doc(gallerySelectionItemId)
+            .update({'status': status});
+      } else {
+        await collectionRef.doc().set({
+          'gallery_item_ref': galleryReference,
+          'store_id': storeId,
+          'status': status,
+          'gallery_item_id': galleryReference.id,
+        });
+      }
+    });
+
+    return;
+  }
+
+  Future<String> getUserGallerySelectionItemId(String galleryItemId) async {
+    return _db
         .collection(CollectionPath.user)
         .doc(userId)
         .collection(CollectionPath.gallerySelections)
-        .doc()
-        .set({'gallery_ref': galleryReference, 'store_id': storeId});
-    return;
+        .where('gallery_item_id', isEqualTo: galleryItemId)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) return null;
+      return value.docs.first.id;
+    });
   }
 
   Future<List<StoreAppointmentTiming>> getAvailableAppointmentTimings(
@@ -184,5 +214,26 @@ class DatabaseService {
         .where('datetime', isEqualTo: Timestamp.fromDate(dateTime))
         .get()
         .then((value) => value.docs.isEmpty);
+  }
+
+  Future<bool> hasSeenStoreCompleteGallery(String storeId) async {
+    var storeGallerySnap = await _db
+        .collection(CollectionPath.stores)
+        .doc(storeId)
+        .collection(CollectionPath.gallery)
+        .get();
+    var userGallerySelectionLen = await getUserGallerySelectionLen(storeId);
+    if (storeGallerySnap.docs.length == userGallerySelectionLen) return true;
+    return false;
+  }
+
+  Future<int> getUserGallerySelectionLen(String storeId) async {
+    var gallerySelectionSnap = await _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.gallerySelections)
+        .where('store_id', isEqualTo: storeId)
+        .get();
+    return gallerySelectionSnap.docs.length;
   }
 }

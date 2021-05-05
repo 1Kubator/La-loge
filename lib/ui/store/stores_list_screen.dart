@@ -8,8 +8,12 @@ import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
+import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_animation.dart';
+import 'package:la_loge/widgets/progress_dialog.dart';
+
+import 'appointment/store_appointment_timings_screen.dart';
 
 class StoresListScreen extends StatefulWidget {
   static const id = 'stores_list_screen';
@@ -21,6 +25,7 @@ class StoresListScreen extends StatefulWidget {
 class _StoresListScreenState extends State<StoresListScreen> {
   final DatabaseService db = locator<DatabaseService>();
   Future future;
+  final progressDialog = ProgressDialog();
 
   @override
   void initState() {
@@ -79,12 +84,8 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 itemBuilder: (context, index) {
                   final store = stores[index];
                   return ListTile(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        StoreGalleryScreen.id,
-                        arguments: store,
-                      );
+                    onTap: () async {
+                      checkAndNavigateToGalleryScreen(store);
                     },
                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
                     title: Text(
@@ -114,5 +115,29 @@ class _StoresListScreenState extends State<StoresListScreen> {
         },
       ),
     );
+  }
+
+  checkAndNavigateToGalleryScreen(Store store) async {
+    progressDialog.show(context);
+    try {
+      var hasSeenGalleryItems = await db.hasSeenStoreCompleteGallery(store.id);
+      progressDialog.hide();
+      if (hasSeenGalleryItems) {
+        Navigator.pushNamed(
+          context,
+          StoreAppointmentTimingsScreen.id,
+          arguments: store,
+        );
+      } else {
+        Navigator.pushNamed(
+          context,
+          StoreGalleryScreen.id,
+          arguments: store,
+        );
+      }
+    } catch (e) {
+      progressDialog.hide();
+      await DialogBox.showErrorDialog(context, e);
+    }
   }
 }

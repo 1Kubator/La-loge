@@ -13,7 +13,6 @@ import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_animation.dart';
-import 'package:tcard/tcard.dart';
 
 class StoreGalleryScreen extends StatefulWidget {
   static const id = 'store_gallery_screen';
@@ -49,10 +48,12 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
             builder: (context, snap) {
               if (snap.hasError) return ErrorBox(error: snap.error);
               if (!snap.hasData) return LoadingAnimation();
-              if (snap.data.isEmpty)
+              if (snap.data.isEmpty) {
+                //TODO: Handle when the store does not have any gallery items
                 return Center(
                   child: Text(''),
                 );
+              }
               return ListView(
                 children: [
                   Center(child: AppTitle()),
@@ -101,12 +102,11 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
                     child: GallerySwiper(
                       galleries: snap.data,
                       onSwiped: (index, swipeInfo) {
-                        if (swipeInfo.direction == SwipDirection.Right) {
-                          db.updateGallerySelection(
-                            snap.data[index].docReference,
-                            widget.store.id,
-                          );
-                        }
+                        db.updateGallerySelection(
+                          snap.data[index].docReference,
+                          swipeInfo.direction,
+                          widget.store.id,
+                        );
                         if (index + 1 == snap.data.length) {
                           Navigator.pushNamed(
                             context,
