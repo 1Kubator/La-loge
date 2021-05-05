@@ -13,7 +13,6 @@ import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_animation.dart';
-import 'package:tcard/tcard.dart';
 
 class StoreGalleryScreen extends StatefulWidget {
   static const id = 'store_gallery_screen';
