@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:la_loge/models/store.dart';
+import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/models/store_appointment_timing.dart';
+import 'package:la_loge/models/store_appointment_with_store.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/store/appointment/store_appointment_questions_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
@@ -151,6 +155,7 @@ class _StoreAppointmentTimingsScreenState
                   return AppointmentTimeCard(
                     isAppointmentAvailable: timeData.isAvailable,
                     dateTime: timeData.timestamp,
+                    store: widget.store,
                   );
                 },
               ).toList(),
@@ -162,10 +167,12 @@ class _StoreAppointmentTimingsScreenState
 
 class AppointmentTimeCard extends StatelessWidget {
   final bool isAppointmentAvailable;
+  final Store store;
   final dateFormat = DateFormat('HH:mm');
   final DateTime dateTime;
 
-  AppointmentTimeCard({Key key, this.isAppointmentAvailable, this.dateTime})
+  AppointmentTimeCard(
+      {Key key, this.isAppointmentAvailable, this.dateTime, this.store})
       : super(key: key);
 
   @override
@@ -174,7 +181,19 @@ class AppointmentTimeCard extends StatelessWidget {
       onTap: !isAppointmentAvailable
           ? null
           : () {
-//TODO: Add navigation and pass store data and datetime
+              Navigator.pushNamed(
+                context,
+                StoreAppointmentQuestionsScreen.id,
+                arguments: StoreAppointmentWithStore(
+                  store: store,
+                  storeAppointment: StoreAppointment(
+                    appointmentTimeStamp: dateTime,
+                    userId: FirebaseAuth.instance.currentUser.uid,
+                    bookingQuestions: {},
+                    status: 'booked',
+                  ),
+                ),
+              );
             },
       child: Card(
         child: Padding(
