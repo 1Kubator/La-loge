@@ -9,6 +9,7 @@ import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/ui/store/appointment/appointment_questions_screen.dart';
+import 'package:la_loge/ui/store/widgets/booking_unavailable_dialog.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
@@ -51,15 +52,13 @@ class _StoreAppointmentTimingsScreenState
             builder: (context, snap) {
               if (snap.hasError) return ErrorBox(error: snap.error);
               if (!snap.hasData) return LoadingAnimation();
-              if (snap.data.isEmpty) {
-                //TODO: Handle when the store has not set any available timestamps
-              }
               var storeHours = snap.data
                   .map((e) => e.timestamps)
                   .expand((element) => element)
                   .toList();
-              if (storeHours.every((element) => element.isAvailable == false)) {
-                //TODO: Handle when the store is all booked
+              if (snap.data.isEmpty ||
+                  storeHours.every((element) => element.isAvailable == false)) {
+                return BookingUnavailableDialog();
               }
               return Column(
                 children: [
