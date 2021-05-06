@@ -198,5 +198,21 @@
   "appointmentTimeNotAvailable":"Désolé, le créneau horaire de rendez-vous n'est plus disponible.",
   "@appointmentTimeNotAvailable": {
     "description": "Denote 'Private Shopping' label"
+  },
+  "bookingRegistered":"Réservation enregistrée",
+  "@appointmentTimeNotAvailable": {
+    "description": "Denote 'Booking registered' label"
+  },
+  "wishYouHappyShopping":"Nous vous souhaitons un bon shopping !",
+  "@wishYouHappyShopping": {
+    "description": "Denote 'We wish you happy shopping!' label"
+  },
+  "receiveEmailConfirmation":"Vous allez bientôt recevoir une confirmation par mail",
+  "@receiveEmailConfirmation": {
+    "description": "Denote 'You will soon receive a email confirmation' label"
+  },
+  "editPrivateShopping":"Modifier mon shopping privé >",
+  "@editPrivateShopping": {
+    "description": "Denote 'Edit my private shopping' label"
   }
 }
