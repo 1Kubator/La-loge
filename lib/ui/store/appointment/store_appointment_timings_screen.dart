@@ -5,10 +5,10 @@ import 'package:intl/intl.dart';
 import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/models/store_appointment_timing.dart';
-import 'package:la_loge/models/store_appointment_with_store.dart';
+import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
-import 'package:la_loge/ui/store/appointment/store_appointment_questions_screen.dart';
+import 'package:la_loge/ui/store/appointment/appointment_questions_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
@@ -181,13 +181,14 @@ class AppointmentTimeCard extends StatelessWidget {
       onTap: !isAppointmentAvailable
           ? null
           : () {
+              Navigator.pop(context);
               Navigator.pushNamed(
                 context,
-                StoreAppointmentQuestionsScreen.id,
-                arguments: StoreAppointmentWithStore(
+                AppointmentQuestionsScreen.id,
+                arguments: StoreAppointmentArgument(
                   store: store,
                   storeAppointment: StoreAppointment(
-                    appointmentTimeStamp: dateTime,
+                    appointmentDateTime: dateTime,
                     userId: FirebaseAuth.instance.currentUser.uid,
                     bookingQuestions: {},
                     status: 'booked',

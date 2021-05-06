@@ -186,5 +186,17 @@
   "fieldCannotBeEmpty":"Ce champ ne peut pas être vide",
   "@fieldCannotBeEmpty": {
     "description": "Denote 'This field cannot be empty' label"
+  },
+  "bookPrivateShopping":"Vous allez réserver votre shopping privée",
+  "@bookPrivateShopping": {
+    "description": "Denote 'You are going to book your private shopping' label"
+  },
+  "shoppingPrivate":"Shopping privé",
+  "@shoppingPrivate": {
+    "description": "Denote 'Private Shopping' label"
+  },
+  "appointmentTimeNotAvailable":"Désolé, le créneau horaire de rendez-vous n'est plus disponible.",
+  "@appointmentTimeNotAvailable": {
+    "description": "Denote 'Private Shopping' label"
   }
 }

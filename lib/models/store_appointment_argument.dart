@@ -1,9 +1,11 @@
 import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/store_appointment.dart';
 
-class StoreAppointmentWithStore {
+class StoreAppointmentArgument {
   final StoreAppointment storeAppointment;
   final Store store;
+  final String appointmentReason;
 
-  StoreAppointmentWithStore({this.storeAppointment, this.store});
+  StoreAppointmentArgument(
+      {this.storeAppointment, this.store, this.appointmentReason});
 }

@@ -17,7 +17,7 @@ class DialogBox {
     );
   }
 
-  static showErrorDialog(context, e) {
+  static showNetworkErrorDialog(context, e) {
     final errorMsg = NetworkErrorMessage.getValue(context, e);
     return showDialog(
       context: context,
@@ -26,6 +26,25 @@ class DialogBox {
         content: Text(errorMsg),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
+        ],
+      ),
+    );
+  }
+
+  static showCustomErrorDialog(context, String errorMsg,
+      {Function() onPopped}) {
+    return showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text('Error'),
+        content: Text(errorMsg),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                if (onPopped != null) onPopped();
+              },
+              child: Text('Ok'))
         ],
       ),
     );
