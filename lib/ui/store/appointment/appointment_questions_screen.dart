@@ -5,41 +5,44 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:la_loge/models/appointment_question.dart';
 import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/store_appointment.dart';
+import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/store/appointment/confirm_appointment_screen.dart';
 import 'package:la_loge/ui/store/widgets/dropdown_field.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
+import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_animation.dart';
 
-class StoreAppointmentQuestionsScreen extends StatefulWidget {
-  static const id = 'store_appointment_questions';
+class AppointmentQuestionsScreen extends StatefulWidget {
+  static const id = 'appointment_questions_screen';
   final StoreAppointment storeAppointmentDetails;
   final Store store;
 
-  const StoreAppointmentQuestionsScreen(
+  const AppointmentQuestionsScreen(
       {Key key, this.storeAppointmentDetails, this.store})
       : super(key: key);
 
   @override
-  _StoreAppointmentQuestionsScreenState createState() =>
-      _StoreAppointmentQuestionsScreenState(storeAppointmentDetails);
+  _AppointmentQuestionsScreenState createState() =>
+      _AppointmentQuestionsScreenState(storeAppointmentDetails);
 }
 
-class _StoreAppointmentQuestionsScreenState
-    extends State<StoreAppointmentQuestionsScreen> {
+class _AppointmentQuestionsScreenState
+    extends State<AppointmentQuestionsScreen> {
   final formKey = GlobalKey<FormState>();
   final DatabaseService db = locator<DatabaseService>();
   StoreAppointment appointmentDetails;
   Future future;
 
-  _StoreAppointmentQuestionsScreenState(this.appointmentDetails);
+  _AppointmentQuestionsScreenState(this.appointmentDetails);
 
   @override
   void initState() {
-    future = db.getAppointmentQuestions();
     super.initState();
+    future = db.getAppointmentQuestions();
   }
 
   @override
@@ -126,6 +129,20 @@ class _StoreAppointmentQuestionsScreenState
                       child: Text(MyAppLocalizations.of(context).confirm),
                       onPressed: () {
                         if (!formKey.currentState.validate()) return;
+                        Navigator.pushNamed(
+                          context,
+                          ConfirmAppointmentScreen.id,
+                          arguments: StoreAppointmentArgument(
+                            storeAppointment: appointmentDetails,
+                            store: widget.store,
+                            appointmentReason: snap.data.first.options
+                                .firstWhere((a) => appointmentDetails
+                                    .bookingQuestions.values
+                                    .toList()
+                                    .contains(a.documentReference))
+                                .option,
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -134,7 +151,9 @@ class _StoreAppointmentQuestionsScreenState
                     widthFactor: 0.9,
                     child: OutlinedButton(
                       child: Text(MyAppLocalizations.of(context).cancel),
-                      onPressed: () {},
+                      onPressed: () {
+                        DialogBox.showDiscontinueAppointmentAlert(context);
+                      },
                     ),
                   ),
                 ],
