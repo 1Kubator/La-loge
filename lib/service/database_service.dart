@@ -9,6 +9,7 @@ import 'package:la_loge/models/option.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
 import 'package:la_loge/models/store.dart';
+import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/models/store_appointment_timing.dart';
 import 'package:la_loge/models/style_preference.dart';
 import 'package:la_loge/models/style_preference_response.dart';
@@ -212,7 +213,7 @@ class DatabaseService {
         .collection(CollectionPath.stores)
         .doc(storeId)
         .collection(CollectionPath.appointments)
-        .where('datetime', isEqualTo: Timestamp.fromDate(dateTime))
+        .where('appointment_date_time', isEqualTo: dateTime)
         .get()
         .then((value) => value.docs.isEmpty);
   }
@@ -224,6 +225,7 @@ class DatabaseService {
         .collection(CollectionPath.gallery)
         .get();
     var userGallerySelectionLen = await getUserGallerySelectionLen(storeId);
+    //TODO: Don't use length to decide, check if exact gallery items are present (using gallery_item_id)
     if (storeGallerySnap.docs.length == userGallerySelectionLen) return true;
     return false;
   }
@@ -257,5 +259,33 @@ class DatabaseService {
       }
     });
     return appointmentQuestions;
+  }
+
+  Future<bool> bookAppointment(
+      StoreAppointmentArgument storeAppointmentArg) async {
+    if (await hasAppointment(storeAppointmentArg.store.id,
+        storeAppointmentArg.storeAppointment.appointmentDateTime)) {
+      return false;
+    }
+    await _db
+        .collection(CollectionPath.stores)
+        .doc(storeAppointmentArg.store.id)
+        .collection(CollectionPath.appointments)
+        .doc()
+        .set(storeAppointmentArg.storeAppointment.toMap());
+    return true;
+  }
+
+  Future<bool> hasAppointment(String storeId, DateTime dateTime) async {
+    return _db
+        .collection(CollectionPath.stores)
+        .doc(storeId)
+        .collection(CollectionPath.appointments)
+        .where('appointment_date_time', isEqualTo: dateTime)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) return false;
+      return true;
+    });
   }
 }
