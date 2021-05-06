@@ -224,20 +224,25 @@ class DatabaseService {
         .doc(storeId)
         .collection(CollectionPath.gallery)
         .get();
-    var userGallerySelectionLen = await getUserGallerySelectionLen(storeId);
-    //TODO: Don't use length to decide, check if exact gallery items are present (using gallery_item_id)
-    if (storeGallerySnap.docs.length == userGallerySelectionLen) return true;
-    return false;
+    var storeGalleryItemsIds = storeGallerySnap.docs.map((e) => e.id).toList();
+
+    var userSwipedGalleryItemsId =
+        await getUserGallerySelectionItemsId(storeId);
+
+    var hasSeenWholeGallery =
+        storeGalleryItemsIds.every((e) => userSwipedGalleryItemsId.contains(e));
+    return hasSeenWholeGallery;
   }
 
-  Future<int> getUserGallerySelectionLen(String storeId) async {
+  Future<List<String>> getUserGallerySelectionItemsId(String storeId) async {
     var gallerySelectionSnap = await _db
         .collection(CollectionPath.user)
         .doc(userId)
         .collection(CollectionPath.gallerySelections)
         .where('store_id', isEqualTo: storeId)
         .get();
-    return gallerySelectionSnap.docs.length;
+    return List<String>.from(
+        gallerySelectionSnap.docs.map((e) => e.data()['gallery_item_id']));
   }
 
   Future<List<AppointmentQuestion>> getAppointmentQuestions() async {
