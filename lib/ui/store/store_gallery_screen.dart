@@ -48,12 +48,7 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
             builder: (context, snap) {
               if (snap.hasError) return ErrorBox(error: snap.error);
               if (!snap.hasData) return LoadingAnimation();
-              if (snap.data.isEmpty) {
-                //TODO: Handle when the store does not have any gallery items
-                return Center(
-                  child: Text(''),
-                );
-              }
+
               return ListView(
                 children: [
                   Center(child: AppTitle()),
