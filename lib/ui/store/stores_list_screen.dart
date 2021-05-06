@@ -137,7 +137,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
       }
     } catch (e) {
       progressDialog.hide();
-      await DialogBox.showErrorDialog(context, e);
+      await DialogBox.showNetworkErrorDialog(context, e);
     }
   }
 }
