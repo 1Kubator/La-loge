@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/all_preferences.dart';
 import 'package:la_loge/models/store.dart';
-import 'package:la_loge/models/store_appointment_with_store.dart';
+import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/home/home_screen_navigator.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
@@ -9,7 +9,8 @@ import 'package:la_loge/ui/preferences/material_preference_screen.dart';
 import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
 import 'package:la_loge/ui/preferences/size_preference_screen.dart';
 import 'package:la_loge/ui/preferences/style_preference_screen.dart';
-import 'package:la_loge/ui/store/appointment/store_appointment_questions_screen.dart';
+import 'package:la_loge/ui/store/appointment/appointment_questions_screen.dart';
+import 'package:la_loge/ui/store/appointment/confirm_appointment_screen.dart';
 import 'package:la_loge/ui/store/appointment/store_appointment_timings_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
@@ -104,13 +105,25 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           ),
           builder: (context) => StoreAppointmentTimingsScreen());
       break;
-    case StoreAppointmentQuestionsScreen.id:
-      if (args is StoreAppointmentWithStore) {
+    case AppointmentQuestionsScreen.id:
+      if (args is StoreAppointmentArgument) {
         return MaterialPageRoute(
-          settings: RouteSettings(name: StoreAppointmentQuestionsScreen.id),
-          builder: (context) => StoreAppointmentQuestionsScreen(
+          settings: RouteSettings(name: AppointmentQuestionsScreen.id),
+          builder: (context) => AppointmentQuestionsScreen(
             storeAppointmentDetails: args.storeAppointment,
             store: args.store,
+          ),
+        );
+      }
+      throw 'Invalid route or arguments';
+    case ConfirmAppointmentScreen.id:
+      if (args is StoreAppointmentArgument) {
+        return MaterialPageRoute(
+          settings: RouteSettings(name: ConfirmAppointmentScreen.id),
+          builder: (context) => ConfirmAppointmentScreen(
+            storeAppointmentDetails: args.storeAppointment,
+            store: args.store,
+            appointmentReason: args.appointmentReason,
           ),
         );
       }
