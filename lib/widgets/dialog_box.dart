@@ -31,17 +31,17 @@ class DialogBox {
     );
   }
 
-  static showCustomErrorDialog(context, String errorMsg,
+  static Future<AlertDialog> showCustomErrorDialog(context, String errorMsg,
       {Function() onPopped}) {
-    return showDialog(
+    return showDialog<AlertDialog>(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (_context) => AlertDialog(
         title: Text('Error'),
         content: Text(errorMsg),
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(_context);
                 if (onPopped != null) onPopped();
               },
               child: Text('Ok'))

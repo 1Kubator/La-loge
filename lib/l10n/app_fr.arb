@@ -214,5 +214,9 @@
   "editPrivateShopping":"Modifier mon shopping privé >",
   "@editPrivateShopping": {
     "description": "Denote 'Edit my private shopping' label"
+  },
+  "noPrivateShoppingHoursAvailable":"Désolé, la boutique n'a pas d'heures de magasinage privées disponibles, réessayez plus tard.",
+  "@noPrivateShoppingHoursAvailable": {
+    "description": "Denote 'Sorry, the store does not have private shopping hours available, please try again later.' label"
   }
 }
