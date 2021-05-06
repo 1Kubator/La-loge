@@ -10,6 +10,7 @@ import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
 import 'package:la_loge/ui/preferences/size_preference_screen.dart';
 import 'package:la_loge/ui/preferences/style_preference_screen.dart';
 import 'package:la_loge/ui/store/appointment/appointment_questions_screen.dart';
+import 'package:la_loge/ui/store/appointment/booking_successful_screen.dart';
 import 'package:la_loge/ui/store/appointment/confirm_appointment_screen.dart';
 import 'package:la_loge/ui/store/appointment/store_appointment_timings_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
@@ -128,6 +129,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         );
       }
       throw 'Invalid route or arguments';
+    case BookingSuccessfulScreen.id:
+      return MaterialPageRoute(
+        settings: RouteSettings(name: BookingSuccessfulScreen.id),
+        builder: (context) => BookingSuccessfulScreen(),
+      );
     default:
       return MaterialPageRoute(
           settings: RouteSettings(
