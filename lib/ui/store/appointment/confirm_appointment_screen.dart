@@ -6,6 +6,7 @@ import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
+import 'package:la_loge/ui/store/appointment/booking_successful_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -159,7 +160,7 @@ class ConfirmAppointmentScreen extends StatelessWidget {
               context, (route) => route.settings.name == StoresListScreen.id);
         });
       } else {
-        //TODO: Navigate to Appointment Booked screen
+        Navigator.pushNamed(context, BookingSuccessfulScreen.id);
       }
     } catch (e) {
       progressDialog.hide();
