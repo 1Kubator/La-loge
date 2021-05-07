@@ -57,4 +57,10 @@ class StoreAppointment {
         "user_id": userId == null ? null : userId,
         "store_id": storeId == null ? null : storeId,
       };
+
+  Map<String, dynamic> toDataForUpdation() => {
+        "booking_questions": bookingQuestions == null ? null : bookingQuestions,
+        "appointment_date_time":
+            appointmentDateTime == null ? null : appointmentDateTime,
+      };
 }
