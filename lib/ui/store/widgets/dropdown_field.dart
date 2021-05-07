@@ -23,7 +23,11 @@ class DropdownField extends StatelessWidget {
             .containsValue(val.documentReference)) return null;
         return MyAppLocalizations.of(context).fieldCannotBeEmpty;
       },
-      value: appointmentDetails.bookingQuestions[appointmentQuestion.statement],
+      value: appointmentQuestion.options.firstWhere(
+        (element) => appointmentDetails.bookingQuestions.values
+            .contains(element.documentReference),
+        orElse: () => null,
+      ),
       decoration: InputDecoration(
         hintText: appointmentQuestion.statement,
       ),
