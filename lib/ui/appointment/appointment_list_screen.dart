@@ -33,7 +33,6 @@ class _AppointmentListScreenState extends State<AppointmentListScreen> {
     return StreamBuilder<List<StoreAppointmentArgument>>(
         stream: stream,
         builder: (context, snap) {
-          print(snap.error);
           if (snap.hasError) return Center(child: ErrorBox(error: snap.error));
           if (!snap.hasData) return LoadingAnimation();
           return Scaffold(
