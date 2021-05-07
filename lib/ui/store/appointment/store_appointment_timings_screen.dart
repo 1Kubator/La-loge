@@ -9,6 +9,7 @@ import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/ui/store/appointment/appointment_questions_screen.dart';
+import 'package:la_loge/ui/store/widgets/appointment_time_dialog.dart';
 import 'package:la_loge/ui/store/widgets/booking_unavailable_dialog.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -36,7 +37,7 @@ class _StoreAppointmentTimingsScreenState
   @override
   void initState() {
     super.initState();
-    future = db.getAvailableAppointmentTimings(widget.store.id);
+    future = db.getPrivateShoppingHours(widget.store.id);
   }
 
   @override
@@ -135,93 +136,26 @@ class _StoreAppointmentTimingsScreenState
     showDialog(
         context: context,
         builder: (_context) {
-          return AlertDialog(
-            // contentPadding: EdgeInsets.only(top: 12),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-            insetPadding: EdgeInsets.only(left: 20),
-            backgroundColor: Theme.of(context).accentColor,
-            title: Text(
-              '$title',
-              style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                  color: Theme.of(context).primaryColorDark),
-            ),
-            content: Wrap(
-              alignment: WrapAlignment.start,
-              children: appointmentTiming.timestamps.map(
-                (timeData) {
-                  return AppointmentTimeCard(
-                    isAppointmentAvailable: timeData.isAvailable,
-                    dateTime: timeData.timestamp,
-                    store: widget.store,
-                    onPopped: () {
-                      Navigator.pushNamed(
-                        context,
-                        AppointmentQuestionsScreen.id,
-                        arguments: StoreAppointmentArgument(
-                          store: widget.store,
-                          storeAppointment: StoreAppointment(
-                            appointmentDateTime: timeData.timestamp,
-                            userId: FirebaseAuth.instance.currentUser.uid,
-                            bookingQuestions: {},
-                            status: 'booked',
-                            storeId: widget.store.id,
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ).toList(),
-            ),
+          return AppointmentTimeDialog(
+            title: title,
+            appointmentTiming: appointmentTiming,
+            onPopped: (dateTime) {
+              Navigator.pushNamed(
+                context,
+                AppointmentQuestionsScreen.id,
+                arguments: StoreAppointmentArgument(
+                  store: widget.store,
+                  storeAppointment: StoreAppointment(
+                    appointmentDateTime: dateTime,
+                    userId: FirebaseAuth.instance.currentUser.uid,
+                    bookingQuestions: {},
+                    status: 'booked',
+                    storeId: widget.store.id,
+                  ),
+                ),
+              );
+            },
           );
         });
-  }
-}
-
-class AppointmentTimeCard extends StatelessWidget {
-  static const id = 'appointment_time_card';
-  final bool isAppointmentAvailable;
-  final Store store;
-  final Function onPopped;
-  final dateFormat = DateFormat('HH:mm');
-  final DateTime dateTime;
-
-  AppointmentTimeCard(
-      {Key key,
-      this.isAppointmentAvailable,
-      this.dateTime,
-      this.store,
-      this.onPopped})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: !isAppointmentAvailable
-          ? null
-          : () {
-              Navigator.pop(context);
-              onPopped();
-            },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20),
-          child: Text(
-            '${dateFormat.format(dateTime).replaceFirst(':', 'h')}',
-            style: TextStyle(
-              color: isAppointmentAvailable
-                  ? Colors.black
-                  : Colors.black.withOpacity(0.3),
-            ),
-          ),
-        ),
-        margin: EdgeInsets.only(right: 16, top: 12, bottom: 12),
-        color: isAppointmentAvailable
-            ? Color(0xFFE3D5C8)
-            : Colors.white.withOpacity(0.5),
-      ),
-    );
   }
 }
