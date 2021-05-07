@@ -204,12 +204,12 @@ class DatabaseService {
     });
   }
 
-  Future<List<StoreAppointmentTiming>> getAvailableAppointmentTimings(
+  Future<List<StoreAppointmentTiming>> getPrivateShoppingHours(
       String storeId) async {
     final res = await _db
         .collection(CollectionPath.stores)
         .doc(storeId)
-        .collection(CollectionPath.availableTimestamps)
+        .collection(CollectionPath.privateShoppingHours)
         .where('datetime', isGreaterThan: DateTime.now())
         .orderBy('datetime')
         .get();
@@ -335,5 +335,34 @@ class DatabaseService {
 
   Future<Map<String, dynamic>> getDocumentDataByPath(String path) async {
     return _db.doc(path).get().then((value) => value.data());
+  }
+
+  Future<List<DateTime>> getAvailablePvtShoppingHrs(
+    DateTime dateTime,
+    String storeId,
+  ) async {
+    var res = await getPrivateShoppingHours(storeId);
+    var storeAppointmentTimings = res
+        .map(
+          (e) {
+            return e.timestamps
+                .where((element) => element.isAvailable == true)
+                .map((e) => e.timestamp);
+          },
+        )
+        .expand((element) => element)
+        .toList();
+    storeAppointmentTimings.add(dateTime);
+    storeAppointmentTimings.sort();
+    return storeAppointmentTimings;
+  }
+
+  Future<void> updateAppointment(StoreAppointment storeAppointment) async {
+    return _db
+        .collection(CollectionPath.stores)
+        .doc(storeAppointment.storeId)
+        .collection(CollectionPath.appointments)
+        .doc(storeAppointment.id)
+        .update(storeAppointment.toDataForUpdation());
   }
 }

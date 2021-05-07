@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:la_loge/models/store_appointment_argument.dart';
+import 'package:la_loge/ui/appointment/edit_appointment_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 
 class AppointmentCard extends StatelessWidget {
@@ -101,7 +102,13 @@ class AppointmentCard extends StatelessWidget {
                   MyAppLocalizations.of(context).modify,
                   textAlign: TextAlign.center,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    EditAppointmentScreen.id,
+                    arguments: storeAppointmentArg.storeAppointment,
+                  );
+                },
               ),
             ),
           ],
