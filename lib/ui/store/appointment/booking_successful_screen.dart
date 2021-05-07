@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/images.dart';
+import 'package:la_loge/ui/store/stores_list_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
+import 'package:provider/provider.dart';
 
 class BookingSuccessfulScreen extends StatelessWidget {
   static const id = 'booking_successful_screen';
 
   @override
   Widget build(BuildContext context) {
+    final tabNotifier = Provider.of<TabsNotifier>(context);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(Images.homeScreenFirstTab)),
@@ -85,7 +89,13 @@ class BookingSuccessfulScreen extends StatelessWidget {
                             MyAppLocalizations.of(context).myPrivateShopping,
                             textAlign: TextAlign.center,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.popUntil(
+                                context,
+                                (route) =>
+                                    route.settings.name == StoresListScreen.id);
+                            tabNotifier.setTabIndex = 2;
+                          },
                         ),
                       ),
                     ],

@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
 class TabsNotifier extends ChangeNotifier {
-  int _tabIndex = 0;
+  int _currentTabIndex = 0;
 
   set setTabIndex(int index) {
-    _tabIndex = index;
+    _currentTabIndex = index;
     notifyListeners();
   }
 
-  get tabIndex {
-    return _tabIndex;
+  get currentTabIndex {
+    return _currentTabIndex;
   }
 }

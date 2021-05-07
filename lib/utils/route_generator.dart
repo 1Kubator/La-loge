@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:la_loge/models/all_preferences.dart';
 import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/store_appointment_argument.dart';
+import 'package:la_loge/ui/appointment/appointment_list_screen.dart';
 import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/home/home_screen_navigator.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
@@ -133,6 +134,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         settings: RouteSettings(name: BookingSuccessfulScreen.id),
         builder: (context) => BookingSuccessfulScreen(),
+      );
+    case AppointmentListScreen.id:
+      return MaterialPageRoute(
+        settings: RouteSettings(name: AppointmentListScreen.id),
+        builder: (context) => AppointmentListScreen(),
       );
     default:
       return MaterialPageRoute(

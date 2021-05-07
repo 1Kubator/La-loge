@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:la_loge/models/all_preferences.dart';
@@ -9,6 +11,7 @@ import 'package:la_loge/models/option.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
 import 'package:la_loge/models/store.dart';
+import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/models/store_appointment_timing.dart';
 import 'package:la_loge/models/style_preference.dart';
@@ -19,7 +22,7 @@ import 'package:tcard/tcard.dart';
 class DatabaseService {
   final _db = FirebaseFirestore.instance;
 
-  get userId => FirebaseAuth.instance.currentUser.uid;
+  String get userId => FirebaseAuth.instance.currentUser.uid;
 
   Future<bool> hasPreferences() async {
     if (FirebaseAuth.instance.currentUser == null) return null;
@@ -141,6 +144,12 @@ class DatabaseService {
       stores.add(Store.fromMap(store.id, store.data()));
     }
     return stores;
+  }
+
+  Future<Store> getStoreById(String storeId) async {
+    final store =
+        await _db.collection(CollectionPath.stores).doc(storeId).get();
+    return Store.fromMap(store.id, store.data());
   }
 
   Future<List<Gallery>> getStoreGalleries(String storeId) async {
@@ -292,5 +301,39 @@ class DatabaseService {
       if (value.docs.isEmpty) return false;
       return true;
     });
+  }
+
+  Stream<List<StoreAppointmentArgument>> getAppointments() {
+    var stream = _db
+        .collectionGroup(CollectionPath.appointments)
+        .where('user_id', isEqualTo: userId)
+        .orderBy('appointment_date_time', descending: true)
+        .snapshots()
+        .asyncMap((event) async {
+      List<StoreAppointmentArgument> storeAppointmentsWithStore = [];
+      for (var e in event.docs) {
+        var storeAppointment = StoreAppointment.fromMap(e.id, e.data());
+        var store = await getStoreById(storeAppointment.storeId);
+        var appointmentReasonData = await getDocumentDataByPath(
+          storeAppointment.bookingQuestions.values
+              .lastWhere((element) => element is DocumentReference)
+              .path,
+        );
+
+        storeAppointmentsWithStore.add(
+          StoreAppointmentArgument(
+            storeAppointment: storeAppointment,
+            store: store,
+            appointmentReason: appointmentReasonData['option'],
+          ),
+        );
+      }
+      return storeAppointmentsWithStore;
+    });
+    return stream;
+  }
+
+  Future<Map<String, dynamic>> getDocumentDataByPath(String path) async {
+    return _db.doc(path).get().then((value) => value.data());
   }
 }
