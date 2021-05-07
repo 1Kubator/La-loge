@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/images.dart';
+import 'package:la_loge/ui/appointment/appointment_screen_navigator.dart';
 import 'package:la_loge/ui/home/home_screen_navigator.dart';
 import 'package:la_loge/ui/store/store_screen_navigator.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   var screens = [
     HomeScreenNavigator(),
     StoreScreenNavigator(),
+    AppointmentScreenNavigator(),
   ];
 
   @override
@@ -23,7 +25,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     final tabNotifier = Provider.of<TabsNotifier>(context);
     return Scaffold(
       body: IndexedStack(
-        index: tabNotifier.tabIndex,
+        index: tabNotifier.currentTabIndex,
         children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -32,7 +34,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         },
         type: BottomNavigationBarType.fixed,
         backgroundColor: Theme.of(context).primaryColorDark,
-        currentIndex: tabNotifier.tabIndex,
+        currentIndex: tabNotifier.currentTabIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: [
