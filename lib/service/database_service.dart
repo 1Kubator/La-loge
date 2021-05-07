@@ -17,7 +17,6 @@ import 'package:la_loge/models/store_appointment_timing.dart';
 import 'package:la_loge/models/style_preference.dart';
 import 'package:la_loge/models/style_preference_response.dart';
 import 'package:la_loge/service/collection_path.dart';
-import 'package:la_loge/utils/date_util.dart';
 import 'package:tcard/tcard.dart';
 
 class DatabaseService {
