@@ -6,6 +6,8 @@ import 'package:la_loge/ui/home/home_screen_navigator.dart';
 import 'package:la_loge/ui/store/store_screen_navigator.dart';
 import 'package:provider/provider.dart';
 
+import 'menu/menu_navigator.dart';
+
 class BottomNavigation extends StatefulWidget {
   static const id = 'bottom_navigation';
 
@@ -18,6 +20,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     HomeScreenNavigator(),
     StoreScreenNavigator(),
     AppointmentScreenNavigator(),
+    MenuNavigator(),
   ];
 
   @override

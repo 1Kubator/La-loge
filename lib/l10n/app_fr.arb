@@ -167,92 +167,128 @@
   "@canMakeAppointment": {
     "description": "Denote 'You can now make an appointment' label"
   },
-  "specialRequest":"Avez-vous une demande particulière ?",
+  "specialRequest": "Avez-vous une demande particulière ?",
   "@specialRequest": {
     "description": "Denote 'Have you got a special request?' label"
   },
-  "informReasonForBooking":"Informez le personnel de vente la raison de votre venue",
+  "informReasonForBooking": "Informez le personnel de vente la raison de votre venue",
   "@informReasonForBooking": {
     "description": "Denote 'Inform sales staff the reason for your coming' label"
   },
-  "confirm":"Confirmer",
+  "confirm": "Confirmer",
   "@confirm": {
     "description": "Denote 'Confirm' label"
   },
-  "cancel":"Annuler",
+  "cancel": "Annuler",
   "@cancel": {
     "description": "Denote 'Cancel' label"
   },
-  "fieldCannotBeEmpty":"Ce champ ne peut pas être vide",
+  "fieldCannotBeEmpty": "Ce champ ne peut pas être vide",
   "@fieldCannotBeEmpty": {
     "description": "Denote 'This field cannot be empty' label"
   },
-  "bookPrivateShopping":"Vous allez réserver votre shopping privée",
-  "@bookPrivateShopping": {
+  "confirmBookPrivateShopping": "Vous allez réserver votre shopping privée",
+  "@confirmBookPrivateShopping": {
     "description": "Denote 'You are going to book your private shopping' label"
   },
-  "shoppingPrivate":"Shopping privé",
+  "shoppingPrivate": "Shopping privé",
   "@shoppingPrivate": {
     "description": "Denote 'Private Shopping' label"
   },
-  "appointmentTimeNotAvailable":"Désolé, le créneau horaire de rendez-vous n'est plus disponible.",
+  "appointmentTimeNotAvailable": "Désolé, le créneau horaire de rendez-vous n'est plus disponible.",
   "@appointmentTimeNotAvailable": {
     "description": "Denote 'Private Shopping' label"
   },
-  "bookingRegistered":"Réservation enregistrée",
+  "bookingRegistered": "Réservation enregistrée",
   "@bookingRegistered": {
     "description": "Denote 'Booking registered' label"
   },
-  "wishYouHappyShopping":"Nous vous souhaitons un bon shopping !",
+  "wishYouHappyShopping": "Nous vous souhaitons un bon shopping !",
   "@wishYouHappyShopping": {
     "description": "Denote 'We wish you happy shopping!' label"
   },
-  "receiveEmailConfirmation":"Vous allez bientôt recevoir une confirmation par mail",
+  "receiveEmailConfirmation": "Vous allez bientôt recevoir une confirmation par mail",
   "@receiveEmailConfirmation": {
     "description": "Denote 'You will soon receive a email confirmation' label"
   },
-  "editPrivateShopping":"Modifier mon shopping privé >",
+  "editPrivateShopping": "Modifier mon shopping privé >",
   "@editPrivateShopping": {
     "description": "Denote 'Edit my private shopping' label"
   },
-  "noPrivateShoppingHoursAvailable":"Désolé, la boutique n'a pas d'heures de magasinage privées disponibles, réessayez plus tard.",
+  "noPrivateShoppingHoursAvailable": "Désolé, la boutique n'a pas d'heures de magasinage privées disponibles, réessayez plus tard.",
   "@noPrivateShoppingHoursAvailable": {
     "description": "Denote 'Sorry, the store does not have private shopping hours available, please try again later.' label"
   },
-  "nextPrivateShopping":"Votre prochain shopping privé",
+  "nextPrivateShopping": "Votre prochain shopping privé",
   "@nextPrivateShopping": {
     "description": "Denote 'Your next private shopping' label"
   },
-  "previousPrivateShopping":"Votre précédents shopping privé",
+  "previousPrivateShopping": "Votre précédents shopping privé",
   "@previousPrivateShopping": {
     "description": "Denote 'Your previous private shopping' label"
   },
-  "modify":"Modifier",
+  "modify": "Modifier",
   "@modify": {
     "description": "Denote 'Modify' label"
   },
-  "changePrivateShopping":"Vous souhaitez modifier votre shopping privée",
+  "changePrivateShopping": "Vous souhaitez modifier votre shopping privée",
   "@changePrivateShopping": {
     "description": "Denote 'You want to change your private shopping' label"
   },
-  "confirmChanges":"Confirmer les modifications",
+  "confirmChanges": "Confirmer les modifications",
   "@confirmChanges": {
     "description": "Denote 'Confirm changes' label"
   },
-  "discardChanges":"Annuler les modifications",
+  "discardChanges": "Annuler les modifications",
   "@discardChanges": {
     "description": "Denote 'Discard changes' label"
   },
-  "cancelAppointment":"Annuler le shopping privé",
+  "cancelAppointment": "Annuler le shopping privé",
   "@cancelAppointment": {
     "description": "Denote 'Cancel private shopping' label"
   },
-  "confirmAppointmentCancellation":"Êtes vous sur de vouloir annuler votre shoppin privé?",
+  "confirmAppointmentCancellation": "Êtes vous sur de vouloir annuler votre shoppin privé?",
   "@confirmAppointmentCancellation": {
     "description": "Denote 'Are you sure you want to cancel your private shopping?' label"
   },
-  "appointmentCancelled":"Votre shopping privé à bien été annulé !",
+  "appointmentCancelled": "Votre shopping privé à bien été annulé !",
   "@appointmentCancelled": {
     "description": "Denote 'Your private shopping has been canceled!' label"
+  },
+  "profile": "Profil",
+  "@profile": {
+    "description": "Denote 'Profile' label"
+  },
+  "support": "Support",
+  "@support": {
+    "description": "Denote 'Support' label"
+  },
+  "cgu": "CGU",
+  "@cgu": {
+    "description": "Denote 'Support' label"
+  },
+  "logout": "Déconnexion",
+  "@logout": {
+    "description": "Denote 'Logout' label"
+  },
+  "emailAddress": "Adresse mail",
+  "@emailAddress": {
+    "description": "Denote label 'Email address'"
+  },
+  "location": "Localisation",
+  "@location": {
+    "description": "Denote label 'Location'"
+  },
+  "dateOfBirth": "Date de naissance",
+  "@dateOfBirth": {
+    "description": "Denote label 'Date of Birth'"
+  },
+  "myPreferences": "Mes préférences",
+  "@myPreferences": {
+    "description": "Denote label 'My Preferences'"
+  },
+  "editProfile": "Éditer le profil",
+  "@editProfile": {
+    "description": "Denote label 'Edit Profile'"
   }
 }

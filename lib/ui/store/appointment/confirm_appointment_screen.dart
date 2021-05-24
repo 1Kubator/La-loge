@@ -43,7 +43,7 @@ class ConfirmAppointmentScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
-                MyAppLocalizations.of(context).bookPrivateShopping,
+                MyAppLocalizations.of(context).confirmBookPrivateShopping,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: GoogleFonts.playfairDisplay().fontFamily,
