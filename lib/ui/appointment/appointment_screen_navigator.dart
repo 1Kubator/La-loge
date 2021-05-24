@@ -3,6 +3,8 @@ import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/ui/appointment/appointment_list_screen.dart';
 import 'package:la_loge/ui/appointment/edit_appointment_screen.dart';
 
+import 'appointment_cancellation_confirmation_screen.dart';
+
 class AppointmentScreenNavigator extends StatelessWidget {
   static const id = 'appointment_screen_navigator';
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
@@ -25,6 +27,18 @@ class AppointmentScreenNavigator extends StatelessWidget {
                 return MaterialPageRoute(
                   settings: RouteSettings(name: EditAppointmentScreen.id),
                   builder: (context) => EditAppointmentScreen(
+                    storeAppointment: args,
+                  ),
+                );
+              }
+              throw 'Invalid route or arguments';
+            case AppointmentCancellationConfirmationScreen.id:
+              if (args is StoreAppointment) {
+                return MaterialPageRoute(
+                  settings: RouteSettings(
+                      name: AppointmentCancellationConfirmationScreen.id),
+                  builder: (context) =>
+                      AppointmentCancellationConfirmationScreen(
                     storeAppointment: args,
                   ),
                 );
