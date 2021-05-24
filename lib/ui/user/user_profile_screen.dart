@@ -46,7 +46,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               if (user.imageUrl != null)
                 Center(
                   child: ImageFromNet(
-                    imageUrl:user.imageUrl,
+                    imageUrl: user.imageUrl,
                     height: 140,
                     width: 140,
                     shape: BoxShape.circle,
