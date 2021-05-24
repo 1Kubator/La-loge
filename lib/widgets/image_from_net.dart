@@ -7,8 +7,10 @@ class ImageFromNet extends StatelessWidget {
   final String imageUrl;
   final double width;
   final double height;
+  final BoxShape shape;
 
-  const ImageFromNet({Key key, this.imageUrl, this.width, this.height})
+  const ImageFromNet(
+      {Key key, this.imageUrl, this.width, this.height, this.shape})
       : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class ImageFromNet extends StatelessWidget {
       imageUrl,
       height: height,
       fit: BoxFit.cover,
+      shape: shape,
       width: width,
       loadStateChanged: (ExtendedImageState imageState) {
         switch (imageState.extendedImageLoadState) {
