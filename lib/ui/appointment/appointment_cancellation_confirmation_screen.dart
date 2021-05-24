@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
-import 'package:la_loge/ui/appointment/appointment_list_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/progress_dialog.dart';
 import 'package:la_loge/widgets/submit_button.dart';
+import 'appointment_cancelled_screen.dart';
 
 class AppointmentCancellationConfirmationScreen extends StatelessWidget {
   static const id = 'appointment_cancellation_confirmation_screen';
@@ -46,10 +46,7 @@ class AppointmentCancellationConfirmationScreen extends StatelessWidget {
                   storeAppointment.storeId,
                   storeAppointment.id,
                 );
-                Navigator.popUntil(
-                  context,
-                  (route) => route.settings.name == AppointmentListScreen.id,
-                );
+                Navigator.pushNamed(context, AppointmentCancelledScreen.id);
               },
             ),
             SizedBox(height: 20),

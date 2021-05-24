@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/ui/appointment/appointment_list_screen.dart';
 import 'package:la_loge/ui/appointment/edit_appointment_screen.dart';
-
 import 'appointment_cancellation_confirmation_screen.dart';
+import 'appointment_cancelled_screen.dart';
 
 class AppointmentScreenNavigator extends StatelessWidget {
   static const id = 'appointment_screen_navigator';
@@ -21,6 +21,11 @@ class AppointmentScreenNavigator extends StatelessWidget {
               return MaterialPageRoute(
                 settings: RouteSettings(name: AppointmentListScreen.id),
                 builder: (context) => AppointmentListScreen(),
+              );
+            case AppointmentCancelledScreen.id:
+              return MaterialPageRoute(
+                settings: RouteSettings(name: AppointmentCancelledScreen.id),
+                builder: (context) => AppointmentCancelledScreen(),
               );
             case EditAppointmentScreen.id:
               if (args is StoreAppointment) {

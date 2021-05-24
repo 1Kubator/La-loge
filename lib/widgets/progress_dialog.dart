@@ -20,7 +20,7 @@ class ProgressDialog {
           alignment: Alignment.center,
           children: <Widget>[
             Container(
-              color: Theme.of(context).primaryColorLight,
+              color: Theme.of(context).primaryColorLight.withOpacity(0.5),
             ),
             CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(
