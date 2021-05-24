@@ -52,7 +52,7 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
           minimumSize: MaterialStateProperty.all(
-            Size(0, 50),
+            Size(0, 51),
           ),
           foregroundColor: MaterialStateProperty.all<Color>(accentColor),
           overlayColor: MaterialStateProperty.all<Color>(Colors.black38),
@@ -60,7 +60,7 @@ class AppTheme {
             BorderSide(width: 0.7, color: accentColor),
           ),
           shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           ),
         ),
       ),
