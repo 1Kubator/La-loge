@@ -20,6 +20,7 @@ import 'package:la_loge/ui/store/appointment/store_appointment_timings_screen.da
 import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
+import 'package:la_loge/ui/user/user_profile_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   final args = settings.arguments;
@@ -158,6 +159,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         settings: RouteSettings(name: AppointmentListScreen.id),
         builder: (context) => AppointmentListScreen(),
+      );
+    case UserProfileScreen.id:
+      return MaterialPageRoute(
+        settings: RouteSettings(name: UserProfileScreen.id),
+        builder: (context) => UserProfileScreen(),
       );
     default:
       return MaterialPageRoute(
