@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:la_loge/error_handling/network_exception.dart';
 import 'package:la_loge/models/all_preferences.dart';
 import 'package:la_loge/models/appointment_question.dart';
+import 'package:la_loge/models/booking_status.dart';
 import 'package:la_loge/models/gallery.dart';
 import 'package:la_loge/models/material_preference.dart';
 import 'package:la_loge/models/material_preference_response.dart';
@@ -307,6 +309,7 @@ class DatabaseService {
     var stream = _db
         .collectionGroup(CollectionPath.appointments)
         .where('user_id', isEqualTo: userId)
+        .where('status', isEqualTo: 'booked')
         .orderBy('appointment_date_time', descending: true)
         .snapshots()
         .asyncMap((event) async {
@@ -364,5 +367,18 @@ class DatabaseService {
         .collection(CollectionPath.appointments)
         .doc(storeAppointment.id)
         .update(storeAppointment.toDataForUpdation());
+  }
+
+  Future<void> cancelAppointment(String storeId, String appointmentId) async {
+    return _db
+        .collection(CollectionPath.stores)
+        .doc(storeId)
+        .collection(CollectionPath.appointments)
+        .doc(appointmentId)
+        .update({
+      'status': BookingStatusHelper.fromValue(BookingStatus.cancelled),
+    }).catchError((err) {
+      throwNetworkException(err);
+    });
   }
 }
