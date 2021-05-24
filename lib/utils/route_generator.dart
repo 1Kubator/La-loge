@@ -4,6 +4,7 @@ import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/models/store_appointment_argument.dart';
 import 'package:la_loge/ui/appointment/appointment_cancellation_confirmation_screen.dart';
+import 'package:la_loge/ui/appointment/appointment_cancelled_screen.dart';
 import 'package:la_loge/ui/appointment/appointment_list_screen.dart';
 import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/home/home_screen_navigator.dart';
@@ -132,6 +133,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         );
       }
       throw 'Invalid route or arguments';
+    case AppointmentCancelledScreen.id:
+      return MaterialPageRoute(
+        settings: RouteSettings(name: AppointmentCancelledScreen.id),
+        builder: (context) => AppointmentCancelledScreen(),
+      );
     case AppointmentCancellationConfirmationScreen.id:
       if (args is StoreAppointment) {
         return MaterialPageRoute(
