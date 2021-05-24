@@ -20,6 +20,7 @@ import 'package:la_loge/models/style_preference.dart';
 import 'package:la_loge/models/style_preference_response.dart';
 import 'package:la_loge/service/collection_path.dart';
 import 'package:tcard/tcard.dart';
+import 'package:la_loge/models/user.dart' as model;
 
 class DatabaseService {
   final _db = FirebaseFirestore.instance;
@@ -377,6 +378,14 @@ class DatabaseService {
         .doc(appointmentId)
         .update({
       'status': BookingStatusHelper.fromValue(BookingStatus.cancelled),
+    }).catchError((err) {
+      throwNetworkException(err);
+    });
+  }
+
+  Future<model.User> getUserDetails() {
+    return _db.collection(CollectionPath.user).doc(userId).get().then((value) {
+      return model.User.fromMap(value.data(), value.id);
     }).catchError((err) {
       throwNetworkException(err);
     });
