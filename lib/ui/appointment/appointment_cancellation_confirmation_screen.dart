@@ -7,7 +7,6 @@ import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/progress_dialog.dart';
 import 'package:la_loge/widgets/submit_button.dart';
-
 import 'appointment_cancelled_screen.dart';
 
 class AppointmentCancellationConfirmationScreen extends StatelessWidget {

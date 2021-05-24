@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/ui/appointment/appointment_list_screen.dart';
 import 'package:la_loge/ui/appointment/edit_appointment_screen.dart';
-
 import 'appointment_cancellation_confirmation_screen.dart';
 import 'appointment_cancelled_screen.dart';
 
