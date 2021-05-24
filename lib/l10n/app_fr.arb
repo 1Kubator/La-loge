@@ -232,7 +232,7 @@
     "description": "Denote 'Modify' label"
   },
   "changePrivateShopping":"Vous souhaitez modifier votre shopping privée",
-  "@modify": {
+  "@changePrivateShopping": {
     "description": "Denote 'You want to change your private shopping' label"
   },
   "confirmChanges":"Confirmer les modifications",
@@ -246,5 +246,9 @@
   "cancelAppointment":"Annuler le shopping privé",
   "@cancelAppointment": {
     "description": "Denote 'Cancel private shopping' label"
+  },
+  "confirmAppointmentCancellation":"Êtes vous sur de vouloir annuler votre shoppin privé?",
+  "@confirmAppointmentCancellation": {
+    "description": "Denote 'Are you sure you want to cancel your private shopping?' label"
   }
 }
