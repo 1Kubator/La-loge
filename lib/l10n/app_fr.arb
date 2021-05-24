@@ -200,7 +200,7 @@
     "description": "Denote 'Private Shopping' label"
   },
   "bookingRegistered":"Réservation enregistrée",
-  "@appointmentTimeNotAvailable": {
+  "@bookingRegistered": {
     "description": "Denote 'Booking registered' label"
   },
   "wishYouHappyShopping":"Nous vous souhaitons un bon shopping !",
@@ -250,5 +250,9 @@
   "confirmAppointmentCancellation":"Êtes vous sur de vouloir annuler votre shoppin privé?",
   "@confirmAppointmentCancellation": {
     "description": "Denote 'Are you sure you want to cancel your private shopping?' label"
+  },
+  "appointmentCancelled":"Votre shopping privé à bien été annulé !",
+  "@appointmentCancelled": {
+    "description": "Denote 'Your private shopping has been canceled!' label"
   }
 }
