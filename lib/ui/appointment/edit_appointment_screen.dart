@@ -15,6 +15,8 @@ import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/loading_animation.dart';
 import 'package:la_loge/widgets/progress_dialog.dart';
 
+import 'appointment_cancellation_confirmation_screen.dart';
+
 class EditAppointmentScreen extends StatefulWidget {
   static const id = 'edit_appointment_screen';
   final StoreAppointment storeAppointment;
@@ -134,14 +136,23 @@ class _EditAppointmentScreenState extends State<EditAppointmentScreen> {
                   SizedBox(height: 20),
                   OutlinedButton(
                     child: Text(MyAppLocalizations.of(context).discardChanges),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                   SizedBox(height: 20),
                   OutlinedButton(
                     child:
                         Text(MyAppLocalizations.of(context).cancelAppointment),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppointmentCancellationConfirmationScreen.id,
+                        arguments: widget.storeAppointment,
+                      );
+                    },
                   ),
+                  SizedBox(height: 20),
                 ],
               );
             }));
