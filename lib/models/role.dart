@@ -1,4 +1,4 @@
-enum Role { storeUser, admin }
+enum Role { storeUser, admin, user }
 
 class RoleHelper {
   static String getValue(Role role) {
@@ -7,6 +7,8 @@ class RoleHelper {
         return 'store_user';
       case Role.admin:
         return 'admin';
+      case Role.user:
+        return 'user';
       default:
         return null;
     }
@@ -18,6 +20,8 @@ class RoleHelper {
         return Role.storeUser;
       case 'admin':
         return Role.admin;
+      case 'user':
+        return Role.user;
       default:
         return null;
     }
