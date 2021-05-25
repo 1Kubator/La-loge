@@ -22,6 +22,24 @@ class User {
   final String imageUrl;
   final DateTime dob;
 
+  User copyWith({
+    String email,
+    String name,
+    String city,
+    String imageUrl,
+    DateTime dob,
+  }) =>
+      User(
+        id: id,
+        role: role,
+        isArchived: isArchived,
+        email: email ?? this.email,
+        name: name ?? this.name,
+        city: city ?? this.city,
+        imageUrl: imageUrl ?? this.imageUrl,
+        dob: dob ?? this.dob,
+      );
+
   factory User.fromMap(Map<String, dynamic> json, String id) => User(
         id: id,
         email: json["email"] == null ? null : json["email"],
@@ -38,6 +56,7 @@ class User {
       );
 
   Map<String, dynamic> toMap() => {
+        "id": id == null ? null : id,
         "email": email == null ? null : email,
         "name": name == null ? null : name,
         "is_archived": isArchived == null ? null : isArchived,
@@ -47,7 +66,7 @@ class User {
         "role": role == null ? null : RoleHelper.getValue(role),
       };
 
-  Map<String, dynamic> toMapForUserTable(List<String> storeIds) => {
+  Map<String, dynamic> toMapForUserCreation(List<String> storeIds) => {
         "email": email == null ? null : email,
         "name": name == null ? null : name,
         "role": 'user',
