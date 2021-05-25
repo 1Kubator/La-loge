@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +10,8 @@ import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/image_from_net.dart';
 import 'package:la_loge/widgets/loading_widget.dart';
+
+import 'edit_user_profile_screen.dart';
 
 class UserProfileScreen extends StatefulWidget {
   static const id = 'user_profile_screen';
@@ -89,7 +92,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               FractionallySizedBox(
                 widthFactor: 0.9,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      EditUserProfileScreen.id,
+                      arguments: user,
+                    );
+                  },
                   child: Text(MyAppLocalizations.of(context).editProfile),
                 ),
               ),
