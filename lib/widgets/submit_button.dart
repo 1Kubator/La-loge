@@ -20,7 +20,7 @@ class SubmitButton extends StatelessWidget {
         await onTap();
       } catch (e) {
         progressDialog.hide();
-        await DialogBox.showNetworkErrorDialog(context, e);
+        await DialogBox.parseAndShowExceptionDialog(context, e);
       }
       progressDialog.hide();
     };
