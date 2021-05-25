@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/user.dart';
+import 'package:la_loge/ui/user/edit_preferences_screen.dart';
 import 'package:la_loge/ui/user/edit_user_profile_screen.dart';
 import 'package:la_loge/ui/user/user_profile_screen.dart';
 import 'menu_screen.dart';
@@ -25,6 +26,12 @@ class MenuNavigator extends StatelessWidget {
             return MaterialPageRoute(
               settings: RouteSettings(name: UserProfileScreen.id),
               builder: (context) => UserProfileScreen(),
+            );
+            break;
+          case EditPreferencesScreen.id:
+            return MaterialPageRoute(
+              settings: RouteSettings(name: EditPreferencesScreen.id),
+              builder: (context) => EditPreferencesScreen(),
             );
             break;
           case EditUserProfileScreen.id:
