@@ -10,6 +10,7 @@ import 'package:la_loge/widgets/error_box.dart';
 import 'package:la_loge/widgets/image_from_net.dart';
 import 'package:la_loge/widgets/loading_widget.dart';
 
+import 'edit_preferences_screen.dart';
 import 'edit_user_profile_screen.dart';
 
 class UserProfileScreen extends StatefulWidget {
@@ -83,7 +84,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               FractionallySizedBox(
                 widthFactor: 0.9,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, EditPreferencesScreen.id);
+                  },
                   child: Text(MyAppLocalizations.of(context).myPreferences),
                 ),
               ),
