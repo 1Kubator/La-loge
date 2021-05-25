@@ -6,7 +6,10 @@ class CloudStorageService {
     File imageFile,
     String path,
   ) async {
-    final firebaseStorageRef = FirebaseStorage.instance.ref().child(path);
+    final imageName = '${DateTime.now().microsecondsSinceEpoch}';
+    final firebaseStorageRef = FirebaseStorage.instance.ref().child(
+          path + imageName,
+        );
     final uploadTask = firebaseStorageRef.putFile(imageFile);
     final storageSnapshot = await uploadTask.then((val) => val);
     var downloadUrl = await storageSnapshot.ref.getDownloadURL();

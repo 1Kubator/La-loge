@@ -48,8 +48,6 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
   @override
   void initState() {
     super.initState();
-    print('The data we got');
-    print(user.toMap());
     fillFields();
   }
 
@@ -244,8 +242,6 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
           imageUrl: imageUrl,
           dob: DateTime(year, month, day),
         );
-    print('The data we sending...');
-    print(user.toMap());
     await db.updateUserDetails(user);
     Navigator.pushNamedAndRemoveUntil(
       context,
