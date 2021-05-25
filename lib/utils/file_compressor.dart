@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 class FileCompressor {
   static Future<File> compressImg(File file) async {
     final tempDir = await getApplicationDocumentsDirectory();
-    var imgFormat=file.path.split('.').last;
+    var imgFormat = file.path.split('.').last;
     print(imgFormat);
     var result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,

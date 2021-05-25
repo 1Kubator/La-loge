@@ -32,7 +32,8 @@ class DialogBox {
         title: Text('Error'),
         content: Text(errorMsg),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(_context), child: Text('Ok'))
+          TextButton(
+              onPressed: () => Navigator.pop(_context), child: Text('Ok'))
         ],
       ),
     );
