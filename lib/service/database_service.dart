@@ -10,6 +10,7 @@ import 'package:la_loge/models/gallery.dart';
 import 'package:la_loge/models/material_preference.dart';
 import 'package:la_loge/models/material_preference_response.dart';
 import 'package:la_loge/models/option.dart';
+import 'package:la_loge/models/preference_question_type.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
 import 'package:la_loge/models/store.dart';
@@ -396,5 +397,75 @@ class DatabaseService {
         .collection(CollectionPath.user)
         .doc(user.id)
         .update(user.toMap());
+  }
+
+  Stream<Map<SizePreference, SizePreferenceResponse>> getSizePreferencesQA() {
+    return _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.sizePreferences)
+        .snapshots()
+        .asyncMap((value) async {
+      Map<SizePreference, SizePreferenceResponse> prefsQA = {};
+
+      for (var prefDoc in value.docs) {
+        final sizePrefsResponse =
+            SizePreferenceResponse.fromMap(prefDoc.id, prefDoc.data());
+        var sizePrefs =
+            await getSizePreference(sizePrefsResponse.statementRef.path);
+        if (sizePrefsResponse.optionValue != null) {
+          prefsQA[sizePrefs] = sizePrefsResponse;
+        } else {
+          prefsQA[sizePrefs] = sizePrefsResponse;
+        }
+      }
+      prefsQA.removeWhere(
+          (key, value) => key.type == PreferenceQuestionType.SLIDER);
+      return prefsQA;
+    }).handleError((err) {
+      throwNetworkException(err);
+    });
+  }
+
+  Future<SizePreference> getSizePreference(String path) async {
+    var prefData = await _db.doc(path).get().catchError((err) {
+      throwNetworkException(err);
+    });
+    var data = prefData.data();
+    var options = await getSizePreferenceOptions(prefData.id);
+    data.addAll({'options': options});
+    return SizePreference.fromMap(
+      prefData.id,
+      data,
+      prefData.reference,
+    );
+  }
+
+  Future<List<Option>> getSizePreferenceOptions(String prefsId) async {
+    return await _db
+        .collection(CollectionPath.sizePreferences)
+        .doc(prefsId)
+        .collection(CollectionPath.options)
+        .orderBy('index')
+        .get()
+        .then((value) {
+      return value.docs
+          .map((e) => Option.fromMap(e.data(), e.id, e.reference))
+          .toList();
+    }).catchError((err) {
+      throwNetworkException(err);
+    });
+  }
+
+  Future<void> updateSizePreferences(
+    String prefResponseId,
+    DocumentReference newSelectedOptionRef,
+  ) async {
+    await _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.sizePreferences)
+        .doc(prefResponseId)
+        .update({'options_ref': newSelectedOptionRef});
   }
 }
