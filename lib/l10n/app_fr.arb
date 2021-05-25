@@ -290,5 +290,41 @@
   "editProfile": "Éditer le profil",
   "@editProfile": {
     "description": "Denote label 'Edit Profile'"
+  },
+  "city": "City",
+  "@city": {
+    "description": "Denote label 'City'"
+  },
+  "day": "Jour",
+  "@day": {
+    "description": "Denote label 'Day'"
+  },
+  "month": "Mois",
+  "@month": {
+    "description": "Denote label 'Month'"
+  },
+  "year": "Annee",
+  "@year": {
+    "description": "Denote label 'Year'"
+  },
+  "camera": "Caméra",
+  "@camera": {
+    "description": "Denote label 'Camera'"
+  },
+  "gallery": "Galerie",
+  "@gallery": {
+    "description": "Denote label 'Gallery'"
+  },
+  "userDeniedCameraPermission": "Vous avez refusé l'autorisation de la caméra. Veuillez l'accepter pour continuer.",
+  "@userDeniedCameraPermission": {
+    "description": "Denote label 'You have denied camera permission. Please accept it to continue.'"
+  },
+  "userDeniedGalleryPermission": "Vous avez refusé l'autorisation de prendre des photos. Veuillez l'accepter pour continuer.",
+  "@userDeniedGalleryPermission": {
+    "description": "Denote label 'You have denied photo permission. Please accept it to continue.'"
+  },
+  "invalidInput": "Entrée invalide",
+  "@invalidInput": {
+    "description": "Denotes label 'Invalid Input'"
   }
 }

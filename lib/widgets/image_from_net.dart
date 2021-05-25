@@ -8,9 +8,15 @@ class ImageFromNet extends StatelessWidget {
   final double width;
   final double height;
   final BoxShape shape;
+  final Widget errorWidget;
 
   const ImageFromNet(
-      {Key key, this.imageUrl, this.width, this.height, this.shape})
+      {Key key,
+      this.imageUrl,
+      this.width,
+      this.height,
+      this.shape,
+      this.errorWidget})
       : super(key: key);
 
   @override
@@ -27,7 +33,7 @@ class ImageFromNet extends StatelessWidget {
             return LoadingAnimation();
             break;
           case LoadState.failed:
-            return Icon(Icons.error);
+            return errorWidget ?? Icon(Icons.error);
             break;
           default:
             return null;

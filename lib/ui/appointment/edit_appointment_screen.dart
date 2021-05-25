@@ -129,7 +129,7 @@ class _EditAppointmentScreenState extends State<EditAppointmentScreen> {
                         progressDialog.hide();
                       } catch (e) {
                         progressDialog.hide();
-                        DialogBox.showNetworkErrorDialog(context, e);
+                        DialogBox.parseAndShowExceptionDialog(context, e);
                       }
                     },
                   ),

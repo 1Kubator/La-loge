@@ -390,4 +390,11 @@ class DatabaseService {
       throwNetworkException(err);
     });
   }
+
+  Future<void> updateUserDetails(model.User user) async {
+    return _db
+        .collection(CollectionPath.user)
+        .doc(user.id)
+        .update(user.toMap());
+  }
 }

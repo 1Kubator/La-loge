@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:la_loge/error_handling/network_error.dart';
+import 'package:la_loge/error_handling/platform_exception.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 
@@ -17,15 +19,21 @@ class DialogBox {
     );
   }
 
-  static showNetworkErrorDialog(context, e) {
-    final errorMsg = NetworkErrorMessage.getValue(context, e);
+  static parseAndShowExceptionDialog(context, exception) {
+    String errorMsg;
+    if (exception is PlatformException) {
+      errorMsg = PlatformExceptionHelper.parseError(context, exception);
+    } else {
+      errorMsg = NetworkErrorMessage.getValue(context, exception);
+    }
     return showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (_context) => AlertDialog(
         title: Text('Error'),
         content: Text(errorMsg),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
+          TextButton(
+              onPressed: () => Navigator.pop(_context), child: Text('Ok'))
         ],
       ),
     );
