@@ -326,5 +326,13 @@
   "invalidInput": "Entrée invalide",
   "@invalidInput": {
     "description": "Denotes label 'Invalid Input'"
+  },
+  "userSize": "VOS TAILLES",
+  "@userSize": {
+    "description": "Denotes label 'YOUR SIZES'"
+  },
+  "userTaste": "VOS GOÛTS",
+  "@userTaste": {
+    "description": "Denotes label 'YOUR TASTE'"
   }
 }
