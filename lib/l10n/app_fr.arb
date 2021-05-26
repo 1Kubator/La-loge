@@ -334,5 +334,9 @@
   "userTaste": "VOS GOÛTS",
   "@userTaste": {
     "description": "Denotes label 'YOUR TASTE'"
+  },
+  "seeSelectedArticles": "Voir les articles sélectionnés",
+  "@seeSelectedArticles": {
+    "description": "Denotes label 'See selected articles'"
   }
 }
