@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MaterialPreferenceResponse {
   MaterialPreferenceResponse({
+    this.id,
     this.statementRef,
     this.optionsRef,
     this.optionValue,
   });
 
+  String id;
   final DocumentReference statementRef;
   List<DocumentReference> optionsRef;
   final dynamic optionValue;
@@ -17,13 +19,16 @@ class MaterialPreferenceResponse {
     dynamic optionValue,
   }) =>
       MaterialPreferenceResponse(
+        id: id,
         statementRef: statementRef ?? this.statementRef,
         optionsRef: optionsRef ?? this.optionsRef,
         optionValue: optionValue ?? this.optionValue,
       );
 
-  factory MaterialPreferenceResponse.fromMap(Map<String, dynamic> json) =>
+  factory MaterialPreferenceResponse.fromMap(
+          String id, Map<String, dynamic> json) =>
       MaterialPreferenceResponse(
+        id: id,
         statementRef:
             json["statement_ref"] == null ? null : json["statement_ref"],
         optionsRef: json["options_ref"] == null
@@ -33,6 +38,7 @@ class MaterialPreferenceResponse {
       );
 
   Map<String, dynamic> toMap() => {
+        "id": id == null ? null : id,
         "statement_ref": statementRef == null ? null : statementRef,
         "options_ref": optionsRef == null
             ? null
