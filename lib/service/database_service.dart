@@ -413,11 +413,7 @@ class DatabaseService {
             SizePreferenceResponse.fromMap(prefDoc.id, prefDoc.data());
         var sizePrefs =
             await getSizePreference(sizePrefsResponse.statementRef.path);
-        if (sizePrefsResponse.optionValue != null) {
-          prefsQA[sizePrefs] = sizePrefsResponse;
-        } else {
-          prefsQA[sizePrefs] = sizePrefsResponse;
-        }
+        prefsQA[sizePrefs] = sizePrefsResponse;
       }
       prefsQA.removeWhere(
           (key, value) => key.type == PreferenceQuestionType.SLIDER);
@@ -432,7 +428,8 @@ class DatabaseService {
       throwNetworkException(err);
     });
     var data = prefData.data();
-    var options = await getSizePreferenceOptions(prefData.id);
+    var options =
+        await getPreferenceOptions(prefData.id, CollectionPath.sizePreferences);
     data.addAll({'options': options});
     return SizePreference.fromMap(
       prefData.id,
@@ -441,9 +438,151 @@ class DatabaseService {
     );
   }
 
-  Future<List<Option>> getSizePreferenceOptions(String prefsId) async {
+  Future<void> updatePreference(
+    String prefResponseId,
+    String prefCollectionName,
+    DocumentReference newSelectedOptionRef,
+  ) async {
+    await _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(prefCollectionName)
+        .doc(prefResponseId)
+        .update({'options_ref': newSelectedOptionRef});
+  }
+
+  Future<StylePreferenceResponse> addPreference(
+    String prefCollectionName,
+    DocumentReference newSelectedOptionRef,
+    DocumentReference statementRef,
+  ) async {
+    var docRef = await _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(prefCollectionName)
+        .add({
+      'options_ref': newSelectedOptionRef,
+      'statement_ref': statementRef,
+    });
+    return StylePreferenceResponse(
+      statementRef: statementRef,
+      optionsRef: newSelectedOptionRef,
+      id: docRef.id,
+    );
+  }
+
+  Future<void> deletePreference(
+    String prefResponseId,
+    String prefCollectionName,
+  ) async {
+    await _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(prefCollectionName)
+        .doc(prefResponseId)
+        .delete();
+  }
+
+  Stream<Map<StylePreference, StylePreferenceResponse>>
+      getStylePreferencesQA() {
+    return _db
+        .collection(CollectionPath.stylePreferences)
+        .snapshots()
+        .asyncMap((value) async {
+      Map<StylePreference, StylePreferenceResponse> prefsQA = {};
+
+      for (var prefDoc in value.docs) {
+        var data = prefDoc.data();
+        var options = await getPreferenceOptions(
+          prefDoc.id,
+          CollectionPath.stylePreferences,
+        );
+        data.addAll({'options': options});
+        final stylePref = StylePreference.fromMap(
+          prefDoc.id,
+          data,
+          prefDoc.reference,
+        );
+
+        var stylePrefResponse =
+            await getStylePreferenceResponse(userId, stylePref.docReference);
+        prefsQA[stylePref] = stylePrefResponse;
+      }
+      return prefsQA;
+    }).handleError((err) {
+      throwNetworkException(err);
+    });
+  }
+
+  Future<StylePreferenceResponse> getStylePreferenceResponse(
+      String userId, DocumentReference optionRef) async {
+    return _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.stylePreferences)
+        .where('options_ref', isEqualTo: optionRef)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) return null;
+      var doc = value.docs.first;
+      return StylePreferenceResponse.fromMap(doc.id, doc.data());
+    }).catchError((err) {
+      throwNetworkException(err);
+    });
+  }
+
+  Stream<Map<MaterialPreference, MaterialPreferenceResponse>>
+      getMaterialPreferencesQA() {
+    return _db
+        .collection(CollectionPath.materialPreferences)
+        .snapshots()
+        .asyncMap((value) async {
+      Map<MaterialPreference, MaterialPreferenceResponse> prefsQA = {};
+
+      for (var prefDoc in value.docs) {
+        var data = prefDoc.data();
+        var options = await getPreferenceOptions(
+          prefDoc.id,
+          CollectionPath.materialPreferences,
+        );
+        data.addAll({'options': options});
+
+        final materialPref = MaterialPreference.fromMap(
+          prefDoc.id,
+          data,
+          prefDoc.reference,
+        );
+        var materialPrefResponse =
+            await getMaterialPreferenceResponse(materialPref.docReference);
+        prefsQA[materialPref] = materialPrefResponse;
+      }
+      return prefsQA;
+    }).handleError((err) {
+      throwNetworkException(err);
+    });
+  }
+
+  Future<MaterialPreferenceResponse> getMaterialPreferenceResponse(
+      DocumentReference optionRef) async {
+    return _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.materialPreferences)
+        .where('statement_ref', isEqualTo: optionRef)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) return null;
+      var doc = value.docs.first;
+      return MaterialPreferenceResponse.fromMap(doc.id, doc.data());
+    }).catchError((err) {
+      throwNetworkException(err);
+    });
+  }
+
+  Future<List<Option>> getPreferenceOptions(
+      String prefsId, collectionName) async {
     return await _db
-        .collection(CollectionPath.sizePreferences)
+        .collection(collectionName)
         .doc(prefsId)
         .collection(CollectionPath.options)
         .orderBy('index')
@@ -457,15 +596,31 @@ class DatabaseService {
     });
   }
 
-  Future<void> updateSizePreferences(
+  Future<void> deleteMaterialPreference(
     String prefResponseId,
-    DocumentReference newSelectedOptionRef,
+    DocumentReference docRefToBeDeleted,
   ) async {
     await _db
         .collection(CollectionPath.user)
         .doc(userId)
-        .collection(CollectionPath.sizePreferences)
+        .collection(CollectionPath.materialPreferences)
         .doc(prefResponseId)
-        .update({'options_ref': newSelectedOptionRef});
+        .update({
+      'options_ref': FieldValue.arrayRemove([docRefToBeDeleted])
+    });
+  }
+
+  Future<void> addMaterialPreference(
+    String prefResponseId,
+    DocumentReference docRefToBeAdded,
+  ) async {
+    await _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.materialPreferences)
+        .doc(prefResponseId)
+        .update({
+      'options_ref': FieldValue.arrayUnion([docRefToBeAdded])
+    });
   }
 }
