@@ -35,7 +35,7 @@ void throwNetworkException(error) {
       default:
         throw NetworkException(NetworkError.UNHANDLED);
     }
-  }  catch (e) {
+  } catch (e) {
     throw error;
   }
 }

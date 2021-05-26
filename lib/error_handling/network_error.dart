@@ -45,7 +45,7 @@ class NetworkErrorMessage {
         default:
           return "genericErrorMessage";
       }
-    }  catch (e) {
+    } catch (e) {
       return '$error';
     }
   }
