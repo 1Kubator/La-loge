@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:la_loge/models/option.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
+import 'package:la_loge/service/collection_path.dart';
 import 'package:la_loge/service/database_service.dart';
 import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
@@ -14,7 +14,8 @@ class EditSizePreferences extends StatefulWidget {
   _EditSizePreferencesState createState() => _EditSizePreferencesState();
 }
 
-class _EditSizePreferencesState extends State<EditSizePreferences> {
+class _EditSizePreferencesState extends State<EditSizePreferences>
+    with AutomaticKeepAliveClientMixin {
   final db = locator<DatabaseService>();
   final progressDialog = ProgressDialog();
   List<bool> isExpanded;
@@ -34,6 +35,7 @@ class _EditSizePreferencesState extends State<EditSizePreferences> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    super.build(context);
     return StreamBuilder<Map<SizePreference, SizePreferenceResponse>>(
         stream: stream,
         builder: (context, snap) {
@@ -76,11 +78,12 @@ class _EditSizePreferencesState extends State<EditSizePreferences> {
                   children: pref.options.map((option) {
                     return InkWell(
                       onTap: () async {
-                        if(option.option==answer) return;
+                        if (option.option == answer) return;
                         progressDialog.show(context);
                         try {
-                          await db.updateSizePreferences(
+                          await db.updatePreference(
                             sizePrefsResponse.id,
+                            CollectionPath.sizePreferences,
                             option.docReference,
                           );
 
@@ -121,4 +124,7 @@ class _EditSizePreferencesState extends State<EditSizePreferences> {
           );
         });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
