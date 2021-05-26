@@ -326,5 +326,17 @@
   "invalidInput": "Entrée invalide",
   "@invalidInput": {
     "description": "Denotes label 'Invalid Input'"
+  },
+  "userSize": "VOS TAILLES",
+  "@userSize": {
+    "description": "Denotes label 'YOUR SIZES'"
+  },
+  "userTaste": "VOS GOÛTS",
+  "@userTaste": {
+    "description": "Denotes label 'YOUR TASTE'"
+  },
+  "seeSelectedArticles": "Voir les articles sélectionnés",
+  "@seeSelectedArticles": {
+    "description": "Denotes label 'See selected articles'"
   }
 }
