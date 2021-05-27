@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/store.dart';
 import 'package:la_loge/models/user.dart';
+import 'package:la_loge/ui/login/login_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_screen.dart';
 import 'package:la_loge/ui/user/edit_preferences_screen.dart';
 import 'package:la_loge/ui/user/edit_user_profile_screen.dart';
@@ -37,6 +38,11 @@ class MenuNavigator extends StatelessWidget {
               builder: (context) => EditPreferencesScreen(),
             );
             break;
+          case LoginScreen.id:
+            return MaterialPageRoute(
+              settings: RouteSettings(name: LoginScreen.id),
+              builder: (context) => LoginScreen(),
+            );
           case UserGallerySelectionsScreen.id:
             return MaterialPageRoute(
               settings: RouteSettings(name: UserGallerySelectionsScreen.id),

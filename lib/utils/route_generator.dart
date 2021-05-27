@@ -8,6 +8,7 @@ import 'package:la_loge/ui/appointment/appointment_cancelled_screen.dart';
 import 'package:la_loge/ui/appointment/appointment_list_screen.dart';
 import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/home/home_screen_navigator.dart';
+import 'package:la_loge/ui/login/login_screen.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
 import 'package:la_loge/ui/preferences/material_preference_screen.dart';
 import 'package:la_loge/ui/preferences/preferences_complete_screen.dart';
@@ -164,6 +165,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         settings: RouteSettings(name: UserProfileScreen.id),
         builder: (context) => UserProfileScreen(),
+      );
+    case LoginScreen.id:
+      return MaterialPageRoute(
+        settings: RouteSettings(name: LoginScreen.id),
+        builder: (context) => LoginScreen(),
       );
     default:
       return MaterialPageRoute(

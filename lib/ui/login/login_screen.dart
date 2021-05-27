@@ -14,6 +14,7 @@ import 'package:la_loge/widgets/submit_button.dart';
 import 'package:regexpattern/regexpattern.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const id = 'login_screen';
   final emailCtrl = TextEditingController();
   final passwordCtrl = TextEditingController();
   final formKey = GlobalKey<FormState>();
