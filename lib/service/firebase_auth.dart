@@ -21,4 +21,10 @@ class FirebaseAuthentication {
       password: password,
     );
   }
+
+  static Future<void> resetPassword(String email) {
+    return _firebaseAuth.sendPasswordResetEmail(email: email).catchError((err) {
+      throwNetworkException(err);
+    });
+  }
 }
