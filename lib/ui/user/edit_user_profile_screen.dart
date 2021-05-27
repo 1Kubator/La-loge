@@ -11,8 +11,8 @@ import 'package:la_loge/ui/menu/menu_screen.dart';
 import 'package:la_loge/ui/user/user_profile_screen.dart';
 import 'package:la_loge/ui/user/widgets/user_profile_image.dart';
 import 'package:la_loge/utils/app_localizations.dart';
-import 'package:la_loge/utils/file_compressor.dart';
 import 'package:la_loge/widgets/app_title.dart';
+import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/submit_button.dart';
 import 'package:regexpattern/regexpattern.dart';
 
@@ -233,8 +233,12 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
 
   Future<void> _updateDetails() async {
     if (imageFile != null) {
-      var compressedImg = await FileCompressor.compressImg(imageFile);
-      imageUrl = await storage.uploadImageWithFile(compressedImg, 'users/');
+      if (!_isValidImage)
+        return DialogBox.showCustomErrorDialog(
+          context,
+          MyAppLocalizations.of(context).imageSizeError,
+        );
+      imageUrl = await storage.uploadImageWithFile(imageFile, 'users/');
     }
     var user = this.user.copyWith(
           email: email,
@@ -248,5 +252,10 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
       UserProfileScreen.id,
       (route) => route.settings.name == MenuScreen.id,
     );
+  }
+
+  bool get _isValidImage {
+    if (imageFile.lengthSync() <= 5000000) return true;
+    return false;
   }
 }
