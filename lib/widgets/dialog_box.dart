@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:la_loge/error_handling/network_error.dart';
@@ -84,5 +87,23 @@ class DialogBox {
       ),
     );
     return Future.value(false);
+  }
+
+  static Widget getPlatformBasedDialog({
+    Widget title,
+    Widget content,
+    List<Widget> actions,
+  }) {
+    if (Platform.isIOS)
+      return CupertinoAlertDialog(
+        title: title,
+        content: content,
+        actions: actions,
+      );
+    return AlertDialog(
+      title: title,
+      content: content,
+      actions: actions,
+    );
   }
 }
