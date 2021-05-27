@@ -44,25 +44,24 @@ class ForgotPassword extends StatelessWidget {
         },
       ),
     );
-    var actions = [
-      TextButton(
-        onPressed: () {
-          if (email.isEmpty || (!email.isEmail()))
-            return DialogBox.showCustomErrorDialog(
-              context,
-              MyAppLocalizations.of(context).enterEmail,
-            );
-          _resetPassword(context, email);
-        },
-        child: Text(MyAppLocalizations.of(context).ok),
-      )
-    ];
     showDialog(
         context: context,
-        builder: (context) {
+        builder: (_context) {
           return DialogBox.getPlatformBasedDialog(
             title: title,
-            actions: actions,
+            actions: [
+              TextButton(
+                onPressed: () {
+                  if (email.isEmpty || (!email.isEmail()))
+                    return DialogBox.showCustomErrorDialog(
+                      _context,
+                      MyAppLocalizations.of(context).enterEmail,
+                    );
+                  _resetPassword(_context, email);
+                },
+                child: Text(MyAppLocalizations.of(context).ok),
+              )
+            ],
             content: content,
           );
         });
