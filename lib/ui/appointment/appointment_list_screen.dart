@@ -55,7 +55,7 @@ class _AppointmentListScreenState extends State<AppointmentListScreen> {
                   )
                 else
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 55 / 100,
+                    height: MediaQuery.of(context).size.height / 2,
                     child: Swiper(
                       itemCount: snap.data.length,
                       viewportFraction: 0.85,
