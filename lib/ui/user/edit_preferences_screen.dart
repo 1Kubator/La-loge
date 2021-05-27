@@ -5,6 +5,7 @@ import 'package:la_loge/ui/user/widgets/edit_size_preference.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 
+import 'user_gallery_selections.dart';
 import 'widgets/edit_style_preference.dart';
 
 class EditPreferencesScreen extends StatefulWidget {
@@ -77,7 +78,9 @@ class _EditPreferencesScreenState extends State<EditPreferencesScreen> {
           FractionallySizedBox(
             widthFactor: 0.8,
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, UserGallerySelectionsScreen.id);
+              },
               child: Text(MyAppLocalizations.of(context).seeSelectedArticles),
             ),
           )
