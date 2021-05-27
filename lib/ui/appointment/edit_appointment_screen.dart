@@ -125,7 +125,18 @@ class _EditAppointmentScreenState extends State<EditAppointmentScreen> {
                     onPressed: () async {
                       progressDialog.show(context);
                       try {
-                        await db.updateAppointment(appointmentDetails);
+                        var isBooked =
+                            await db.updateAppointment(appointmentDetails);
+                        if (!isBooked)
+                          return DialogBox.showCustomErrorDialog(
+                            context,
+                            MyAppLocalizations.of(context)
+                                .appointmentTimeNotAvailable,
+                            onPopped: () {
+                              progressDialog.hide();
+                              Navigator.pop(context);
+                            },
+                          );
                         progressDialog.hide();
                       } catch (e) {
                         progressDialog.hide();
