@@ -12,7 +12,7 @@ class DialogBox {
   static showSuccessDialog(context, msg) {
     return showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (_) => getPlatformBasedDialog(
         title: Text('Success'),
         content: Text(msg),
         actions: [
@@ -31,7 +31,7 @@ class DialogBox {
     }
     return showDialog(
       context: context,
-      builder: (_context) => AlertDialog(
+      builder: (_context) => getPlatformBasedDialog(
         title: Text('Error'),
         content: Text(errorMsg),
         actions: [
@@ -42,11 +42,11 @@ class DialogBox {
     );
   }
 
-  static Future<AlertDialog> showCustomErrorDialog(context, String errorMsg,
+  static Future showCustomErrorDialog(context, String errorMsg,
       {Function() onPopped}) {
-    return showDialog<AlertDialog>(
+    return showDialog(
       context: context,
-      builder: (_context) => AlertDialog(
+      builder: (_context) => getPlatformBasedDialog(
         title: Text('Error'),
         content: Text(errorMsg),
         actions: [
@@ -65,26 +65,28 @@ class DialogBox {
       BuildContext context) async {
     await showDialog(
       context: context,
-      builder: (_context) => AlertDialog(
-        title: Text(MyAppLocalizations.of(context).discontinueAppointment),
-        content:
-            Text(MyAppLocalizations.of(context).alertDiscontinueAppointment),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(_context);
-              Navigator.of(context).popUntil(
-                (route) => route.settings.name == StoresListScreen.id,
-              );
-            },
-            child: Text(MyAppLocalizations.of(context).yes),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(_context),
-            child: Text(MyAppLocalizations.of(context).no),
-          ),
-        ],
-      ),
+      builder: (_context) {
+        return getPlatformBasedDialog(
+          title: Text(MyAppLocalizations.of(context).discontinueAppointment),
+          content:
+              Text(MyAppLocalizations.of(context).alertDiscontinueAppointment),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(_context);
+                Navigator.of(context).popUntil(
+                  (route) => route.settings.name == StoresListScreen.id,
+                );
+              },
+              child: Text(MyAppLocalizations.of(context).yes),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(_context),
+              child: Text(MyAppLocalizations.of(context).no),
+            ),
+          ],
+        );
+      },
     );
     return Future.value(false);
   }
