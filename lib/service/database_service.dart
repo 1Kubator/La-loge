@@ -304,6 +304,10 @@ class DatabaseService {
         .doc(storeId)
         .collection(CollectionPath.appointments)
         .where('appointment_date_time', isEqualTo: dateTime)
+        .where(
+          'status',
+          isEqualTo: BookingStatusHelper.fromValue(BookingStatus.booked),
+        )
         .get()
         .then((value) {
       if (value.docs.isEmpty) return false;
