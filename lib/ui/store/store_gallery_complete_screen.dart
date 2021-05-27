@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:la_loge/models/store.dart';
-import 'package:la_loge/ui/store/stores_list_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:la_loge/widgets/dialog_box.dart';
@@ -70,32 +69,5 @@ class StoreGalleryCompleteScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<bool> showDiscontinueAlert(BuildContext context) async {
-    await showDialog(
-      context: context,
-      builder: (_context) => AlertDialog(
-        title: Text(MyAppLocalizations.of(context).discontinueAppointment),
-        content:
-            Text(MyAppLocalizations.of(context).alertDiscontinueAppointment),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(_context);
-              Navigator.of(context).popUntil(
-                (route) => route.settings.name == StoresListScreen.id,
-              );
-            },
-            child: Text(MyAppLocalizations.of(context).yes),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(_context),
-            child: Text(MyAppLocalizations.of(context).no),
-          ),
-        ],
-      ),
-    );
-    return Future.value(false);
   }
 }
