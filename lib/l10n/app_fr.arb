@@ -350,5 +350,9 @@
   "redoSelections": "Refaire la sélection",
   "@redoSelections": {
     "description": "Denote label 'Redo Selections'"
+  },
+  "imageSizeError": "Veuillez sélectionner une taille d'image inférieure à 5 Mo",
+  "@imageSizeError": {
+    "description": "Denote label 'Please select an image size less than 5MB'"
   }
 }
