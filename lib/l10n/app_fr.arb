@@ -338,5 +338,17 @@
   "seeSelectedArticles": "Voir les articles sélectionnés",
   "@seeSelectedArticles": {
     "description": "Denotes label 'See selected articles'"
+  },
+  "whatUserLiked": "Ce que vous avez aimé",
+  "@whatUserLiked": {
+    "description": "Denotes label 'What you liked'"
+  },
+  "noSelections": "Aucune sélection",
+  "@noSelections": {
+    "description": "Denote label 'No Selections'"
+  },
+  "redoSelections": "Refaire la sélection",
+  "@redoSelections": {
+    "description": "Denote label 'Redo Selections'"
   }
 }
