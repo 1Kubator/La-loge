@@ -42,7 +42,7 @@ class DialogBox {
     );
   }
 
-  static Future showCustomErrorDialog(context, String errorMsg,
+  static Future<Widget> showCustomErrorDialog(context, String errorMsg,
       {Function() onPopped}) {
     return showDialog(
       context: context,
