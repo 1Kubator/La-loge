@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
 class FirstPositionedTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final tabNotifier = Provider.of<TabsNotifier>(context);
+    final tabNotifier = Provider.of<TabsNotifier>(context, listen: false);
     return Positioned.fill(
       child: SafeArea(
         child: Column(
@@ -88,6 +88,7 @@ class FirstPositionedTab extends StatelessWidget {
 class SecondPositionedTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final tabNotifier = Provider.of<TabsNotifier>(context, listen: false);
     return Positioned.fill(
       bottom: 1,
       child: Column(
@@ -110,7 +111,9 @@ class SecondPositionedTab extends StatelessWidget {
           SizedBox(height: 28),
           SubmitButton(
             AppLocalizations.of(context).myPrivateShopping,
-            onTap: () {},
+            onTap: () {
+              tabNotifier.setTabIndex = 2;
+            },
           ),
           Spacer(flex: 1)
         ],
