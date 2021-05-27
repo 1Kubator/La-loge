@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_loge/ui/login/login_screen.dart';
 import 'package:la_loge/ui/user/user_profile_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -56,7 +58,14 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                LoginScreen.id,
+                (route) => false,
+              );
+            },
             contentPadding: EdgeInsets.all(16),
             title: Text(
               MyAppLocalizations.of(context).logout,
