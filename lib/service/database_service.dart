@@ -623,4 +623,25 @@ class DatabaseService {
       'options_ref': FieldValue.arrayUnion([docRefToBeAdded])
     });
   }
+
+  Stream<List<Gallery>> getUserGallerySelections(String storeId) {
+    return _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .collection(CollectionPath.gallerySelections)
+        .where('store_id', isEqualTo: storeId)
+        .where('status', isEqualTo: 'liked')
+        .snapshots()
+        .asyncMap((value) async {
+      List<Gallery> galleries = [];
+      for (var doc in value.docs) {
+        await _db.doc(doc.data()['gallery_item_ref'].path).get().then((value) {
+          galleries.add(
+            Gallery.fromMap(value.id, value.data(), value.reference),
+          );
+        });
+      }
+      return galleries;
+    });
+  }
 }

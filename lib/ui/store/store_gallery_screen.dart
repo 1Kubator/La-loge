@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:la_loge/models/gallery.dart';
@@ -17,8 +16,10 @@ import 'package:la_loge/widgets/loading_animation.dart';
 class StoreGalleryScreen extends StatefulWidget {
   static const id = 'store_gallery_screen';
   final Store store;
+  final bool isBookingProcess;
 
-  const StoreGalleryScreen({Key key, this.store}) : super(key: key);
+  const StoreGalleryScreen({Key key, this.store, this.isBookingProcess = true})
+      : super(key: key);
 
   @override
   _StoreGalleryScreenState createState() => _StoreGalleryScreenState();
@@ -39,6 +40,10 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
+        if (!widget.isBookingProcess) {
+          Navigator.pop(context);
+          return Future.value(false);
+        }
         return DialogBox.showDiscontinueAppointmentAlert(context);
       },
       child: Scaffold(
@@ -103,11 +108,15 @@ class _StoreGalleryScreenState extends State<StoreGalleryScreen> {
                           widget.store.id,
                         );
                         if (index + 1 == snap.data.length) {
-                          Navigator.pushNamed(
-                            context,
-                            StoreGalleryCompleteScreen.id,
-                            arguments: widget.store,
-                          );
+                          if (!widget.isBookingProcess) {
+                            Navigator.pop(context);
+                          } else {
+                            Navigator.pushNamed(
+                              context,
+                              StoreGalleryCompleteScreen.id,
+                              arguments: widget.store,
+                            );
+                          }
                         } else {
                           galleryIndex++;
                           setState(() {});
