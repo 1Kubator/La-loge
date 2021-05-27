@@ -30,16 +30,19 @@ class ForgotPassword extends StatelessWidget {
       borderSide: BorderSide(color: theme.accentColor, width: 0.3),
     );
     String email = '';
-    var content = TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        hintText: title.data,
-        enabledBorder: border,
-        focusedBorder: border,
+    var content = Material(
+      color: Colors.transparent,
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          hintText: title.data,
+          enabledBorder: border,
+          focusedBorder: border,
+        ),
+        onChanged: (val) {
+          email = val;
+        },
       ),
-      onChanged: (val) {
-        email = val;
-      },
     );
     var actions = [
       TextButton(
