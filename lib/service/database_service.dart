@@ -227,6 +227,10 @@ class DatabaseService {
         .doc(storeId)
         .collection(CollectionPath.appointments)
         .where('appointment_date_time', isEqualTo: dateTime)
+        .where(
+          'status',
+          isEqualTo: BookingStatusHelper.fromValue(BookingStatus.booked),
+        )
         .get()
         .then((value) => value.docs.isEmpty);
   }
@@ -300,10 +304,29 @@ class DatabaseService {
         .doc(storeId)
         .collection(CollectionPath.appointments)
         .where('appointment_date_time', isEqualTo: dateTime)
+        .where(
+          'status',
+          isEqualTo: BookingStatusHelper.fromValue(BookingStatus.booked),
+        )
         .get()
         .then((value) {
       if (value.docs.isEmpty) return false;
       return true;
+    });
+  }
+
+  Future<StoreAppointment> getAppointment(
+      String storeId, DateTime dateTime) async {
+    return _db
+        .collection(CollectionPath.stores)
+        .doc(storeId)
+        .collection(CollectionPath.appointments)
+        .where('appointment_date_time', isEqualTo: dateTime)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) return null;
+      final doc = value.docs.first;
+      return StoreAppointment.fromMap(doc.id, doc.data());
     });
   }
 
@@ -362,13 +385,18 @@ class DatabaseService {
     return storeAppointmentTimings;
   }
 
-  Future<void> updateAppointment(StoreAppointment storeAppointment) async {
-    return _db
+  Future<bool> updateAppointment(StoreAppointment storeAppointment) async {
+    var alreadyAppointment = await getAppointment(
+        storeAppointment.storeId, storeAppointment.appointmentDateTime);
+    if (alreadyAppointment != null &&
+        alreadyAppointment.id != storeAppointment.id) return false;
+    _db
         .collection(CollectionPath.stores)
         .doc(storeAppointment.storeId)
         .collection(CollectionPath.appointments)
         .doc(storeAppointment.id)
         .update(storeAppointment.toDataForUpdation());
+    return true;
   }
 
   Future<void> cancelAppointment(String storeId, String appointmentId) async {
