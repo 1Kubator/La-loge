@@ -366,5 +366,9 @@
   "passwordResetEmailSent": "Un e-mail de réinitialisation du mot de passe a été envoyé à votre compte",
   "@passwordResetEmailSent": {
     "description": "Denote label 'A Password reset email has been sent to your account'"
+  },
+  "noAppointments": "Vous n'avez pas encore de rendez-vous.",
+  "@noAppointments": {
+    "description": "Denote label 'You don't have any appointments yet.'"
   }
 }
