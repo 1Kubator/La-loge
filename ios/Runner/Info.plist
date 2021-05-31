@@ -26,6 +26,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>La Loge Privée a besoin d'un accès à l'appareil photo pour télécharger la photo de profil.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>La Loge Privée a besoin d'accéder à la photothèque pour télécharger la photo de profil.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
