@@ -143,9 +143,11 @@ class DatabaseService {
     var storeIds = user.data()['stores'] as List;
     List<Store> stores = [];
     for (var storeId in storeIds) {
-      final store =
+      final storeDoc =
           await _db.collection(CollectionPath.stores).doc(storeId).get();
-      stores.add(Store.fromMap(store.id, store.data()));
+      final store = Store.fromMap(storeDoc.id, storeDoc.data());
+      if (store.isArchived == true) continue;
+      stores.add(store);
     }
     return stores;
   }
