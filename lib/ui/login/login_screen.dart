@@ -8,8 +8,10 @@ import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/ui/bottom_navigation.dart';
 import 'package:la_loge/ui/login/widgets/forgot_password.dart';
 import 'package:la_loge/ui/onboarding/onboarding_screen.dart';
+import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:la_loge/widgets/dialog_box.dart';
 import 'package:la_loge/widgets/submit_button.dart';
 import 'package:regexpattern/regexpattern.dart';
 
@@ -87,7 +89,13 @@ class LoginScreen extends StatelessWidget {
                 );
                 await Prefs.setCurrentUserId(
                     FirebaseAuth.instance.currentUser.uid);
-                await checkForPreferencesAndNavigate(context);
+                if (!await checkArchivedUser())
+                  await checkForPreferencesAndNavigate(context);
+                else
+                  DialogBox.showCustomErrorDialog(
+                    context,
+                    MyAppLocalizations.of(context).accountDeactivated,
+                  );
               },
             ),
             Spacer(),
@@ -95,6 +103,12 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future checkArchivedUser() async {
+    var user = await db.getUserDetails();
+    print(user.id);
+    return user.isArchived;
   }
 
   Future checkForPreferencesAndNavigate(BuildContext context) async {
