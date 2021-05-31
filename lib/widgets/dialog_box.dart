@@ -13,10 +13,13 @@ class DialogBox {
     return showDialog(
       context: context,
       builder: (_) => getPlatformBasedDialog(
-        title: Text('Success'),
+        title: Text(MyAppLocalizations.of(context).success),
         content: Text(msg),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(MyAppLocalizations.of(context).ok),
+          )
         ],
       ),
     );
@@ -32,11 +35,13 @@ class DialogBox {
     return showDialog(
       context: context,
       builder: (_context) => getPlatformBasedDialog(
-        title: Text('Error'),
+        title: Text(MyAppLocalizations.of(context).error),
         content: Text(errorMsg),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(_context), child: Text('Ok'))
+            onPressed: () => Navigator.pop(_context),
+            child: Text(MyAppLocalizations.of(context).ok),
+          )
         ],
       ),
     );
@@ -47,15 +52,16 @@ class DialogBox {
     return showDialog(
       context: context,
       builder: (_context) => getPlatformBasedDialog(
-        title: Text('Error'),
+        title: Text(MyAppLocalizations.of(context).error),
         content: Text(errorMsg),
         actions: [
           TextButton(
-              onPressed: () {
-                Navigator.pop(_context);
-                if (onPopped != null) onPopped();
-              },
-              child: Text('Ok'))
+            onPressed: () {
+              Navigator.pop(_context);
+              if (onPopped != null) onPopped();
+            },
+            child: Text(MyAppLocalizations.of(context).ok),
+          )
         ],
       ),
     );

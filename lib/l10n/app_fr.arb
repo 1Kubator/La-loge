@@ -370,5 +370,13 @@
   "noAppointments": "Vous n'avez pas encore de rendez-vous.",
   "@noAppointments": {
     "description": "Denote label 'You don't have any appointments yet.'"
+  },
+  "success": "Succès",
+  "@success": {
+    "description": "Denote label 'Success'"
+  },
+  "error": "Erreur",
+  "@error": {
+    "description": "Denote label 'Error'"
   }
 }
