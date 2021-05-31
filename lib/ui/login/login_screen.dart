@@ -107,7 +107,6 @@ class LoginScreen extends StatelessWidget {
 
   Future checkArchivedUser() async {
     var user = await db.getUserDetails();
-    print(user.id);
     return user.isArchived;
   }
 
