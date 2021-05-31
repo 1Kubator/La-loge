@@ -378,5 +378,9 @@
   "error": "Erreur",
   "@error": {
     "description": "Denote label 'Error'"
+  },
+  "accountDeactivated": "Votre compte a été désactivé, veuillez contacter l'assistance.",
+  "@accountDeactivated": {
+    "description": "Denote label 'Your account has been deactivated, please contact support.'"
   }
 }
