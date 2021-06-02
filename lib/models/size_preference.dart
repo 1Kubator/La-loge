@@ -40,9 +40,7 @@ class SizePreference {
     List<QueryDocumentSnapshot> documents,
   ) {
     return documents.map((e) {
-      final c = e.data();
-      c.remove('options');
-      return SizePreference.fromMap(e.id, c, e.reference);
+      return SizePreference.fromMap(e.id, e.data(), e.reference);
     }).toList();
   }
 
