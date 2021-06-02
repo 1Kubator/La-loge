@@ -88,7 +88,7 @@
     "description": "Denote 'User Material Preference' label"
   },
   "thankYou": "Merci!",
-  "@merci": {
+  "@thankYou": {
     "description": "Denote 'Thank you' label"
   },
   "preferencesRecorded": "Nous avons pris en compte vos préférences",
