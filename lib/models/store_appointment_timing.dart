@@ -41,8 +41,11 @@ class StoreAppointmentTiming {
       List<QueryDocumentSnapshot> docs, storeId) async {
     List<StoreAppointmentTiming> storeAppointmentTimings = [];
     final dates = docs.map((e) {
-      var date = e.data()['datetime'] as Timestamp;
-      return date.toDate();
+      final data = e.data();
+      if (data is Map<String, dynamic>) {
+        var date = data['datetime'] as Timestamp;
+        return date.toDate();
+      }
     }).toList();
     dates.map((e) => DateTime(e.year, e.month, e.day)).toSet().forEach((date) {
       storeAppointmentTimings.add(

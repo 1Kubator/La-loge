@@ -40,9 +40,7 @@ class MaterialPreference {
     List<QueryDocumentSnapshot> documents,
   ) {
     return documents.map((e) {
-      final c = e.data();
-      c.remove('options');
-      return MaterialPreference.fromMap(e.id, c, e.reference);
+      return MaterialPreference.fromMap(e.id, e.data(), e.reference);
     }).toList();
   }
 
