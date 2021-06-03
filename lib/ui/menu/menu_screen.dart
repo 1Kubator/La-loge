@@ -7,6 +7,7 @@ import 'package:la_loge/ui/user/user_profile_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuScreen extends StatelessWidget {
   static const id = 'menu_screen';
@@ -47,7 +48,9 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              launch('mailto:contact@lalogeprivee.fr');
+            },
             contentPadding: EdgeInsets.all(16),
             title: Text(
               MyAppLocalizations.of(context).support,
@@ -55,7 +58,9 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              launch('https://lalogeprivee.fr/mentions-legales/');
+            },
             contentPadding: EdgeInsets.all(16),
             title: Text(
               MyAppLocalizations.of(context).cgu,
