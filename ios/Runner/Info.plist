@@ -2,7 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>https</string>
+      <string>http</string>
+    </array>
+    <key>NSPhotoLibraryUsageDescription</key>
 	<string>La Loge Privée a besoin d&apos;accéder à la photothèque pour télécharger la photo de profil.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>La Loge Privée a besoin d&apos;un accès à l&apos;appareil photo pour télécharger la photo de profil.</string>
