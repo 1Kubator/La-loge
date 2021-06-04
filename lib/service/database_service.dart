@@ -285,19 +285,18 @@ class DatabaseService {
     return appointmentQuestions;
   }
 
-  Future<bool> bookAppointment(
+  Future<StoreAppointment> bookAppointment(
       StoreAppointmentArgument storeAppointmentArg) async {
     if (await hasAppointment(storeAppointmentArg.store.id,
         storeAppointmentArg.storeAppointment.appointmentDateTime)) {
-      return false;
+      return null;
     }
-    await _db
+    var doc = await _db
         .collection(CollectionPath.stores)
         .doc(storeAppointmentArg.store.id)
         .collection(CollectionPath.appointments)
-        .doc()
-        .set(storeAppointmentArg.storeAppointment.toMap());
-    return true;
+        .add(storeAppointmentArg.storeAppointment.toMap());
+    return storeAppointmentArg.storeAppointment.copyWith(id: doc.id);
   }
 
   Future<bool> hasAppointment(String storeId, DateTime dateTime) async {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:la_loge/models/store.dart';
+import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/models/store_appointment_argument.dart';
+import 'package:la_loge/ui/appointment/edit_appointment_screen.dart';
 import 'package:la_loge/ui/store/appointment/booking_successful_screen.dart';
 import 'package:la_loge/ui/store/appointment/confirm_appointment_screen.dart';
 import 'package:la_loge/ui/store/store_gallery_complete_screen.dart';
@@ -75,10 +77,25 @@ class StoreScreenNavigator extends StatelessWidget {
             }
             throw 'Invalid route or arguments';
           case BookingSuccessfulScreen.id:
-            return MaterialPageRoute(
-              settings: RouteSettings(name: BookingSuccessfulScreen.id),
-              builder: (context) => BookingSuccessfulScreen(),
-            );
+            if (args is StoreAppointment) {
+              return MaterialPageRoute(
+                settings: RouteSettings(name: BookingSuccessfulScreen.id),
+                builder: (context) => BookingSuccessfulScreen(
+                  appointment: args,
+                ),
+              );
+            }
+            throw 'Invalid route or arguments';
+          case EditAppointmentScreen.id:
+            if (args is StoreAppointment) {
+              return MaterialPageRoute(
+                settings: RouteSettings(name: EditAppointmentScreen.id),
+                builder: (context) => EditAppointmentScreen(
+                  storeAppointment: args,
+                ),
+              );
+            }
+            throw 'Invalid route or arguments';
           default:
             return MaterialPageRoute(
               settings: RouteSettings(name: StoresListScreen.id),

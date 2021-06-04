@@ -145,22 +145,28 @@ class ConfirmAppointmentScreen extends StatelessWidget {
   bookAppointmentAndNavigate(BuildContext context) async {
     progressDialog.show(context);
     try {
-      var isAppointmentBooked = await db.bookAppointment(
+      var appointment = await db.bookAppointment(
         StoreAppointmentArgument(
           store: store,
           storeAppointment: storeAppointmentDetails,
         ),
       );
       progressDialog.hide();
-      if (!isAppointmentBooked) {
+      if (appointment == null) {
         return DialogBox.showCustomErrorDialog(
-            context, MyAppLocalizations.of(context).appointmentTimeNotAvailable,
-            onPopped: () {
-          Navigator.popUntil(
-              context, (route) => route.settings.name == StoresListScreen.id);
-        });
+          context,
+          MyAppLocalizations.of(context).appointmentTimeNotAvailable,
+          onPopped: () {
+            Navigator.popUntil(
+                context, (route) => route.settings.name == StoresListScreen.id);
+          },
+        );
       } else {
-        Navigator.pushNamed(context, BookingSuccessfulScreen.id);
+        Navigator.pushNamed(
+          context,
+          BookingSuccessfulScreen.id,
+          arguments: appointment,
+        );
       }
     } catch (e) {
       progressDialog.hide();
