@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_loge/models/store_appointment.dart';
 import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/images.dart';
+import 'package:la_loge/ui/appointment/edit_appointment_screen.dart';
 import 'package:la_loge/ui/store/stores_list_screen.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
@@ -9,6 +11,9 @@ import 'package:provider/provider.dart';
 
 class BookingSuccessfulScreen extends StatelessWidget {
   static const id = 'booking_successful_screen';
+  final StoreAppointment appointment;
+
+  const BookingSuccessfulScreen({Key key, this.appointment}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +68,21 @@ class BookingSuccessfulScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 40),
-                      Text(
-                        MyAppLocalizations.of(context).editPrivateShopping,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Theme.of(context).primaryColorDark,
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            EditAppointmentScreen.id,
+                            arguments: appointment,
+                          );
+                        },
+                        child: Text(
+                          MyAppLocalizations.of(context).editPrivateShopping,
+                          style: TextStyle(
+                            fontSize: 12,
+                            decoration: TextDecoration.underline,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
                         ),
                       ),
                       SizedBox(height: 44),
