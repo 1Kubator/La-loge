@@ -18,6 +18,7 @@ class StoreAppointment {
   final String storeId;
 
   StoreAppointment copyWith({
+    String id,
     Map<String, dynamic> bookingQuestions,
     String status,
     DateTime appointmentTimeStamp,
