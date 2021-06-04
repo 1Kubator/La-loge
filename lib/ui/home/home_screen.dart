@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/images.dart';
+import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:la_loge/widgets/submit_button.dart';
@@ -57,7 +58,7 @@ class FirstPositionedTab extends StatelessWidget {
             Center(child: AppTitle()),
             Spacer(flex: 4),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Center(
                 child: Text(
                   AppLocalizations.of(context).shoppingAppointment,
@@ -70,9 +71,21 @@ class FirstPositionedTab extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Center(
+                child: Text(
+                  MyAppLocalizations.of(context).accessAdvantagesInFavStores,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
             Spacer(flex: 4),
             SubmitButton(
               AppLocalizations.of(context).bookPrivateShopping,
+              isOutlined: true,
               onTap: () {
                 tabNotifier.setTabIndex = 1;
               },
@@ -111,6 +124,7 @@ class SecondPositionedTab extends StatelessWidget {
           SizedBox(height: 28),
           SubmitButton(
             AppLocalizations.of(context).myPrivateShopping,
+            isOutlined: true,
             onTap: () {
               tabNotifier.setTabIndex = 2;
             },
