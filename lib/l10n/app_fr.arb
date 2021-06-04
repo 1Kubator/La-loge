@@ -382,5 +382,9 @@
   "accountDeactivated": "Votre compte a été désactivé, veuillez contacter l'assistance.",
   "@accountDeactivated": {
     "description": "Denote label 'Your account has been deactivated, please contact support.'"
+  },
+  "accessAdvantagesInFavStores": "En tant que shopper premium accédez à vos avantages dans vos boutiques favorites !",
+  "@accessAdvantagesInFavStores": {
+    "description": "Denote label 'As a premium shopper, access your advantages in your favorite stores!'"
   }
 }
