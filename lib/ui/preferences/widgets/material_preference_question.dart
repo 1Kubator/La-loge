@@ -50,7 +50,6 @@ class MaterialPreferenceQuestion extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.w300,
                             ),
-                            maxLines: 2,
                           ),
                         ),
                       ],
