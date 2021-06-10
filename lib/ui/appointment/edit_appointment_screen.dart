@@ -16,6 +16,7 @@ import 'package:la_loge/widgets/loading_animation.dart';
 import 'package:la_loge/widgets/progress_dialog.dart';
 
 import 'appointment_cancellation_confirmation_screen.dart';
+import 'booking_update_successful_screen.dart';
 
 class EditAppointmentScreen extends StatefulWidget {
   static const id = 'edit_appointment_screen';
@@ -137,6 +138,10 @@ class _EditAppointmentScreenState extends State<EditAppointmentScreen> {
                               Navigator.pop(context);
                             },
                           );
+                        Navigator.pushNamed(
+                          context,
+                          BookingUpdateSuccessfulScreen.id,
+                        );
                         progressDialog.hide();
                       } catch (e) {
                         progressDialog.hide();
