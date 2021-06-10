@@ -386,5 +386,9 @@
   "accessAdvantagesInFavStores": "En tant que shopper premium accédez à vos avantages dans vos boutiques favorites !",
   "@accessAdvantagesInFavStores": {
     "description": "Denote label 'As a premium shopper, access your advantages in your favorite stores!'"
+  },
+  "booking_update_successful": "Votre shopping privé à bien été modifié !",
+  "@booking_update_successful": {
+    "description": "Denote label 'Your shopping private to good been changed!'"
   }
 }
