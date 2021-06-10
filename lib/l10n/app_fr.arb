@@ -223,7 +223,7 @@
   "@nextPrivateShopping": {
     "description": "Denote 'Your next private shopping' label"
   },
-  "previousPrivateShopping": "Votre précédents shopping privé",
+  "previousPrivateShopping": "Votre prochain shopping privé",
   "@previousPrivateShopping": {
     "description": "Denote 'Your previous private shopping' label"
   },
