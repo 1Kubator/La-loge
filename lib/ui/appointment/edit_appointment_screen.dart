@@ -139,9 +139,11 @@ class _EditAppointmentScreenState extends State<EditAppointmentScreen> {
                             },
                           );
                         Navigator.pushNamed(
-                          context,
-                          BookingUpdateSuccessfulScreen.id,
-                        );
+                            context, BookingUpdateSuccessfulScreen.id,
+                            arguments: !widget
+                                .storeAppointment.appointmentDateTime
+                                .isAtSameMomentAs(
+                                    appointmentDetails.appointmentDateTime));
                         progressDialog.hide();
                       } catch (e) {
                         progressDialog.hide();
