@@ -7,6 +7,10 @@ import 'package:la_loge/widgets/app_title.dart';
 
 class BookingUpdateSuccessfulScreen extends StatelessWidget {
   static const id = 'booking_update_successful_screen';
+  final bool isDateTimeChanged;
+
+  const BookingUpdateSuccessfulScreen({Key key, this.isDateTimeChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +44,20 @@ class BookingUpdateSuccessfulScreen extends StatelessWidget {
                           fontFamily: GoogleFonts.playfairDisplay().fontFamily,
                         ),
                       ),
-                      SizedBox(height: 40),
-                      Text(
-                        MyAppLocalizations.of(context).receiveEmailConfirmation,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: GoogleFonts.inter().fontFamily,
-                          color: Theme.of(context).primaryColorDark,
+                      if (isDateTimeChanged) ...[
+                        SizedBox(height: 40),
+                        Text(
+                          MyAppLocalizations.of(context)
+                              .receiveEmailConfirmation,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: GoogleFonts.inter().fontFamily,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
                         ),
-                      ),
+                      ],
                       SizedBox(height: 44),
                       FractionallySizedBox(
                         widthFactor: 1,

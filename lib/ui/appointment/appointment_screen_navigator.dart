@@ -29,10 +29,15 @@ class AppointmentScreenNavigator extends StatelessWidget {
                 builder: (context) => AppointmentCancelledScreen(),
               );
             case BookingUpdateSuccessfulScreen.id:
-              return MaterialPageRoute(
-                settings: RouteSettings(name: BookingUpdateSuccessfulScreen.id),
-                builder: (context) => BookingUpdateSuccessfulScreen(),
-              );
+              if (args is bool)
+                return MaterialPageRoute(
+                  settings:
+                      RouteSettings(name: BookingUpdateSuccessfulScreen.id),
+                  builder: (context) => BookingUpdateSuccessfulScreen(
+                    isDateTimeChanged: args,
+                  ),
+                );
+              throw 'Invalid route or arguments';
             case EditAppointmentScreen.id:
               if (args is StoreAppointment) {
                 return MaterialPageRoute(
