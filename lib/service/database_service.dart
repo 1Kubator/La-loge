@@ -10,7 +10,6 @@ import 'package:la_loge/models/gallery.dart';
 import 'package:la_loge/models/material_preference.dart';
 import 'package:la_loge/models/material_preference_response.dart';
 import 'package:la_loge/models/option.dart';
-import 'package:la_loge/models/preference_question_type.dart';
 import 'package:la_loge/models/size_preference.dart';
 import 'package:la_loge/models/size_preference_response.dart';
 import 'package:la_loge/models/store.dart';
@@ -444,8 +443,7 @@ class DatabaseService {
             await getSizePreference(sizePrefsResponse.statementRef.path);
         prefsQA[sizePrefs] = sizePrefsResponse;
       }
-      prefsQA.removeWhere(
-          (key, value) => key.type == PreferenceQuestionType.SLIDER);
+
       return prefsQA;
     }).handleError((err) {
       throwNetworkException(err);
@@ -467,17 +465,17 @@ class DatabaseService {
     );
   }
 
-  Future<void> updatePreference(
+  Future<void> updateSizePreference(
     String prefResponseId,
-    String prefCollectionName,
-    DocumentReference newSelectedOptionRef,
+    var value,
   ) async {
+    var key = value is int ? 'option_value' : 'options_ref';
     await _db
         .collection(CollectionPath.user)
         .doc(userId)
-        .collection(prefCollectionName)
+        .collection(CollectionPath.sizePreferences)
         .doc(prefResponseId)
-        .update({'options_ref': newSelectedOptionRef});
+        .update({key: value});
   }
 
   Future<StylePreferenceResponse> addPreference(
