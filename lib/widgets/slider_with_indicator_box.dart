@@ -4,10 +4,18 @@ import 'package:flutter_xlider/flutter_xlider.dart';
 class SliderWithIndicatorBox extends StatefulWidget {
   final double min;
   final double max;
+  final double currentVal;
   final Function(int val) onChanged;
+  final Function(int val) onChangedFinished;
 
-  const SliderWithIndicatorBox({Key key, this.min, this.max, this.onChanged})
-      : super(key: key);
+  const SliderWithIndicatorBox({
+    Key key,
+    @required this.min,
+    @required this.max,
+    this.onChanged,
+    this.onChangedFinished,
+    this.currentVal,
+  }) : super(key: key);
 
   @override
   _SliderWithIndicatorBoxState createState() => _SliderWithIndicatorBoxState();
@@ -19,7 +27,7 @@ class _SliderWithIndicatorBoxState extends State<SliderWithIndicatorBox> {
   @override
   void initState() {
     super.initState();
-    currentValue = widget.min;
+    currentValue = widget.currentVal ?? widget.min;
   }
 
   @override
@@ -45,8 +53,12 @@ class _SliderWithIndicatorBoxState extends State<SliderWithIndicatorBox> {
       onDragging: (int handlerIndex, lowerVal, upperVal) {
         if (currentValue == lowerVal) return;
         currentValue = lowerVal;
-        widget.onChanged(currentValue.toInt());
+        if (widget.onChanged != null) widget.onChanged(currentValue.toInt());
         setState(() {});
+      },
+      onDragCompleted: (int handlerIndex, lowerVal, upperVal) {
+        if (widget.onChangedFinished != null)
+          widget.onChangedFinished(currentValue.toInt());
       },
       handler: FlutterSliderHandler(
         child: Text(
