@@ -32,8 +32,15 @@ class _SizePreferenceScreenState extends State<SizePreferenceScreen> {
     super.initState();
     future = db.getSizePreferenceQuestions();
     future.then((value) {
-      userPreferences =
-          List.generate(value.length, (index) => SizePreferenceResponse());
+      userPreferences = List.generate(value.length, (index) {
+        if (value[index].type == PreferenceQuestionType.SLIDER) {
+          return SizePreferenceResponse(
+            statementRef: value[index].docReference,
+            optionValue: value[index].options.first.option,
+          );
+        }
+        return SizePreferenceResponse();
+      });
     });
   }
 
