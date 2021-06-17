@@ -87,17 +87,17 @@
   "@materialPreference": {
     "description": "Denote 'User Material Preference' label"
   },
-  "thankYou": "Merci!",
+  "thankYou": "Merci !",
   "@thankYou": {
     "description": "Denote 'Thank you' label"
   },
-  "preferencesRecorded": "Nous avons pris en compte vos préférences",
+  "preferencesRecorded": "Nous avons bien pris en compte votre sélection",
   "@preferencesRecorded": {
-    "description": "Denote 'We have taken your preferences into account' label"
+    "description": "Denote 'We have taken your selection into account' label"
   },
-  "enjoyApplication": "Vous pouvez dés maintenant accéder à notre application et profiter de shopping privé dans vos boutiques favorites",
+  "enjoyApplication": "Vous pouvez dès maintenant accéder à votre compte privilégié afin de profiter de shoppings privés dans vos boutiques préférées",
   "@enjoyApplication": {
-    "description": "Denote 'You can now access our application and enjoy private shopping in your favorite stores' label"
+    "description": "Denote 'You can now access your privileged account to enjoy private shopping in your favorite stores' label"
   },
   "accessApplication": "Accéder à mon espace",
   "@accessApplication": {
@@ -111,7 +111,7 @@
   "@accessStores": {
     "description": "Denote 'As a premium shopper, access your advantages in your favorite stores!' label"
   },
-  "findAppointments": "Retrouvez tout vos rendez-vous !",
+  "findAppointments": "Retrouvez tous vos rendez-vous !",
   "@findAppointments": {
     "description": "Denote 'Find everything your appointments!' label"
   },
@@ -123,11 +123,11 @@
   "@bookPrivateShopping": {
     "description": "Denote 'Book a private shopping' label"
   },
-  "readyForPrivateShopping": "Prête pour un shopping privée !",
+  "readyForPrivateShopping": "Prête pour une nouvelle expérience ?",
   "@readyForPrivateShopping": {
     "description": "Denote 'Ready for private shopping!' label"
   },
-  "makeAnAppointmentWithStore": "Pour prendre un rendez-vous sélectionnez un magasin.",
+  "makeAnAppointmentWithStore": "Pour prendre rendez-vous, sélectionnez un magasin ci-dessous.",
   "@makeAnAppointmentWithStore": {
     "description": "Denote 'TA make an appointment select a store.' label"
   },
@@ -135,7 +135,7 @@
   "@aboveAll": {
     "description": "Denote 'But above all...' label"
   },
-  "swipeInfo": "... indiquez au personnel de vente en swippant à droit si vous aimez et gauche si vous n’aimez pas un ou plusieurs looks selectionnez.",
+  "swipeInfo": "Indiquez au personnel de boutique les looks que vous aimes en swippant vers la droite. Si vous n'aimez pas, swippez vers la gauche.",
   "@swipeInfo": {
     "description": "Denote '... tell the sales staff by swiping to the right if you like and to the left if you don't like one or more looks select' label"
   },
@@ -171,7 +171,7 @@
   "@specialRequest": {
     "description": "Denote 'Have you got a special request?' label"
   },
-  "informReasonForBooking": "Informez le personnel de vente la raison de votre venue",
+  "informReasonForBooking": "Informez le personnel de vente de la raison de votre venue",
   "@informReasonForBooking": {
     "description": "Denote 'Inform sales staff the reason for your coming' label"
   },
@@ -383,7 +383,7 @@
   "@accountDeactivated": {
     "description": "Denote label 'Your account has been deactivated, please contact support.'"
   },
-  "accessAdvantagesInFavStores": "En tant que shopper premium accédez à vos avantages dans vos boutiques favorites !",
+  "accessAdvantagesInFavStores": "En tant que shopper premium, accédez dès maintenant à vos avantages dans vos boutiques favorites",
   "@accessAdvantagesInFavStores": {
     "description": "Denote label 'As a premium shopper, access your advantages in your favorite stores!'"
   },

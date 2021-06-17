@@ -20,7 +20,7 @@ class MaterialPreferenceQuestion extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              '${preferenceQuestion.statement}',
+              '${preferenceQuestion.statement?.toUpperCase()}',
               style: GoogleFonts.inter().copyWith(
                 fontWeight: FontWeight.w700,
               ),
