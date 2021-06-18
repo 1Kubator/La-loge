@@ -420,6 +420,18 @@ class DatabaseService {
     });
   }
 
+  Stream<model.User> getUserDetailsAsStream() {
+    return _db
+        .collection(CollectionPath.user)
+        .doc(userId)
+        .snapshots()
+        .asyncMap((value) {
+      return model.User.fromMap(value.data(), value.id);
+    }).handleError((err) {
+      throwNetworkException(err);
+    });
+  }
+
   Future<void> updateUserDetails(model.User user) async {
     return _db
         .collection(CollectionPath.user)
