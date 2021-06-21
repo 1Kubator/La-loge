@@ -177,7 +177,7 @@ class DatabaseService {
         .doc(userId)
         .collection(CollectionPath.gallerySelections);
 
-    await getUserGallerySelectionItemId(galleryReference.id)
+    await getUserGallerySelectionItemId(galleryReference.id, storeId)
         .then((gallerySelectionItemId) async {
       if (gallerySelectionItemId != null) {
         await collectionRef
@@ -196,12 +196,16 @@ class DatabaseService {
     return;
   }
 
-  Future<String> getUserGallerySelectionItemId(String galleryItemId) async {
+  Future<String> getUserGallerySelectionItemId(
+    String galleryItemId,
+    String storeId,
+  ) async {
     return _db
         .collection(CollectionPath.user)
         .doc(userId)
         .collection(CollectionPath.gallerySelections)
         .where('gallery_item_id', isEqualTo: galleryItemId)
+        .where('store_id', isEqualTo: storeId)
         .get()
         .then((value) {
       if (value.docs.isEmpty) return null;
@@ -243,10 +247,8 @@ class DatabaseService {
         .collection(CollectionPath.gallery)
         .get();
     var storeGalleryItemsIds = storeGallerySnap.docs.map((e) => e.id).toList();
-
     var userSwipedGalleryItemsId =
         await getUserGallerySelectionItemsId(storeId);
-
     var hasSeenWholeGallery =
         storeGalleryItemsIds.every((e) => userSwipedGalleryItemsId.contains(e));
     return hasSeenWholeGallery;
