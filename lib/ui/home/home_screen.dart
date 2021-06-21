@@ -2,8 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_loge/models/user.dart';
 import 'package:la_loge/providers/tabs_notifier.dart';
 import 'package:la_loge/resources/images.dart';
+import 'package:la_loge/service/database_service.dart';
+import 'package:la_loge/service_locator.dart';
 import 'package:la_loge/utils/app_localizations.dart';
 import 'package:la_loge/widgets/app_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -46,53 +49,81 @@ class HomeScreen extends StatelessWidget {
 }
 
 class FirstPositionedTab extends StatelessWidget {
+  final db = locator<DatabaseService>();
+
   @override
   Widget build(BuildContext context) {
     final tabNotifier = Provider.of<TabsNotifier>(context, listen: false);
+    final size = MediaQuery.of(context).size;
     return Positioned.fill(
-      child: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Spacer(),
-            Center(child: AppTitle()),
-            Spacer(flex: 4),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Center(
-                child: Text(
-                  AppLocalizations.of(context).shoppingAppointment,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: GoogleFonts.playfairDisplay().fontFamily,
+      child: ListView(
+        children: [
+          SizedBox(height: 20),
+          Center(child: AppTitle()),
+          SizedBox(height: size.height / 6),
+          Center(
+            child: Text(
+              MyAppLocalizations.of(context).welcome,
+              style: TextStyle(
+                fontSize: 33,
+                fontWeight: FontWeight.w700,
+                fontFamily: GoogleFonts.playfairDisplay().fontFamily,
+              ),
+            ),
+          ),
+          SizedBox(height: 4),
+          StreamBuilder<User>(
+              stream: db.getUserDetailsAsStream(),
+              builder: (context, snap) {
+                if (snap.hasError) return Container();
+                if (!snap.hasData) return Container();
+                return Center(
+                  child: Text(
+                    snap.data.name,
+                    style: TextStyle(
+                      fontSize: 33,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: GoogleFonts.playfairDisplay().fontFamily,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
+                );
+              }),
+          SizedBox(height: size.height / 6),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Center(
+              child: Text(
+                AppLocalizations.of(context).shoppingAppointment,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: GoogleFonts.playfairDisplay().fontFamily,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Center(
-                child: Text(
-                  MyAppLocalizations.of(context).accessAdvantagesInFavStores,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18),
-                ),
+          ),
+          SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Center(
+              child: Text(
+                MyAppLocalizations.of(context).accessAdvantagesInFavStores,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
               ),
             ),
-            Spacer(flex: 4),
-            SubmitButton(
-              AppLocalizations.of(context).bookPrivateShopping,
-              isOutlined: true,
-              onTap: () {
-                tabNotifier.setTabIndex = 1;
-              },
-            ),
-            Spacer(),
-          ],
-        ),
+          ),
+          SizedBox(height: 32),
+          SubmitButton(
+            AppLocalizations.of(context).bookPrivateShopping,
+            isOutlined: true,
+            onTap: () {
+              tabNotifier.setTabIndex = 1;
+            },
+          ),
+          SizedBox(height: 40),
+        ],
       ),
     );
   }
