@@ -39,7 +39,7 @@ class AppointmentCancellationConfirmationScreen extends StatelessWidget {
             ),
             SizedBox(height: 54),
             SubmitButton(
-              MyAppLocalizations.of(context).confirm,
+              MyAppLocalizations.of(context).cancelAppointment,
               isOutlined: true,
               onTap: () async {
                 await db.cancelAppointment(
@@ -53,7 +53,7 @@ class AppointmentCancellationConfirmationScreen extends StatelessWidget {
             FractionallySizedBox(
               widthFactor: 0.9,
               child: OutlinedButton(
-                child: Text(MyAppLocalizations.of(context).cancel),
+                child: Text(MyAppLocalizations.of(context).back),
                 onPressed: () {
                   Navigator.pop(context);
                 },

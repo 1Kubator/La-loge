@@ -52,7 +52,7 @@ class DialogBox {
     return showDialog(
       context: context,
       builder: (_context) => getPlatformBasedDialog(
-        title: Text(MyAppLocalizations.of(context).error),
+        title: Text(MyAppLocalizations.of(context).oops),
         content: Text(errorMsg),
         actions: [
           TextButton(

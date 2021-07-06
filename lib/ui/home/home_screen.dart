@@ -79,7 +79,7 @@ class FirstPositionedTab extends StatelessWidget {
                 if (!snap.hasData) return Container();
                 return Center(
                   child: Text(
-                    snap.data.name,
+                    '${snap.data.name} !',
                     style: TextStyle(
                       fontSize: 33,
                       fontWeight: FontWeight.w700,
