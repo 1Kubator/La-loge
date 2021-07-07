@@ -337,7 +337,7 @@ class DatabaseService {
         .collectionGroup(CollectionPath.appointments)
         .where('user_id', isEqualTo: userId)
         .where('status', isEqualTo: 'booked')
-        .orderBy('appointment_date_time', descending: true)
+        .orderBy('appointment_date_time', descending: false)
         .snapshots()
         .asyncMap((event) async {
       List<StoreAppointmentArgument> storeAppointmentsWithStore = [];
