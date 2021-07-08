@@ -108,7 +108,6 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
                 SubmitButton(
                   AppLocalizations.of(context).next,
                   onTap: () async {
-                    // if (!validate()) return;
                     final response = widget.allPreferences.copyWith(
                       materialPreferenceResponse: userPreferences,
                     );
@@ -138,9 +137,5 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
 
   void removeOptionReference(int index, DocumentReference val) {
     userPreferences[index].optionsRef.remove(val);
-  }
-
-  bool validate() {
-    return !userPreferences.any((element) => element.optionsRef == null);
   }
 }
