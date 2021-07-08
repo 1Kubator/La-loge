@@ -18,6 +18,10 @@ class AppTheme {
     return ThemeData.dark().copyWith(
       textTheme: themeData,
       accentColor: accentColor,
+      colorScheme: ThemeData.dark().colorScheme.copyWith(
+            secondary: accentColor,
+            primary: accentColor,
+          ),
       primaryTextTheme: themeData,
       accentTextTheme: themeData,
       scaffoldBackgroundColor: primaryColor,
