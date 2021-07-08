@@ -103,6 +103,8 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
             SizedBox(height: 32),
             TextFormField(
               initialValue: email,
+              readOnly: true,
+              enabled: false,
               keyboardType: TextInputType.emailAddress,
               onChanged: (val) {
                 email = val;
@@ -241,7 +243,6 @@ class _EditUserProfileScreenState extends State<EditUserProfileScreen> {
       imageUrl = await storage.uploadImageWithFile(imageFile, 'users/');
     }
     var user = this.user.copyWith(
-          email: email,
           city: city,
           imageUrl: imageUrl,
           dob: DateTime(year, month, day),
