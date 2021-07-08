@@ -51,6 +51,7 @@ class PreferenceQuestion extends StatelessWidget {
             widthFactor: 1,
             child: Wrap(
               alignment: WrapAlignment.center,
+              runSpacing: 8,
               children: preferenceQuestion.options
                   .map(
                     (option) => InkWell(
