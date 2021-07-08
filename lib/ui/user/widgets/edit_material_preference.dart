@@ -119,7 +119,6 @@ class _EditMaterialPreferencesState extends State<EditMaterialPreferences>
     progressDialog.show(context);
     try {
       if (data[pref].optionsRef.contains(option.docReference)) {
-        if (data[pref].optionsRef.length == 1) return;
         await db.deleteMaterialPreference(data[pref].id, option.docReference);
         data[pref].optionsRef.remove(option.docReference);
       } else {
