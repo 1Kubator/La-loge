@@ -40,8 +40,13 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
     super.initState();
     future = db.getMaterialPreferenceQuestions();
     future.then((value) {
-      userPreferences =
-          List.generate(value.length, (index) => MaterialPreferenceResponse());
+      userPreferences = List.generate(
+        value.length,
+        (index) => MaterialPreferenceResponse(
+          optionsRef: [],
+          statementRef: value[index].docReference,
+        ),
+      );
     });
   }
 
@@ -90,13 +95,7 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
 
                           if (alreadyAdded) {
                             removeOptionReference(index, val);
-
-                            if (userPreferences[index].optionsRef.isEmpty)
-                              disposeOptionReference(index);
                           } else {
-                            if (userPreferences[index].optionsRef == null)
-                              initializeOptionReference(index);
-
                             addPreference(
                               index,
                               val,
@@ -109,7 +108,7 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
                 SubmitButton(
                   AppLocalizations.of(context).next,
                   onTap: () async {
-                    if (!validate()) return;
+                    // if (!validate()) return;
                     final response = widget.allPreferences.copyWith(
                       materialPreferenceResponse: userPreferences,
                     );
@@ -129,24 +128,16 @@ class _MaterialPreferenceScreenState extends State<MaterialPreferenceScreen> {
     );
   }
 
-  addPreference(
-      int index, DocumentReference val, DocumentReference statementRef) {
-    userPreferences[index] = userPreferences[index].copyWith(
-      statementRef: statementRef,
-    );
+  void addPreference(
+    int index,
+    DocumentReference val,
+    DocumentReference statementRef,
+  ) {
     userPreferences[index].optionsRef.add(val);
   }
 
-  removeOptionReference(int index, DocumentReference val) {
+  void removeOptionReference(int index, DocumentReference val) {
     userPreferences[index].optionsRef.remove(val);
-  }
-
-  initializeOptionReference(int index) {
-    userPreferences[index].optionsRef = [];
-  }
-
-  disposeOptionReference(int index) {
-    userPreferences[index] = MaterialPreferenceResponse();
   }
 
   bool validate() {
