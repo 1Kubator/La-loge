@@ -59,7 +59,7 @@
   "@genericErrorMessage": {
     "description": "Denote server down"
   },
-  "welcome": "Bienvenue !",
+  "welcome": "Bienvenue",
   "@welcome": {
     "description": "Welcome text"
   },
@@ -135,7 +135,7 @@
   "@aboveAll": {
     "description": "Denote 'But above all...' label"
   },
-  "swipeInfo": "Indiquez au personnel de boutique les looks que vous aimes en swippant vers la droite. Si vous n'aimez pas, swippez vers la gauche.",
+  "swipeInfo": "Indiquez au personnel de boutique les looks que vous aimez en swippant vers la droite. Si vous n'aimez pas, swippez vers la gauche.",
   "@swipeInfo": {
     "description": "Denote '... tell the sales staff by swiping to the right if you like and to the left if you don't like one or more looks select' label"
   },
@@ -155,9 +155,9 @@
   "@no": {
     "description": "Denote 'No' label"
   },
-  "articlesWillBeIndicatedToSellers": "Les articles que vous avez préférés seront indiqués aux vendeurs !",
+  "articlesWillBeIndicatedToSellers": "Nous avons bien pris en compte votre sélection.",
   "@articlesWillBeIndicatedToSellers": {
-    "description": "Denote 'The articles that you preferred will be indicated to sellers!' label"
+    "description": "Denote 'We have taken your selection into account' label"
   },
   "makeAppointment": "Prendre rendez-vous",
   "@makeAppointment": {
@@ -215,9 +215,9 @@
   "@editPrivateShopping": {
     "description": "Denote 'Edit my private shopping' label"
   },
-  "noPrivateShoppingHoursAvailable": "Désolé, la boutique n'a pas d'heures de magasinage privées disponibles, réessayez plus tard.",
+  "noPrivateShoppingHoursAvailable": "Nous sommes désolés, la boutique n’a pas encore de créneaux de shopping privé de disponibles\nVeuillez réessayer plus tard.",
   "@noPrivateShoppingHoursAvailable": {
-    "description": "Denote 'Sorry, the store does not have private shopping hours available, please try again later.' label"
+    "description": "Denote We are sorry, the store does not have any private shopping slots available yet. Please try again later label"
   },
   "nextPrivateShopping": "Votre prochain shopping privé",
   "@nextPrivateShopping": {
@@ -247,7 +247,7 @@
   "@cancelAppointment": {
     "description": "Denote 'Cancel private shopping' label"
   },
-  "confirmAppointmentCancellation": "Êtes vous sur de vouloir annuler votre shoppin privé?",
+  "confirmAppointmentCancellation": "Êtes vous sur de vouloir annuler votre shopping privé?",
   "@confirmAppointmentCancellation": {
     "description": "Denote 'Are you sure you want to cancel your private shopping?' label"
   },
@@ -374,6 +374,14 @@
   "success": "Succès",
   "@success": {
     "description": "Denote label 'Success'"
+  },
+  "oops": "Oups !",
+  "@oops": {
+    "description": "Denote label 'Oops'"
+  },
+  "back": "Retour",
+  "@return": {
+    "description": "Denote label 'Return'"
   },
   "error": "Erreur",
   "@error": {
