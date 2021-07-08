@@ -409,6 +409,7 @@ class DatabaseService {
         .doc(appointmentId)
         .update({
       'status': BookingStatusHelper.fromValue(BookingStatus.cancelled),
+      'cancelled_by': 'user',
     }).catchError((err) {
       throwNetworkException(err);
     });
