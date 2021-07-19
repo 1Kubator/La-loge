@@ -49,7 +49,7 @@ class MenuScreen extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              launch('mailto:contact@lalogeprivee.fr');
+              launch('https://lalogeprivee.fr/faq-shopper-premium/');
             },
             contentPadding: EdgeInsets.all(16),
             title: Text(
