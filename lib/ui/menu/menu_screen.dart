@@ -70,8 +70,10 @@ class MenuScreen extends StatelessWidget {
           ListTile(
             onTap: () async {
               await FirebaseAuthentication.signOut();
-              Navigator.pushNamedAndRemoveUntil(
+              Navigator.of(
                 context,
+                rootNavigator: true,
+              ).pushNamedAndRemoveUntil(
                 LoginScreen.id,
                 (route) => false,
               );
