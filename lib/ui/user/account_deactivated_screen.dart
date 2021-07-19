@@ -19,8 +19,8 @@ class AccountDeactivatedScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 FirebaseAuthentication.signOut().then((value) {
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
+                  Navigator.of(context, rootNavigator: true)
+                      .pushNamedAndRemoveUntil(
                     LoginScreen.id,
                     (route) => false,
                   );
